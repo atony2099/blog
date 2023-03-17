@@ -1,39 +1,37 @@
 
-
 ---
+
 title: error
 date: 2023-01-05
 description:
-tags:["error"]
+tags: ["error"]
 draft: false
 ---
 
-
 error type:
-1. exception 
-2.  return param
-	1. code: -1 , 
-	2. result:   null 
-	3.  error type
 
-
-
+1. exception
+2. return param
+ 1. code: -1 ,
+ 2. result:   null
+ 3. error type
 
 exception:
 prons:
+
 1. 可以打印出堆栈
 2. 可以统一处
 
-cons: 
-错误被统一处理，可能导致潜在bug 
-
+cons:
+错误被统一处理，可能导致潜在bug
 
 go:  error type
+
 ```
 
 
 type error interface{
-	Error() string
+ Error() string
 }
 
 
@@ -41,17 +39,16 @@ result, err = doSth(...)
 if err != nil: 
 ```
 
-	
-
 return parameter:
 prons:
-1. 一对一处理错误，避免bug 
+
+1. 一对一处理错误，避免bug
 cons:
 1. 繁琐， 每个方法都要check一下，  无法统一处理
 
-
 example:  
 creatIndex 失败, 但没有回退之前操作
+
   ```js
      try{
        let db = CreateDB("db") 
@@ -65,6 +62,7 @@ creatIndex 失败, 但没有回退之前操作
   ```
 
 强制开发一对一处理错误
+
  ```c
        mysqlDB *db = CreateDB("db") 
        if (db== null){
@@ -83,12 +81,10 @@ creatIndex 失败, 但没有回退之前操作
        }  
  ```
 
-
-
-
 ## wrap
+
 what:
-add extra into to a error 
+add extra into to a error
 
 ```go
 var notFound = errors.New("not found")
@@ -96,11 +92,6 @@ err := fmt.Errorf("%w, so bad ", not)
 
 
 if errors.Is(err,not found){
-	.....
+ .....
 }
 ```
-
-
-
-
-

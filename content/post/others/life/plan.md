@@ -1,13 +1,13 @@
   
 ---
+
 title: plan
 date: 2022-10-07
 description:
-tags:[]
+tags: []
 draft: false
 ---
 
-
 step1: write your goal
 
-step2: 
+step2:

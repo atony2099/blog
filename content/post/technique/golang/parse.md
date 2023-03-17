@@ -1,91 +1,78 @@
 
 ---
+
 title: parser
 date: 2022-01-26
 description:
-tags:["go","parser"]
+tags: ["go","parser"]
 ---
-
-
 
 ## what
 
 ![wdF2ac](https://raw.githubusercontent.com/atony2099/imgs/master/uPic/wdF2ac.png)
 
-
 how:
+
 1. 词汇分析: token list
-3.  语法分析: ast
-4.  generate code
-
-
-
+3. 语法分析: ast
+4. generate code
 
 ## ast  tree
 
 what:   token之间的关系， 用树形式表示出来
 
-
 ![NlG037](https://raw.githubusercontent.com/atony2099/imgs/master/uPic/NlG037.jpg)
 
-
 parse tree vs abstract tree:  ast 是 parse tree 进一步提炼
-
 
 ## go  parse work
 
 how:
+
 1. goToken: getTokenList
-2.  parser: getAst 
+2. parser: getAst
 
-
-
-
-
-
-
-
-##   rules
+## rules
 
 the proces:
-1. rules and datasources
-2. parse 
 
+1. rules and datasources
+2. parse
 
 parse: bool  表达式
+
 ```
  a  < 9 &&  b > 0
 ```
+
 1. logic  ops:  ||,  &&
 2. compare:  >=, <=, !=
 
-
 list:
-1. https://github.com/Knetic/govaluate
-2. 
 
-
+1. <https://github.com/Knetic/govaluate>
+2.
 
 example:
 a > 1 && (b <10 || a < 199)
 
-
 binaryExp
-- x: binaryExp 
-	- x:ident,  a
-	- y: literal . 1
-	- op， >
+
+- x: binaryExp
+  - x:ident,  a
+  - y: literal . 1
+  - op， >
 - y: parentExp
-	- x:binExp
-		- x:binaryExp
-			- x: ident, b
-			- y:literal, 10
-			- op, <
-		- y:binaryExp
-			- x: ident
-			- y: literal 
-			- op
-		- op:  ||
+  - x:binExp
+    - x:binaryExp
+      - x: ident, b
+      - y:literal, 10
+      - op, <
+    - y:binaryExp
+      - x: ident
+      - y: literal
+      - op
+    - op:  ||
 
 ```
 
@@ -143,7 +130,3 @@ binaryExp
     50  }
 
 ```
-
-
-
-
