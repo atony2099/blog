@@ -1,8 +1,8 @@
 ---
-title: 拆
+title: divide
 date: "2021-10-01T00:02:28+0800"
 draft: false
-categories: ["微服务"]
+categories: ["micro"]
 ---
 
 [领域驱动设计概览](https://gitbook.cn/gitchat/column/5cdab7fb34b6ed1398fd8de7/topic/5cdabf6434b6ed1398fd8e5c)
