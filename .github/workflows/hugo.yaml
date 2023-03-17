@@ -36,6 +36,7 @@ jobs:
       # This is used to complete the identity challenge
       # with sigstore/fulcio when running outside of PRs.
       id-token: write
+      repository-projects: write
     env:
       HUGO_VERSION: 0.111.2
     steps:
