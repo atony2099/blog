@@ -1,0 +1,41 @@
+pipeline{
+    agent any
+    tools {nodejs "node12"}
+    stages{
+        stage("first stage"){
+              steps {
+                    sh 'node -v'
+              }
+            
+        }
+        
+        stage("second stage"){
+            steps{
+                sh 'echo "hello world"'
+            }
+    
+        }
+    }
+
+    post {
+        success{
+            sh '''
+                Message="${project} 文件上传成功,请查看!"
+
+                Data="{\\"msgtype\\":\\"text\\", \\"text\\": {\\"content\\":  \\"测试环境$${currentBuild.durationString}{Message}\\"}}"
+                curl  -X POST \
+                      -H 'Content-Type: application/json' \
+                      -d "${Data}" \
+                    https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=0ad294ef-d915-472f-b6d7-6c434889708e
+            '''
+        }
+         failure {
+            sh 'echo "failure"'
+        }
+
+    }
+
+    
+  
+}
+

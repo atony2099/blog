@@ -1,0 +1,149 @@
+{
+  "workspaces": {
+    "01": {
+      "main": {
+        "id": "05016cbc911f065d",
+        "type": "split",
+        "children": [
+          {
+            "id": "c6f1e47c47ceec94",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "bea4f46766519f8c",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "base/memory.md",
+                    "mode": "source",
+                    "source": false
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical"
+      },
+      "left": {
+        "id": "95b212c4d20a3d2b",
+        "type": "split",
+        "children": [
+          {
+            "id": "8add84c85c4f1621",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "8cccfb93c9c2d781",
+                "type": "leaf",
+                "state": {
+                  "type": "file-explorer",
+                  "state": {
+                    "sortOrder": "alphabetical"
+                  }
+                }
+              },
+              {
+                "id": "e25edbb80c660df5",
+                "type": "leaf",
+                "state": {
+                  "type": "search",
+                  "state": {
+                    "query": "",
+                    "matchingCase": false,
+                    "explainSearch": false,
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical"
+                  }
+                }
+              },
+              {
+                "id": "5c71d1a4d49d8bd4",
+                "type": "leaf",
+                "state": {
+                  "type": "starred",
+                  "state": {}
+                }
+              }
+            ],
+            "currentTab": 1
+          }
+        ],
+        "direction": "horizontal",
+        "width": 300
+      },
+      "right": {
+        "id": "5cd74d4d39f6121d",
+        "type": "split",
+        "children": [
+          {
+            "id": "a1abc7deb5614842",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "8315e3eec21d91f9",
+                "type": "leaf",
+                "state": {
+                  "type": "backlink",
+                  "state": {
+                    "file": "base/memory.md",
+                    "collapseAll": true,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical",
+                    "showSearch": false,
+                    "searchQuery": "",
+                    "backlinkCollapsed": false,
+                    "unlinkedCollapsed": true
+                  }
+                }
+              },
+              {
+                "id": "40349697e9f3faea",
+                "type": "leaf",
+                "state": {
+                  "type": "outgoing-link",
+                  "state": {
+                    "file": "base/memory.md",
+                    "linksCollapsed": false,
+                    "unlinkedCollapsed": true
+                  }
+                }
+              },
+              {
+                "id": "d15dc12bcba46554",
+                "type": "leaf",
+                "state": {
+                  "type": "tag",
+                  "state": {
+                    "sortOrder": "frequency",
+                    "useHierarchy": true
+                  }
+                }
+              },
+              {
+                "id": "b60787430727a234",
+                "type": "leaf",
+                "state": {
+                  "type": "outline",
+                  "state": {
+                    "file": "base/memory.md"
+                  }
+                }
+              }
+            ],
+            "currentTab": 3
+          }
+        ],
+        "direction": "horizontal",
+        "width": 300
+      },
+      "ribbon": {
+        "mostRecentAction": ""
+      },
+      "active": "bea4f46766519f8c"
+    }
+  },
+  "active": "01"
+}
