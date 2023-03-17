@@ -56,15 +56,16 @@ jobs:
           hugo \
             --gc \
             --minify         
-      - name: Push to Another Repo
-        uses: ad-m/github-push-action@master
+      - name: Pushes to another repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
         with:
-          branch: main
-          directory: ./public
-          force: true
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          repository: atony2099/myweb
-
+          source-directory: 'public'
+          destination-github-username: 'atony2099'
+          destination-repository-name: 'myweb'
+          user-email: atony2099@gmail.com
+          target-branch: main
 
 
 
