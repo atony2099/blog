@@ -51,4 +51,35 @@ patch version: bug fix
 
 ## update
 
-1. go get -u: update current modules
+1. go get -u: update current module 
+
+
+
+
+
+
+## go.sum
+
+used for: 防止依赖包被篡改 
+
+
+format:
+
+```
+github.com/xxx/pkg1 v1.0.0 h1: hash256value 
+github.com/xxx/pkg1 v1.0.0/go.mod  h1: hash256value 
+```
+
+
+what happen before write to go.sum file
+1. hash the content and compare hash  value list in sum.golang.org
+2. 
+
+
+
+
+what  happen  when  another 
+
+
+
+first downl 

@@ -1,8 +1,9 @@
 ---
-title: command11
+title: command
 date: "2021-03-14T15:26:48+0800"
 draft: false
 categories: ["linux"]
+lastmod: "2023-03-18T14:36:16.129Z"
 ---
 
 ## basic
