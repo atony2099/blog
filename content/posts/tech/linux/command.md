@@ -1,9 +1,9 @@
 ---
 title: command
 date: "2021-03-14T15:26:48+0800"
-draft: false
 categories: ["linux"]
-lastmod: "2023-03-18T14:36:16.129Z"
+lastmod: 2023-03-20T14:20:31+0800
+draft: false
 ---
 
 ## basic
@@ -151,45 +151,6 @@ move: target is a directory and exist;
 2. -r --recursive: remove  directory and their contents recursively
 
 
-### rsync
-
-1. what?
-   cp file form source to destination
-   1. rsync source dest 
-      -->
-      dest/source 
-   2. rsync source/ dest = rsync source/* dest
-
-
-
-
-
-2. parameters
-   1. --exclude,--include: from left to right
-   2. -a: preserve meta data;
-      1. -r, --recursive recurse into directories
-      2. -l, --links Copy symlinks as symlinks
-      3. preserve
-         1. -p, --perms Preserve permissions
-         2. -t, --times Preserve times
-         3. -g,-o, --Preserve group,user(only take effect in super user mode)
-         4. --devices, This option causes rsync to transfer character and block device files to the remote system to recreate these devices.
-         5. --specials: This option causes rsync to transfer special files such as named sockets and fifos.
-   3. -c: compress during sync 
-   4. --include 
-   5. --exclude
-
-
-3. case: sync a.txt to b 
-   a/{c.txt,d.pdf, a1/a.txt}
-   b
-   ```
-   sync a/ b --include *.txt --inclue='*.txt' --include='*/' --exclude='*' -avc 
-   ```
-
-
-
-rsync /mnt/tang01/qbitdownload/movie/*  /mnt/tang01/movies/movie  \'  --exclude=\'*\' -avc --chmod=a=rwx'
 
 ## http
 
@@ -324,4 +285,85 @@ director:777 files:6666
 
 
 
-## sync 
+
+## sync file
+
+
+### rsync
+
+`rsync source to dest`
+
+argumetns:
+1. -a: archive mode, which preserves file permissions, ownership, timestamps, etc.
+	1. `-t`, `--times` preserve modification times
+	2. `-g`, `--group` preserve group
+	3. -o`, `--owner` preserve owner (super-user only)
+2. -z: comprese during tranfering
+
+
+what happen if uid not exist in des host:
+the file will owed by souce host owner's id
+
+```
+a.txt  tang(501)
+
+rsync -a  1.2.3.3:/
+
+ls  1.2.3.3/
+a owenr = 501 
+
+```
+
+
+
+
+
+
+example:
+
+1. rsync - avz  /movies/*  /api :  sync all files to /api/,  /api/move1  /api/movie2
+2.  rsync -avz /movies /api: sync directory and file to /api,  /api/movies/movie1....
+
+
+
+
+
+
+3. parameters
+   1. --exclude,--include: from left to right
+   2. -a: preserve meta data;
+      1. -r, --recursive recurse into directories
+      2. -l, --links Copy symlinks as symlinks
+      3. preserve
+         1. -p, --perms Preserve permissions
+         2. -t, --times Preserve times
+         3. -g,-o, --Preserve group,user(only take effect in super user mode)
+         4. --devices, This option causes rsync to transfer character and block device files to the remote system to recreate these devices.
+         5. --specials: This option causes rsync to transfer special files such as named sockets and fifos.
+   3. -c: compress during sync 
+   4. --include 
+   5. --exclude
+
+
+4. case: sync a.txt to b 
+   a/{c.txt,d.pdf, a1/a.txt}
+   b
+   ```
+   sync a/ b --include *.txt --inclue='*.txt' --include='*/' --exclude='*' -avc 
+   ```
+
+
+
+rsync /mnt/tang01/qbitdownload/movie/*  /mnt/tang01/movies/movie  \'  --exclude=\'*\' -avc --chmod=a=rwx'
+
+
+
+## kill
+
+pkill 
+
+1. pkil processname:  only partly match
+```
+pkill ginx, nginx will be ill
+```
+2. pkill  -x: full match

@@ -1,11 +1,10 @@
 ---
 title: git
 date: "2021-03-14T15:35:06+0800"
-draft: false
 categories: ["git"]
+lastmod: 2023-03-20T09:52:44+0800
+draft: false
 ---
-## refernece
-
 [The Most Basic Git Command List](https://www.tutorialdocs.com/article/git-basic-command-list.html)
 
 [Git Internals - Git References](https://git-scm.com/book/en/v2/Git-Internals-Git-References)
@@ -18,11 +17,59 @@ categories: ["git"]
 ![usyT2X](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210331/usyT2X.jpg)
 ![e6VPjC](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210331/e6VPjC.jpg)
 
-## 1. what's git
 
-version control software, track the change of source code
+what: 
+version control , track the change of source code
 
-### 1. git config
+
+## git status  
+
+working tree: file chang
+staging(cache):  to change to the repo
+local repo:    save change permanently
+
+
+command: 
+1. git staus: the change in  working and staging are
+2. git diff :
+
+
+clean  working   tree(directory) :  add to staged are, the  working adn stage is syned, and the same, so working  tree is clean 
+
+
+### reset
+
+git reset:  reset commit to some one 
+
+how it work:
+1.  init:  wor: n, stage:n   commit: n
+2. soft -1, unchange work and stag:   work n, stage: n,  commit: n-1
+```shell
+git status  
+some file to be commitd
+```
+
+
+3. mixed -1: reset stage-1,  work n, stage n-1, commit n-1 
+```
+git status
+change not staged ...
+change not tack ...
+```
+
+4. hard -1: stege and work -1: work n-1, stage n-1, commit -1
+
+
+
+### git clean
+
+remove untracked file
+1. -f: force
+2. -d: recurse  into directory 
+
+
+
+## 1. git config
 
 #### 1. config list order
 
@@ -55,20 +102,7 @@ $(prefix)/etc/gitconfig: system
 git config --global.user.name atony2099
 git config --global url."https://github.com/".insteadOf git@github.com:
 
-## 2. git status
 
-1. working tree:
-
-   edit your source-code changing(add, modify,delete)
-
-2. staged(index)tree:
-
-   preapare to record the change;
-
-3. repository: record the change  hisory
-
-   1. local repository
-   2. remote repository
 
 ## 3. observe your git
 
@@ -253,7 +287,7 @@ git checkout -- a.txt #
 remove untracked file;
 git clean -df;
 
--d: remove directory
+-d: remove director
 -f: force
 
 ## git branch manage
@@ -303,26 +337,4 @@ git push --set-upstream <remote> <branch>
 1. upstream branch
    remote branch track local branch
 
-## git restore
 
-### 1. git reset
-
-return  back to  a specific commit;
-
-1. do what
---soft:   return head to  ccurrnt commit
-
---mixed: return index and  head
-
---hard:  reset head,index and work
-
-1. undo reset
-
-```
-git reflog:  record the head log;
-git reset head@{1}: return to last head
-```
-
-### 2.git revert
-
-## git best pracice

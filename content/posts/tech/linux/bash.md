@@ -1,8 +1,9 @@
 ---
 title: bash syntax
 date: "2021-04-11T18:11:12+0800"
-draft: false
 categories: ["linux"]
+draft: false
+lastmod: 2023-03-19T02:33:26+0800
 ---
 
 

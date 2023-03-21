@@ -123,12 +123,10 @@ POSIX: portable operateing system interface
 1. Bsd and unix are old implementation
 2. linux is new comer
 
-## directory structure 
+## directory  
 
 ![KA5qjy](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210320/KA5qjy.jpg)
 ![UhvrPG](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20220524/UhvrPG.jpg)
-
-
 
 
 1. /home(\$HOME | ~):
@@ -168,10 +166,33 @@ you should mimic the linux hierarchy, seperate your application into different f
     2. /opt: don't have these restrictions
       > e.g.our applications
 
-### create local shell command
 
-1. create shell script
-2. move the script into /usr/local/bin directory
+
+
+
+### bin  sbin 
+
+sbin: used for system administrator
+bin: used for normal user  
+
+/bin, /sbin: essential command
+1.  /bin: ls, cat
+2.  /sbin:  iptables, ip 
+
+
+/usr/bin  /usr/bin: distribution-manager; not essential  
+
+1. /usr/bin: awk, sed 
+2. /usr/sbin: httpd ， 
+
+
+/user/local/bin /user/loca/sbin : local-user manager 
+
+1. /user/local/bin:  go  
+
+
+
+
 
 
 ## root user 
