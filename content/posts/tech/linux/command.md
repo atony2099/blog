@@ -9,11 +9,7 @@ draft: false
 ## basic
 
 
-
-
-
-
-1. backslash 11
+1. backslash 1
    for shell command, \(newline) represent a same line
 
 2. vairables with curly brackets
