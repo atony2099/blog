@@ -24,7 +24,7 @@ draft: false
 
 
 
-## text process
+## text  transform 
 
 awk vs sed: text process
 
@@ -191,9 +191,6 @@ curl -X POST \
 HTTP://baidu.com
 ```
 
-## ps
-
-report a snpashot of current process
 
 ## redirection
 
@@ -245,13 +242,6 @@ cat < a.txt
 > : overwrite
 >
 > > : append
-
-### 2
-
-## how to create a command
-
-1. create a shell script
-2. move to l
 
 ## directory manage
 
@@ -374,7 +364,21 @@ rsync /mnt/tang01/qbitdownload/movie/*  /mnt/tang01/movies/movie  \'  --exclude=
 
 
 
-## kill
+
+## process manager 
+
+
+### ps, pgrep 
+
+ps: report the running process 
+pgrep:  get all pid of match name(only need partly match )
+
+
+
+
+
+
+### kill
 
 pkill 
 
