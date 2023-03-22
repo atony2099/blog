@@ -4,7 +4,6 @@ date: "2021-06-02T17:31:49+0800"
 draft: false 
 tags: ["rpc","grpc"]
 ---
-;
 [Compare gRPC services with HTTP APIs](https://docs.microsoft.com/en-us/aspnet/core/grpc/comparison?view=aspnetcore-3.0)
 
 [Use Binary Encoding Instead of JSON](https://betterprogramming.pub/use-binary-encoding-instead-of-json-dec745ec09b6)
@@ -33,7 +32,7 @@ tags: ["rpc","grpc"]
 
 [Load Balancing in gRPC](https://github.com/grpc/grpc/blob/master/doc/load-balancing.md)
 
-what:   remote procedure call
+what:   remote procedure call, used for communicate. between process 
 
 ![RewVwv](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20220327/RewVwv.jpg)
 
@@ -103,14 +102,12 @@ methodsTable:
 
 
 
-##  restful  vs rpc 
-
+##  restful  vs rpc
 
 
 same: 
 1. client-side 
-2.   transport  between process
-3. based on tcp, http protocol  
+3. based on http, tcp 
 
 differ:
 

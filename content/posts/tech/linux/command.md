@@ -2,7 +2,7 @@
 title: command
 date: "2021-03-14T15:26:48+0800"
 categories: ["linux"]
-lastmod: 2023-03-20T14:20:31+0800
+lastmod: 2023-03-22T13:54:16+0800
 draft: false
 ---
 
@@ -21,72 +21,89 @@ draft: false
 3. curly braces
    \$(): command expansion
 
-## command type
 
-1. Builtin vs non built-in
 
-   builtin: shell program carry out itself, instead of calling other program;
+## text process
 
-## text manage
+awk vs sed: text process
 
-1. sort
+differ:
+1. sed:  
+2. awk: more  powerful 
 
-> sort text
+###  awk
 
--r: reverse the result of comparisons
+1. print  match
 
-1. unique
-   default sort by ascii order
+```
+awk /rpc/ a.txt 
+```
 
-> compare the adjacent line
->
-> - n: sort by number
 
-- d: only out lines that are repeated
 
-1. wc
+3. print  some colume 
+```
 
-> word, line, character, and byte count
+data.txt
+a b
+a1 b1
+
+awk  '{print  $1}' data.text
+a
+a1
+```
+
+
+2. find some columme is   equal to a value
+```shell
+
+
+cat a.txt
+A    B    C
+Tarun    A12    1
+Man    B6    2
+
+awk '{ if($2 == "B6") print $0;}'
+
+Man B6 2 
+```
+
+
+3. get total count:  if  ... do
+
+```
+awak '/aaa/{count++} END {print count}' a.txt
+```
+
+
+###  sed
+
+1. print the match
+```
+sed -n '/rpc/p' a.txt
+```
+
+2. replace   or delete  text 
+
+```shell 
+sed 's/foo/boo/g' data.txt
+
+sed '/^\s*$/d' log.txt  # delete blank line
+
+```
+
+
+
+
+### wc
+
+
+word, line, character, and byte count
 
 -l: line
 -w: worods
 -c: characters
 
-### practice
-
-1. get total request
-
-   >
-
-2. sort by occurence in reversed order
-
-```c
-sort test.txt | uniq -c | sort -nr
-```
-
-## awk
-
-filter text;
-`regex_pattern { action }`
-
-regex_pattern: match the line
-action: do some action on the line
-
-```shell
-{print $1,print $2} # println the nth fields(fields are seperated by blank blank)
-
-
-```
-
-## sed
-
-stream editor
-
-1. substitute text
-
-1. substitude text 's/old_word/new_word/'
-1. print text
-1. search text
 
 ## source
 
@@ -323,10 +340,6 @@ example:
 
 1. rsync - avz  /movies/*  /api :  sync all files to /api/,  /api/move1  /api/movie2
 2.  rsync -avz /movies /api: sync directory and file to /api,  /api/movies/movie1....
-
-
-
-
 
 
 3. parameters
