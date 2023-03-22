@@ -89,7 +89,7 @@ methodsTable:
 
 
 ##  restful  vs rpc
-
+  
 
 same: 
 1. client-side 
