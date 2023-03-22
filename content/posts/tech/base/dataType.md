@@ -3,6 +3,7 @@ title: dataType
 date: "2021-11-05T21:54:22+0800"
 draft: false
 tags: ["type"]
+lastmod: 2023-03-22T23:41:52+0800
 ---
 
 [理解C++中引用的底层实现s](https://blog.csdn.net/Mind_V/article/details/78619163)
@@ -65,3 +66,5 @@ question:
 
 strong type:  a variable must have a type,  and only that types
 weak type:
+
+

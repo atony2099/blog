@@ -113,11 +113,15 @@ differ:
 
 why use rpc in microserve:
 
+1. binary format:
+	1. more efficient
+	2. scheme:
 
-1.  Efficiency:
+
+3.  Efficiency:
 	1. use binary:  samll and fast
-2. safe:  based on schema, type  safety
-1. advanced feature:
+4. safe:  based on schema, type  safety
+5. advanced feature:
 	1.  service discovery 
 	2. load balance 
 	3. streaming 
