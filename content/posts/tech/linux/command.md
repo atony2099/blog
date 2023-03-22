@@ -8,6 +8,11 @@ draft: false
 
 ## basic
 
+
+
+
+
+
 1. backslash 11
    for shell command, \(newline) represent a same line
 
@@ -166,6 +171,8 @@ move: target is a directory and exist;
       ```
    
 2. -r --recursive: remove  directory and their contents recursively
+
+
 
 
 
