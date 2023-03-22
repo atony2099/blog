@@ -45,22 +45,8 @@ rpc框架比较:
 ![VTjDcu](https://raw.githubusercontent.com/atony2099/imgs/master/uPic/VTjDcu.png)
 
 
-why use rpc in microserve
-
-1.  Efficiency:
-	1. use binary:  samll and fast
-2. safe:  based on schema, type  safety
-1. advanced feature:
-	1.  service discovery 
-	2. load balance 
-	3. streaming 
-
-
-
 
 ## use 
-
-
 
 what: 
 依赖于protoc 文件； 
@@ -111,18 +97,31 @@ same:
 
 differ:
 
-1.   rpc:  
-	1. rpc: action-oriented:  任何操作都相当于本地方法调用， 处理各种类型操作；
-	2. http: resouce-oriented: 任何操作抽象为对资源(data,media)curd，不擅长处理非crud操作；
+1.  function vs resouce: 抽象方式 
+	1. rpc: action(function)-oriented:  operatioon= call local funtion   处理各种类型操作；
+	2. http: resouce-oriented:  operaiton= curd resource, 不擅长处理非crud操作
 
-2. data-format:
+3. data-format:
 	1. rpc: binaryformat
 	2. rest:  text-format
-		   
 3.  advanced：
 	1. 服务注册发现
 	2. 负载均衡 
 	3. streaming 
+
+
+
+why use rpc in microserve:
+
+
+1.  Efficiency:
+	1. use binary:  samll and fast
+2. safe:  based on schema, type  safety
+1. advanced feature:
+	1.  service discovery 
+	2. load balance 
+	3. streaming 
+
 
 
 
