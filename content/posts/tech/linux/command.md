@@ -373,8 +373,19 @@ rsync /mnt/tang01/qbitdownload/movie/*  /mnt/tang01/movies/movie  \'  --exclude=
 ps: report the running process 
 pgrep:  get all pid of match name(only need partly match )
 
+ps:
+1. ps -u root: get the state of owner's root
+```shell
 
+  UID   PID TTY           TIME CMD
+  501   390 ??         6:33.55 /usr/libexec/UserEventAgent (Aqua)
+  501   393 ??        12:12.36 /usr/sbin/universalaccessd launchd -s
+  501   396 ??         4:32.29 /usr/libexec/lsd
+```
 
+1. ps aux : detail information of some pid
+2. -o: specify the output fromat 
+	1. ps -o user,group,pid -p 1234
 
 
 
