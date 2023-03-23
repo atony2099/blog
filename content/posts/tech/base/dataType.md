@@ -69,21 +69,16 @@ question:
 
 what：prevent type error
 
-type error：对变量操作，
+type error：对变量操作 不符合变量实际类型, 如对string 进行 数学运算  
+
+how:
+1.  static  chekck
+2. dymanic chekck
 
 
+strong vs weak type:
 
-
-type- safe  how
-
-
-
-
-type error: 按照变量未定义的方式操作变量引起错误
-
-
-
-strong vs weak:
+1
 
 
 
