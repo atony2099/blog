@@ -2,12 +2,13 @@
 title: dataType
 date: "2021-11-05T21:54:22+0800"
 draft: false
-tags: ["type"]
+tags: ["dataType"]
 lastmod: 2023-03-22T23:41:52+0800
 ---
 
 [理解C++中引用的底层实现s](https://blog.csdn.net/Mind_V/article/details/78619163)
 [# Type Safety in Programming Languages](https://www.baeldung.com/cs/type-safety-programming#:~:text=A%20type%20safe%20language%20maintains,out%2Dof%2Dmemory%20exception.)
+[# Statically v. dynamically v. strongly v. weakly typed languages](https://www.educative.io/answers/statically-v-dynamically-v-strongly-v-weakly-typed-languages)
 
 ## what
 
@@ -68,37 +69,44 @@ question:
 ## type safety 
 
 what: 
-1. 一种机制， 确保变量只能符合其类型的方式进行操作 
+一种机制， 确保变量只能符合其类型的方式进行操作;
+throw type error  when  operation is not compatible with the type  
 ```
 
 if   operation  not compatible myType:
-	throw error
+	throw  type error 
 else
 	operation(myTyp)
 ```
 
+
 how： detect at compile and runtime, then throw it 
 
-type error：a error   when an operation is performed on a variable that's not compatible with its data type 
 
+type error exmaple:
+```python
+a = "k"
+a/2 
 
-why  type  safety is important:
-1. 
+TypeError: unsupported operand type(s) for /: 'str' and 'int
+```
 
+why  type  safety is important: avoid unexpected  result (bug)
 
 
 strong vs weak type:
-1. strong type: chekc type error  and throw
+1. strong type: type-safety,   check  type error  and throw error 
 2. weak type:  ingore type and  type erorr
 	1. auto implict type conversion 
 
-strong type :
+
+static vs dymanic 
+
 1.  static  type:   dataType is determine at compile time 
 	1.  显示指定类型
-2. dymanic type: dataType is determine at run time 
+2. dymanic type: dataType is determine at run time, can change; 
 	1. 不需要显示指定类型:  `c =  100; or let q ="123"`
-	2.  可以更换类型： 
-		
+
 ```python
 a = 100
 print(a)
@@ -107,48 +115,7 @@ a = "qq"
 
 
 
-
-```python
-a = "12"
-a/2
-
-TypeError: unsupported operand type(s) for /: 'str' and 'int
-```
-
-1. weak type: 类型不重要，不符合类型的操作时候，会自动转换类型
-```js
-let a ="123"
-a/2
-
-```
-
-
-static vs   dymanic-checking type :
-
-1. static:  编译期 类型已经确定， 需要显示指定其类型, jave
-2. dymanic: 运行期 类型再确定，
-	1. 不需要显示指定类型，
-	2. 可以更换类型 
-
-
-how:
-validate the variabl , and throw error 
-
-
-
-
-is python tyope 
-
-
-
-way:
-1. comp
-
-
-## strong  type vs weak type
-
-strong type:  a variable must have a type,  and only that types
-weak type:
+![xAXncw4LU5bX](https://raw.githubusercontent.com/atony2099/imgs/master/20230323/xAXncw4LU5bX.png)
 
 
 
