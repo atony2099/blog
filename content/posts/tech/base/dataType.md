@@ -116,6 +116,11 @@ a = "qq"
 ```
 
 
+why c is weak type?
+
+
+
+
 
 ![xAXncw4LU5bX](https://raw.githubusercontent.com/atony2099/imgs/master/20230323/xAXncw4LU5bX.png)
 
