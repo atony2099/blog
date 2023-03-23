@@ -67,28 +67,43 @@ question:
 
 ## type safety 
 
+what: 
+1. 一种机制， 确保变量只能符合其类型的方式进行操作 
+```
 
-一种机制， 保证
+if   operation  not compatible myType:
+	throw error
+else
+	operation(myTyp)
+```
 
-what：  a language can detect  type error  at compile time or run time,  then report(throw ) it 
+how： detect at compile and runtime, then throw it 
 
 type error：a error   when an operation is performed on a variable that's not compatible with its data type 
 
-why type error is important:
-1.  cause unexpect behavior 
-2.  
+
+why  type  safety is important:
+1. 
+
+
 
 strong vs weak type:
-1. strong type:   强调类型，对
-	1. 不符合类型的操作时候，会报错
-	2. 不同类型转换需要显示转换 
+1. strong type: chekc type error  and throw
+2. weak type:  ingore type and  type erorr
+	1. auto implict type conversion 
 
-2. weak type:
-	1. what: 允许 type-error, 
-
-strong type:
-1.  static  type:   detect type error at compile time
-2. dymanic type:  detect type error at  run 
+strong type :
+1.  static  type:   dataType is determine at compile time 
+	1.  显示指定类型
+2. dymanic type: dataType is determine at run time 
+	1. 不需要显示指定类型:  `c =  100; or let q ="123"`
+	2.  可以更换类型： 
+		
+```python
+a = 100
+print(a)
+a = "qq"
+```
 
 
 
