@@ -65,22 +65,39 @@ question:
 
 
 
-
-
-
 ## type safety 
 
+what：prevent type error
 
-what:
-1.  一种机制， 确保 type error
-2.   按照某种方式(类型)访问和修改其内存位置
+type error：对变量操作，
+
+
+
+
+type- safe  how
+
+
 
 
 type error: 按照变量未定义的方式操作变量引起错误
 
+
+
+strong vs weak:
+
+
+
+
+static vs   dymanic :
+
+
 how:
 validate the variabl , and throw error 
 
+
+
+
+is python tyope 
 
 
 
