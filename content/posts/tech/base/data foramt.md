@@ -15,10 +15,23 @@ draft: false
 binary-foramt:
 
 
+text-format:  character -ecncoding
 
-text-format:  基于uft-8
-1. json 
-2. xml 
+1. ascii
+2.  uft-16
+3. uft-18
+4. uft-16
+```c
+POST /api/endpoint HTTP/1.1
+Host: example.com
+Content-Type: application/json; charset=utf-16
+Content-Length: 34
+
+{"name":"John Doe","age":30}
+
+```
 
 
 
+
+data-foramt  type-safetuy

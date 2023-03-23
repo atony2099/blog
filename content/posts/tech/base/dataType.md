@@ -69,7 +69,7 @@ question:
 ## type safety 
 
 what: 
-一种机制， 确保变量只能符合其类型的方式进行操作;
+一种机制, 在一个程序中，  确保变量只能符合其类型的方式进行操作
 throw type error  when  operation is not compatible with the type  
 ```
 
@@ -95,6 +95,8 @@ why  type  safety is important: avoid unexpected  result (bug)
 
 
 strong vs weak type:
+1.   
+
 1. strong type: type-safety,   check  type error  and throw error 
 2. weak type:  ingore type and  type erorr
 	1. auto implict type conversion 
@@ -119,4 +121,7 @@ a = "qq"
 
 
 
+type safety  data foramt:
+
+在通信的不同进程中，数据的类型是一致的，与schema定义类型一样
 

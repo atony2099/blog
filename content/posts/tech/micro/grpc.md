@@ -132,21 +132,23 @@ why use rpc in microserve:
 
 ## protobuf
 
-
 what:
 1. one of date format，like json,xml  
 2.  跨语言
 
+
 ### vs json
-same:
 
 differ:
 1. encode:
 	1.  text-eoncode(serilazion)
 	2. binray-econde
-		1. less size
 
-2.  schema: 定义数据结构 
+2. type safety: 基于 schema 
+
+
+
+4.  schema: 定义数据结构 
 	1. protobuf 基于shcema, 自动校验数据，减少错误 
 		1. required field list
 		2.  fileld  type 
