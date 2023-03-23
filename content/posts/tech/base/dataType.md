@@ -67,23 +67,53 @@ question:
 
 ## type safety 
 
-what：prevent type error
 
-type error：对变量操作 不符合变量实际类型, 如对string 进行 数学运算  
+一种机制， 保证
 
-how:
-1.  static  chekck
-2. dymanic chekck
+what：  a language can detect  type error  at compile time or run time,  then report(throw ) it 
 
+type error：a error   when an operation is performed on a variable that's not compatible with its data type 
+
+why type error is important:
+1.  cause unexpect behavior 
+2.  
 
 strong vs weak type:
+1. strong type:   强调类型，对
+	1. 不符合类型的操作时候，会报错
+	2. 不同类型转换需要显示转换 
 
-1
+2. weak type:
+	1. what: 允许 type-error, 
+
+strong type:
+1.  static  type:   detect type error at compile time
+2. dymanic type:  detect type error at  run 
 
 
 
 
-static vs   dymanic :
+```python
+a = "12"
+a/2
+
+TypeError: unsupported operand type(s) for /: 'str' and 'int
+```
+
+1. weak type: 类型不重要，不符合类型的操作时候，会自动转换类型
+```js
+let a ="123"
+a/2
+
+```
+
+
+static vs   dymanic-checking type :
+
+1. static:  编译期 类型已经确定， 需要显示指定其类型, jave
+2. dymanic: 运行期 类型再确定，
+	1. 不需要显示指定类型，
+	2. 可以更换类型 
 
 
 how:
