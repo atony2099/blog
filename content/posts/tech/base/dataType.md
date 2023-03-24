@@ -68,6 +68,18 @@ question:
 
 ## type safety 
 
+
+
+type check:  
+1. the value match  the expected type;
+2. using the right ingredient when cooking 
+
+static/ type:  compile time/static time check type 
+![DC6oj2Df1sWy](https://raw.githubusercontent.com/atony2099/imgs/master/20230324/DC6oj2Df1sWy.jpg)
+
+weak/strong type: 
+
+
 what: 
 一种机制, 在一个程序中，  确保变量只能符合其类型的方式进行操作
 throw type error  when  operation is not compatible with the type  
@@ -102,7 +114,10 @@ strong vs weak type:
 	1. auto implict type conversion 
 
 
-static vs dymanic 
+static vs dymanic: type checking time.
+
+
+
 
 1.  static  type:   dataType is determine at compile time 
 	1.  显示指定类型
