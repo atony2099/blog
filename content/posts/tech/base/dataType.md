@@ -10,6 +10,8 @@ lastmod: 2023-03-22T23:41:52+0800
 [# Type Safety in Programming Languages](https://www.baeldung.com/cs/type-safety-programming#:~:text=A%20type%20safe%20language%20maintains,out%2Dof%2Dmemory%20exception.)
 [# Statically v. dynamically v. strongly v. weakly typed languages](https://www.educative.io/answers/statically-v-dynamically-v-strongly-v-weakly-typed-languages)
 
+[# Elixir in the Type System Quadrant](https://thinkingelixir.com/elixir-in-the-type-system-quadrant/)
+
 ## what
 
 b = 100
@@ -70,29 +72,22 @@ question:
 
 
 
-type check:  
-1. the value match  the expected type;
+type check:    
+1. the variables  match  the expected type,  if not  throw error or ingore 
 2. using the right ingredient when cooking 
 
-static/ type:  compile time/static time check type 
+static/ dymamic :  compile time/static time check type 
+
+dymanic type
+1.  can change type 
+2.   don't need  declare the type 
+
+![e7PXe6alI1tk](https://raw.githubusercontent.com/atony2099/imgs/master/20230325/e7PXe6alI1tk.jpg)
 ![DC6oj2Df1sWy](https://raw.githubusercontent.com/atony2099/imgs/master/20230324/DC6oj2Df1sWy.jpg)
 
-weak/strong type: 
-
-
-what: 
-一种机制, 在一个程序中，  确保变量只能符合其类型的方式进行操作
-throw type error  when  operation is not compatible with the type  
-```
-
-if   operation  not compatible myType:
-	throw  type error 
-else
-	operation(myTyp)
-```
-
-
-how： detect at compile and runtime, then throw it 
+weak/strong type:  多大程度实施它的type system
+weak:   无视 type system, 通过implicate conversion  solve type error
+strong: 严格遵循type system,  throw type error
 
 
 type error exmaple:
@@ -106,15 +101,7 @@ TypeError: unsupported operand type(s) for /: 'str' and 'int
 why  type  safety is important: avoid unexpected  result (bug)
 
 
-strong vs weak type:
-1.   
 
-1. strong type: type-safety,   check  type error  and throw error 
-2. weak type:  ingore type and  type erorr
-	1. auto implict type conversion 
-
-
-static vs dymanic: type checking time.
 
 
 
