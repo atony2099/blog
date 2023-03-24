@@ -66,7 +66,7 @@ question:
 
 
 
-## type safety 
+## type safety
 
 
 
