@@ -158,12 +158,13 @@ differ:
 what:
 使用最高位表示是否有更多byte
 1: continue 
-0: 
+0: end   
+
+
+
 
 
 example: 1
-int32: 0x00 0x00 0x00 0x01 , 4bytes
-variant int32:   [ 0 ]000 0001 ,  1byte
 ![XhLK6RKUvOA6](https://raw.githubusercontent.com/atony2099/imgs/master/20230310/XhLK6RKUvOA6.jpg)
 
 
