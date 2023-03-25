@@ -155,7 +155,11 @@ differ:
 
 #### variant int 
 
-使用连续位(continuation bit) 表示是否继续: first bit of the byte  
+what:
+使用最高位表示是否有更多byte
+1: continue 
+0: 
+
 
 example: 1
 int32: 0x00 0x00 0x00 0x01 , 4bytes
