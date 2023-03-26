@@ -111,28 +111,15 @@ differ:
 
 
 
-why use rpc in microserve
+why use rpc in microserve:  
 
 1.  fast: binary foramt, less size.
 3.  more safe:  schema, type safety
 5. more advanced:
-	1. service discovery 
-	2. load balance 
-	3. streaming 
-
-
-
-
-7. binary format:
-	1. more efficient
-	2. scheme:
-
-8.  Efficiency:
-	1. use binary:  samll and fast
-9. safe:  based on schema, type  safety
-10. advanced feature:
-
-
+	1. code generation 
+	2. service discovery 
+	3. load balance 
+	4. streaming 
 
 
 
@@ -167,7 +154,6 @@ what:
 
 
 pros:   use less space when int is small; 
-
 
 
 example: 1
