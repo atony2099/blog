@@ -117,7 +117,6 @@ why use rpc in microserve:
 	1. more efficient
 	2. scheme:
 
-
 3.  Efficiency:
 	1. use binary:  samll and fast
 4. safe:  based on schema, type  safety
@@ -146,8 +145,6 @@ differ:
 2. type safety: 基于 schema实现type check, avoid unexpected behavior
 
 
-
-
 ### how 
 
 1. variant int
@@ -161,7 +158,7 @@ what:
 0: end   
 
 
-pros:
+pros:   use less space when int is small; 
 
 
 
