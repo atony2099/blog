@@ -131,6 +131,7 @@ what:
 2.  跨语言
 
 
+
 ### vs json
 
 differ:
@@ -143,7 +144,7 @@ differ:
 ### how 
 
 1. variant int
-2.  tag  value to represent key value.
+2.  Tag  value to represent key value.
 
 #### variant int 
 
@@ -177,11 +178,10 @@ person.name=martion -> 01  02 06 martin
 ```
 
 the used of  tag number： identify the key 
+![7IoPTF4RT7it](https://raw.githubusercontent.com/atony2099/imgs/master/20230327/7IoPTF4RT7it.png)
 
-
-   ![sB1brB](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211123/sB1brB.jpg)
-
-   ![N30bZc](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211123/N30bZc.jpg)
+ 
+![N30bZc](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211123/N30bZc.jpg)
 
 
 

@@ -7,11 +7,20 @@ tags: [""]
 draft: false
 ---
 
-## format type
+##  type
 
-binary-foramt:
+binary-foramt:  use binary encoding,  使用某种二进制格式表示数据
+text-format:   use  character encoding, 使用字符表示数据 
 
-text-format:   use  character-ecncoding,
+
+binary format: 
+1. less space， compactly
+	1. 不需要冗余的符号
+	2.  key可以代替
+
+
+text-foramt:
+1. human-readable
 
 
 character-encoding:
@@ -28,12 +37,6 @@ Content-Length: 34
 {"name":"John Doe","age":30}
 
 ```
-
-
-
-
-data-foramt  type-safetuy
-
 
 
 
