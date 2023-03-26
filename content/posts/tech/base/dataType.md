@@ -89,7 +89,7 @@ dymanic type
 weak/strong type:  多大程度实施它的type system
 
 weak:   淡化 type system,  允许implicit conversion 
-strong: 遵循type system, 不允许implicit conversion
+strong: 遵循type system,  不允许implicit conversion,  throw type error if  not saftish the operaiton;
 1. 不符合类型的操作 throw  type error
 
 
