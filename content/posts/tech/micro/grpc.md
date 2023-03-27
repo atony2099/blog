@@ -254,7 +254,11 @@ example
 
 
 
-## grpc load balancer
+##  load balancer
+
+default  methods for grpc
+
+
 
 how: 
 1. resolver:  解析URL,  URL  -> ip
@@ -289,8 +293,6 @@ pickNext(){
 	p.next = (p.next + 1) % len(subConns)
 }
 ```
-
-
 
 
 
