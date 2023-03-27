@@ -164,7 +164,7 @@ example: 1
 #### tag value
 
 how： 
-tagnumber  -> key, , length(optional), value
+tagnumber  -> key, length(optional), value
 
 ```c
 message Person {
@@ -185,7 +185,8 @@ the used of  tag number： identify the key
 
 
 
-
+can grpc number duplicate:
+no, key  is represent in a unique key number during encoding and decoding 
 
 
 ###  use  example 
