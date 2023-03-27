@@ -1167,3 +1167,22 @@ excution plan:
 i am very sad to see you when i
 
 good
+
+
+## mysql dump 
+
+
+how to dump:
+
+1.  get souce from origin :
+
+```
+mysqldump -u root -p source_db source_table > dump_file.sql
+```
+
+
+2. dump into current 
+
+```
+mysql -u root -p < dump_file.sql
+```
