@@ -191,15 +191,32 @@ no, key  is represent in a unique key number during encoding and decoding
 ##  how to use it
 
 
+###  define 
 
 
-### convensation 
+structure
+package: namespace
+service:  a set of methods  
+```
+package aa
 
+
+message xx {
+
+}
+
+service  xxx  {
+
+}
+
+```
+
+convention:
 1.   PascalCase for  message name:  
 2.  snake  case     name  file   file 
 3.  PascalCase for  service name and  method 
 
-```
+```protoc
 message HelloReq {
 	string song_name = 1;
 }
@@ -214,54 +231,14 @@ service Greeter {
 	rpc  SayHello (HelloReq) returns (HelloRes)
 }
 
-
-```
-
-
-###  structure 
-
-
-
-
-###  example 
-
-```
-option go_package = "github/tang/hello"
-
-package  hello
-
-message  HelloRequest {
-	
-}
-
-
 ```
 
 
 
-file:
-
-```
-option  go_packge="github/tony/hello/proto" 
-message HelloReq {
-	 string  hi = 1 
-	 
-}
-
-message HelloRes {
-	string  ok = 1
-}
-
-service  
-
-```
-
-go_package  used for 
-1. the import path of generted code 
-2.  the  package name of  generated code
 
 
 
+### plugin 
 
 plugins:
 1. protoc-gen-go: how to encode/decode;
@@ -271,6 +248,17 @@ command:
 ```shell
 protoc  arguments   xx.proto 
 ```
+
+
+```shell
+protoc --go_out=paths=source_relative:.  --go-grpc_out=paths=source_relative:. -Iapi  hello/hello.proto
+```
+
+
+
+
+
+
 
 **arguments** 
 
