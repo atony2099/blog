@@ -245,8 +245,10 @@ plugins:
 2. protoc-gen-go-grpc: grpc client/server
    
 command:
+
+simple: 
 ```shell
-protoc  arguments   xx.proto 
+protoc  --go   xx.proto 
 ```
 
 
@@ -256,15 +258,14 @@ protoc --go_out=paths=source_relative:.  --go-grpc_out=paths=source_relative:. -
 
 
 
-
-
-
-
-
-**arguments** 
+**arguments**: 
 
 --go_out=PATH:  output direcotry;
---go_out=pahts=source_relative:.  abc/a.proto:   source proto file path+abc 
+--go_out=pahts=source_relative:. 
+
+
+
+bc/a.proto:   source proto file path+abc 
 --go_out=.:  current path + go_package path
 --go_out=plugins=grpc:load grpc plugin 
 
