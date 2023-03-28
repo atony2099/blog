@@ -190,8 +190,48 @@ no, key  is represent in a unique key number during encoding and decoding
 
 ##  how to use it
 
-p
 
+
+
+### convensation 
+
+1.   PascalCase for  message name:  
+2.  snake  case     name  file   file 
+3.  
+
+```
+message HelloReq {
+	string song_name = 1;
+}
+
+
+message  HelloRes  {
+	string  age int32 = 1;
+}
+
+
+service Greeter {
+	rpc  SayHello (HelloReq) return (HelloRes)
+}
+
+```
+
+
+
+
+###  example 
+
+```
+option go_package = "github/tang/hello"
+
+package  hello
+
+message  HelloRequest {
+	
+}
+
+
+```
 
 
 
