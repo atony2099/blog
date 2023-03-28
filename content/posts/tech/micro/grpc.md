@@ -248,40 +248,25 @@ command:
 
 simple: 
 ```shell
-protoc  --go   xx.proto 
+protoc  --go_out   xx.proto 
 ```
-
 
 ```shell
 protoc --go_out=paths=source_relative:.  --go-grpc_out=paths=source_relative:. -Iapi  hello/hello.proto
+
+protoc --proto_path=api  --go_out=. --go_opt=paths=source_relative hello/hello.proto
+
 ```
 
-
+protoc --go_out=paths=source_relative:api  api/hello/hello.proto
 
 **arguments**: 
 
 --go_out=PATH:  output direcotry;
---go_out=pahts=source_relative:. 
-
-
-
-bc/a.proto:   source proto file path+abc 
---go_out=.:  current path + go_package path
---go_out=plugins=grpc:load grpc plugin 
-
-
-proto file:
-1. message definition
-2. server definitions
-
-
-example
-   ```c
-	protoc  --go_out=plugins=grpc:.  proto_h5/*.proto
-    
-    protoc --go_out=. --go-grpc_out=.  proto_h5/*.proto
-   ```
-
+--go_out=pahts=source_relative/import:.
+the output directory is:
+1. import: import directroy
+2.  source_relative:  the proto file relative directory
 
 
 
