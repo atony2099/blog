@@ -197,7 +197,7 @@ no, key  is represent in a unique key number during encoding and decoding
 
 1.   PascalCase for  message name:  
 2.  snake  case     name  file   file 
-3.  
+3.  PascalCase for  service name and  method 
 
 ```
 message HelloReq {
@@ -211,10 +211,14 @@ message  HelloRes  {
 
 
 service Greeter {
-	rpc  SayHello (HelloReq) return (HelloRes)
+	rpc  SayHello (HelloReq) returns (HelloRes)
 }
 
+
 ```
+
+
+###  structure 
 
 
 
