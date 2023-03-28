@@ -188,7 +188,12 @@ the used of  tag number： identify the key
 can grpc number duplicate:
 no, key  is represent in a unique key number during encoding and decoding 
 
-###  use  example 
+##  how to use it
+
+p
+
+
+
 
 file:
 
@@ -204,10 +209,6 @@ message HelloRes {
 }
 
 service  
-
-
-
-
 
 ```
 
@@ -230,13 +231,9 @@ protoc  arguments   xx.proto
 **arguments** 
 
 --go_out=PATH:  output direcotry;
-
 --go_out=pahts=source_relative:.  abc/a.proto:   source proto file path+abc 
-
 --go_out=.:  current path + go_package path
-
 --go_out=plugins=grpc:load grpc plugin 
-
 
 
 proto file:
@@ -250,6 +247,8 @@ example
     
     protoc --go_out=. --go-grpc_out=.  proto_h5/*.proto
    ```
+
+
 
 
 
