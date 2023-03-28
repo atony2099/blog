@@ -235,10 +235,7 @@ service Greeter {
 
 
 
-
-
-
-### plugin 
+### command 
 
 plugins:
 1. protoc-gen-go: how to encode/decode;
@@ -254,7 +251,8 @@ protoc  --go_out   xx.proto
 ```shell
 protoc --go_out=paths=source_relative:.  --go-grpc_out=paths=source_relative:. -Iapi  hello/hello.proto
 
-protoc --proto_path=api  --go_out=. --go_opt=paths=source_relative hello/hello.proto
+protoc --proto_path=api  --go_out=. --go_opt=paths=source_relative    --go-grpc_out=. 
+--go_opt=paths=source_relative  hello/hello.proto
 
 ```
 
@@ -268,6 +266,17 @@ the output directory is:
 1. import: import directroy
 2.  source_relative:  the proto file relative directory
 
+
+
+
+###  use it
+
+```
+
+
+
+
+```
 
 
 
