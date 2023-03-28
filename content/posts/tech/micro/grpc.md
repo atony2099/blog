@@ -271,18 +271,31 @@ the output directory is:
 
 ###  grpc and http server 
 
+
+
+server:  bind grpc service and   protocServer 
 ```go
 
-grpcServer := grpc.NewServer();
+grpcSer := grpc.NewServer();
 
-grpcServer.S
+helloProtco.Register(grpcSer, protocServer)
 
-grpc.NewServer().Server(tcpListener)
-grpc.NewServer().
+grpcServer.Serve(tcpConnect)
+
+
+```
+
+client:  bind  serverClient  
 
 ```
 
 
+serverClient.Register(tcpConnect)
+
+
+
+
+```
 
 
 ##  load balancer
