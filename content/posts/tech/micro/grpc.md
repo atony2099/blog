@@ -275,6 +275,8 @@ the output directory is:
 
 grpcServer := grpc.NewServer();
 
+grpcServer.S
+
 grpc.NewServer().Server(tcpListener)
 grpc.NewServer().
 
