@@ -6,7 +6,9 @@ tags: ["tooth"]
 draft: false
 ---
 
-
+牙齿主要疾病:
+1. 蛀牙；
+2. 牙周病
 
 structure:
 
