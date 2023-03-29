@@ -13,10 +13,12 @@ structure:
 ![JNsrvx2vrgbQ](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230329/JNsrvx2vrgbQ.jpg)
 
 
+![S0V7NOrrgvth](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230329/S0V7NOrrgvth.jpg)
 
 
 根管治疗: 杀死神经 
 
+why: 血管已经被感染
 
 
 how:
