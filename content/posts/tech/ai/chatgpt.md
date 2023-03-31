@@ -18,5 +18,5 @@ draft: false
 
 ## fix bug
 
-1. Review this code for errors and refactor to fix any issues
-2. 
+1.  Review this code for errors and refactor to fix any issues
+
