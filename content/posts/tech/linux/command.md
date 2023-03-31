@@ -170,6 +170,10 @@ move: target is a directory and exist;
 
 
 
+### tree 
+
+tree -l num: depth, current dirctory is 1;
+tree  -d: print directories only;
 
 
 ## http
