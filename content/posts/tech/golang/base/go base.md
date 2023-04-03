@@ -1,7 +1,6 @@
 ---
-title: base
+title:  go base
 date: "2021-02-28T09:17:11+0800"
-draft: false
 categories: ["Go"]
 ---
 
@@ -60,20 +59,32 @@ only use refect.DeepEqual;
 
 ## defer
 
-### what
+what:  a function  that
+1. delay call 
+2. last call
 
-1. what？
-   a function will be called at last;
+use case:
+1. close resource: channle, file 
 
-2. feature:
-   1. stack: FILO
-   2. change named return value;
-   3. params are evaluate, (copy to struct) instantly
+feature:
+1. stack 
+```go
+func hello() {
+	for _, v := range []int{1, 2, 3, 4} {
+		v := v
+		defer func() {
+			fmt.Println(v)
+		}()
+	}
+	fmt.Println("hello")
+}
+// hello, 4, 3,2,1 
+```
 
-3. use case: close resouce
-   1. close context/ channel
-   2. close read/write straming
-   3. close  wait.group
+
+1. change named return value;
+2. params are evaluate, (copy to struct) instantly
+
 
 ### how
 

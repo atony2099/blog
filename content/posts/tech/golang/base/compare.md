@@ -77,8 +77,6 @@ categories: ["Go"]
    2. cancel Context
 
 
-
-
 ## make vs new 
 1. make: 
     1. only for map,slice,chan

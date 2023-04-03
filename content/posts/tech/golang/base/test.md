@@ -19,14 +19,6 @@ draft: false
 
 
 
-
-
- 
-
-
-
-
-
 ## TTD
 test driven development
 1. write test
