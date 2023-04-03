@@ -64,7 +64,7 @@ what:  a function  that
 2. last call
 
 use case:
-1. close resource: channle, file 
+1. close resource: channle, file, context 
 
 feature:
 1. stack 
@@ -87,23 +87,57 @@ func hello() {
 
 
 ### how
+![VLXkvL](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20220906/VLXkvL.jpg)
 
-1. create deferFunc: deferprocStackack
-   ![VLXkvL](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20220906/VLXkvL.jpg)
-   1. code
+structure: in goroutinue.deferlinklist 
+```go
+type _defer struct {
+	siz     int32 // 参数和返回值的内存大小
+	started bool
+	heap    bool     // 区分该结构是在栈上分配的，还是对上分配的
+	sp      uintptr  // sp 计数器值，栈指针；
+	pc      uintptr  // pc 计数器值，程序计数器；
+	fn      *funcval // defer 传入的函数地址，也就是延后执行的函数;
+	_panic  *_panic  // panic that is running defer
+	link    *_defer  // 链表
+}
+	
+```
 
-       ```
-       type _defer struct {
-        siz     int32 // 参数和返回值的内存大小
-        started boul
-        heap    boul    // 区分该结构是在栈上分配的，还是对上分配的
-        sp        uintptr  // sp 计数器值，栈指针；
-        pc        uintptr  // pc 计数器值，程序计数器；
-        fn        *funcval // defer 传入的函数地址，也就是延后执行的函数;
-        _panic    *_panic  // panic that is running defer
-        link      *_defer   // 链表
-       }
-       ```
+create defer:
+1. copy parameter
+2. 
+```go
+
+// 进入这个函数之前，就已经在栈上分配好了内存结构
+func deferprocStack(d *_defer) {
+    gp := getg()
+
+    // siz 和 fn 在进入这个函数之前已经赋值
+    d.started = false
+    // 表明是栈的内存
+    d.heap = false
+    // 获取到 caller 函数的 rsp 寄存器值，并赋值到 _defer 结构 sp 字段中
+    d.sp = getcallersp()
+    // 获取到 caller 函数的 rip 寄存器值，并赋值到 _defer 结构 pc 字段中
+    // 根据函数调用的原理，我们就知道 caller 的压栈的 pc (rip) 值就是 deferprocStack 的下一条指令
+    d.pc = getcallerpc()
+
+    // 把这个 _defer 结构作为一个节点，挂到 goroutine 的链表中
+    *(*uintptr)(unsafe.Pointer(&d._panic)) = 0
+    *(*uintptr)(unsafe.Pointer(&d.link)) = uintptr(unsafe.Pointer(gp._defer))
+    *(*uintptr)(unsafe.Pointer(&gp._defer)) = uintptr(unsafe.Pointer(d))
+    // 注意，特殊的返回，不会触发延迟调用的函数
+    return0()
+}
+
+```
+
+excute defer:
+
+
+
+
 
    2. parameter are set after defer
 
