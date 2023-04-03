@@ -106,7 +106,7 @@ type _defer struct {
 
 create defer:
 1. copy parameter
-2. 
+2. push in go.defer
 ```go
 
 // 进入这个函数之前，就已经在栈上分配好了内存结构
