@@ -8,18 +8,16 @@ lastmod: 2023-04-04T13:57:08+0800
 
 ##   format 
 
-
 action:
 ```json
 editor.formatOnSave: true
 ```
 
-how:
+how it work
 ```js
 if  file.save == true:
-	formatTools(file, formatconfigure)
+	formatTools(file, formatConfigure)
 ```
-
 
 default  format  configure for  js
 ```json
@@ -28,66 +26,60 @@ default  format  configure for  js
 ```
 
 
-change the format  tool and  congiure
+vscode don't provide default format for all languate, 
+you must
+1. install extention 
+2. custom the configure if need 
 
+
+ js format:  use prettier, tabsize6
 ```json
-
+"javascript.format.defaultFormatter": "esbenp.prettier-vscode",
+"[javascript]": {
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 6
+}
 ```
 
 
-
-
-
-what: vscode use  default 
-
-configure:
+go foramt: use goimports, tabsize6, linewidth 120
 ```json
+"go.formatTool": "goimports",
+"go.formatFlags": ["-tabs=false", "-tabwidth=6", "-max-width=120"]
 
 ```
 
 
-default 
-
-
-
-
-
-## setting.json
-
-### 1. codeActionOnSave
-
-allow which plugin to excute when saved
-
-```json
- "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true,
-        "source.fixAll.markdownlint": true
-    }
+python foramt: use black, python line length 120
 ```
+"python.formatting.provider": "black",
+"python.formatting.blackArgs": ["--line-length", "120"]
 
-### 2. set tab to space
-
-```shell
-// The number of spaces a tab is equal to. This setting is overridden
-// based on the file contents when `editor.detectIndentation` is true.
-"editor.tabSize": 4,
-
-// Insert spaces when pressing Tab. This setting is overriden
-// based on the file contents when `editor.detectIndentation` is true.
-"editor.insertSpaces": true,
-
-// When opening a file, `editor.tabSize` and `editor.insertSpaces`
-// will be detected based on the file contents. Set to false to keep
-// the values you've explicitly set, above.
-"editor.detectIndentation": false
-
-```
-
-## set theme
-
-```
-⌘K ⌘T
 ```
 
 
 
+
+## Visuals
+```json 
+  "workbench.colorTheme": "Vitesse Dark",
+  "workbench.preferredDarkColorTheme": "Vitesse Dark",
+  "workbench.preferredLightColorTheme": "Vitesse Light",
+  "workbench.productIconTheme": "icons-carbon",
+  "workbench.iconTheme": "file-icons",
+  "workbench.fontAliasing": "antialiased",
+  "editor.fontFamily": "Input Mono, Fira Code, monospace",
+  "editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss06', 'zero'",
+```
+
+
+
+
+## nesting file
+
+relate   file nesting in the VS Code Explorer.
+```
+"explorer.fileNesting.enabled": true, "explorer.fileNesting.expand": false, "explorer.fileNesting.patterns": {
+	"go.mod": "go.sum",
+}
+```
