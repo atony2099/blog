@@ -133,9 +133,9 @@ func deferprocStack(d *_defer) {
 
 ```
 
-excute defer:
-1. check 
-
+excute defer:   
+1. check g in current func.
+2.   jump to defer fun  
 
 
 ```go
