@@ -7,7 +7,7 @@ categories: ["Go"]
 [Go defer 原理和源码剖析](https://studygolang.com/articles/35316)
 
 [The empty struct](https://dave.cheney.net/2014/03/25/the-empty-struct)
-
+[defer](https://github.com/cch123/golang-notes/blob/master/defer.md)
 
 ## type
 
@@ -109,26 +109,30 @@ create defer:
 2. push in go.defer
 ```go
 
-// 进入这个函数之前，就已经在栈上分配好了内存结构
-func deferprocStack(d *_defer) {
-    gp := getg()
+func deferproc(siz int32, fn *funcval) { // arguments of fn follow fn
+    sp := getcallersp(unsafe.Pointer(&siz))
+    argp := uintptr(unsafe.Pointer(&fn)) + unsafe.Sizeof(fn)
+    callerpc := getcallerpc() // 存储的是 caller 中，call deferproc 的下一条指令的地址
 
-    // siz 和 fn 在进入这个函数之前已经赋值
-    d.started = false
-    // 表明是栈的内存
-    d.heap = false
-    // 获取到 caller 函数的 rsp 寄存器值，并赋值到 _defer 结构 sp 字段中
-    d.sp = getcallersp()
-    // 获取到 caller 函数的 rip 寄存器值，并赋值到 _defer 结构 pc 字段中
-    // 根据函数调用的原理，我们就知道 caller 的压栈的 pc (rip) 值就是 deferprocStack 的下一条指令
-    d.pc = getcallerpc()
+    d := newdefer(siz)
+    if d._panic != nil {
+        throw("deferproc: d.panic != nil after newdefer")
+    }
+    d.fn = fn
+    d.pc = callerpc
+    d.sp = sp
+    switch siz {
+    case 0:
+        // Do nothing.
+    case sys.PtrSize:
+        *(*uintptr)(deferArgs(d)) = *(*uintptr)(unsafe.Pointer(argp))
+    default:
+        memmove(deferArgs(d), unsafe.Pointer(argp), uintptr(siz))
+    }
 
-    // 把这个 _defer 结构作为一个节点，挂到 goroutine 的链表中
-    *(*uintptr)(unsafe.Pointer(&d._panic)) = 0
-    *(*uintptr)(unsafe.Pointer(&d.link)) = uintptr(unsafe.Pointer(gp._defer))
-    *(*uintptr)(unsafe.Pointer(&gp._defer)) = uintptr(unsafe.Pointer(d))
-    // 注意，特殊的返回，不会触发延迟调用的函数
     return0()
+    // No code can go here - the C return register has
+    // been set and must not be clobbered.
 }
 
 ```
@@ -199,7 +203,6 @@ func deferreturn(arg0 uintptr) {
    ```
 
 2. case 2
-
    ```go
    func a1() (i int){
       defer func(){
