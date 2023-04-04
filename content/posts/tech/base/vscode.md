@@ -58,8 +58,6 @@ python foramt: use black, python line length 120
 ```
 
 
-
-
 ## Visuals
 ```json 
   "workbench.colorTheme": "Vitesse Dark",
@@ -77,9 +75,11 @@ python foramt: use black, python line length 120
 
 ## nesting file
 
-relate   file nesting in the VS Code Explorer.
-```
+related  file nesting in the VS Code Explorer.
+```json
 "explorer.fileNesting.enabled": true, "explorer.fileNesting.expand": false, "explorer.fileNesting.patterns": {
 	"go.mod": "go.sum",
 }
 ```
+\>go.mod
+	\> go.sum
