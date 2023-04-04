@@ -134,7 +134,47 @@ func deferprocStack(d *_defer) {
 ```
 
 excute defer:
+1. check 
 
+
+
+```go
+func deferreturn(arg0 uintptr) {
+    gp := getg()
+    // 获取到最前的 _defer 节点
+    d := gp._defer
+    // 函数递归终止条件（d 链表遍历完成）
+    if d == nil {
+        return
+    }
+    // 获取 caller 函数的 rsp 寄存器值
+    sp := getcallersp()
+    if d.sp != sp {
+        // 如果 _defer.sp 和 caller 的 sp 值不一致，那么直接返回；
+        // 因为，就说明这个 _defer 结构不是在该 caller 函数注册的  
+        return
+    }
+
+    switch d.siz {
+    case 0:
+        // Do nothing.
+    case sys.PtrSize:
+        *(*uintptr)(unsafe.Pointer(&arg0)) = *(*uintptr)(deferArgs(d))
+    default:
+        memmove(unsafe.Pointer(&arg0), deferArgs(d), uintptr(d.siz))
+    }
+    // 获取到延迟回调函数地址
+    fn := d.fn
+    d.fn = nil
+    // 把当前 _defer 节点从链表中摘除
+    gp._defer = d.link
+    // 释放 _defer 内存（主要是堆上才会需要处理，栈上的随着函数执行完，栈收缩就回收了）
+    freedefer(d)
+    // 执行延迟回调函数
+    jmpdefer(fn, uintptr(unsafe.Pointer(&arg0)))
+}
+
+```
 
 
 
