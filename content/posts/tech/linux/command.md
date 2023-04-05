@@ -402,3 +402,5 @@ pkill
 pkill ginx, nginx will be ill
 ```
 2. pkill  -x: full match
+
+
