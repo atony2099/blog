@@ -20,6 +20,14 @@ send by kernel or other process(shell command);
 
 ## graceful stop go
 
+
+
+### http server:
+
+
+
+
+
 ### 1. the conventional way to stop a program in linux
 
 1. press keyboard
