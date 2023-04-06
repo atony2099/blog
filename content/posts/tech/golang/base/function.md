@@ -2,12 +2,14 @@
 ---
 title: Go基础1, 函数 function
 date: "2020-10-11T20:16:30+0800"
-draft: false
 category: ["Go"]
+lastmod: 2021-04-06T22:50:18+0800
 ---
 
 
 函数是每门编程语言重要组成部分，golang作为一门现代化的语言，函数上有自己的一些特点
+
+
 
 ## 特点
 
@@ -268,3 +270,62 @@ var x Person = xiaodong
    2. light access control: 
       1. public: upper case
       2. private: lower case
+
+
+
+
+##  how it work
+
+![wHiBKLn41izA](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230406/wHiBKLn41izA.jpg)
+
+```go
+func myFunction(a, b int) (int, int) {
+    return a + b, a - b
+}
+
+func main() {
+    myFunction(66, 77)
+}
+```
+
+
+```assembly
+"".main STEXT size=68 args=0x0 locals=0x28
+    0x0000 00000 (main.go:7)    TEXT    "".main(SB), $40-0
+    0x0000 00000 (main.go:7)    MOVQ    (TLS), CX
+    0x0009 00009 (main.go:7)    CMPQ    SP, 16(CX)
+    0x000d 00013 (main.go:7)    JLS    61
+    0x000f 00015 (main.go:7)    SUBQ    $40, SP // 分配 40 字节栈空间
+    0x0013 00019 (main.go:7)    MOVQ    BP, 32(SP) // 将基址指针存储到栈上
+    0x0018 00024 (main.go:7)    LEAQ    32(SP), BP
+    0x001d 00029 (main.go:8)    MOVQ    $66, (SP)  // 第一个参数
+    0x0025 00037 (main.go:8)    MOVQ    $77, 8(SP) // 第二个参数
+    0x002e 00046 (main.go:8)    PCDATA    $0, $0
+    0x002e 00046 (main.go:8)    CALL    "".myFunction(SB)
+    0x0033 00051 (main.go:9)    MOVQ    32(SP), BP
+    0x0038 00056 (main.go:9)    ADDQ    $40, SP
+    0x003c 00060 (main.go:9)    RET
+
+"".myFunction STEXT nosplit size=49 args=0x20 locals=0x0
+    0x0000 00000 (main.go:3)    TEXT    "".myFunction(SB), NOSPLIT, $0-32
+    0x0000 00000 (main.go:3)    MOVQ    $0, "".~r2+24(SP) // 初始化第一个返回值
+    0x0009 00009 (main.go:3)    MOVQ    $0, "".~r3+32(SP) // 初始化第二个返回值
+    0x0012 00018 (main.go:4)    MOVQ    "".a+8(SP), AX    // AX = 66
+    0x0017 00023 (main.go:4)    ADDQ    "".b+16(SP), AX   // AX = AX + 77 = 143
+    0x001c 00028 (main.go:4)    MOVQ    AX, "".~r2+24(SP) // (24)SP = AX = 143
+    0x0021 00033 (main.go:4)    MOVQ    "".a+8(SP), AX    // AX = 66
+    0x0026 00038 (main.go:4)    SUBQ    "".b+16(SP), AX   // AX = AX - 77 = -11
+    0x002b 00043 (main.go:4)    MOVQ    AX, "".~r3+32(SP) // (32)SP = AX = -11
+    0x0030 00048 (main.go:4)    RET
+```
+
+pass parameter by stack(caller func's stack )
+
+vs c： pass by register 
+
+pros:
+1. easy to implement 
+2. easy to implement mutiple returned value
+
+cons:
+1.  high cost 

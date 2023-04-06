@@ -139,7 +139,7 @@ func deferproc(siz int32, fn *funcval) { // arguments of fn follow fn
 
 excute defer:   
 1. check g in current func.
-2.   jump to defer fun  
+2.  excute defer 
 
 
 ```go
@@ -181,18 +181,9 @@ func deferreturn(arg0 uintptr) {
 ```
 
 
+### explain why 
 
-
-   2. parameter are set after defer
-
-2. excute before return;
-   1. prepare variables: copy value into caller stack;
-   2. jump to the function, excute
-
-### case
-
-1. case 1
-
+case 1:
    ```go
    func a(){
       var c = 0
@@ -202,7 +193,7 @@ func deferreturn(arg0 uintptr) {
    // output:0; copy value instantly
    ```
 
-2. case 2
+case 2
    ```go
    func a1() (i int){
       defer func(){
