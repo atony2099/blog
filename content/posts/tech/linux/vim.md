@@ -8,16 +8,21 @@ categories: ["vim"]
 
 ## move
 
-1. gg: jump to top of content
-2. G: jump to the bottom of file
-3. 0: the begin of the line 
-4. $: the end of the line
+1. gg/G: jump to top of content
+2. 0/$: the begin of the line 
+3. 5gg: jump to line 5 
 
-## insert
-
-1. i,a: insert befor(after)current cursor position
+## edit
+1. i/a: insert befor(after)current cursor position
 2. o,O: insert below(above) current cursor
-3. x
+3. r/R: replace current character/ repace until esc 
+4. s/S: delte current character/line and start insert 
+5. [5]dd
+6.  dG: delte from current line to last 
+7.  :1,4d,delet 
+8. D: delte to the end of line 
+
+
 
 ## undo, redo
 
