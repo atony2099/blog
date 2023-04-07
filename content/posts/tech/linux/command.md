@@ -84,12 +84,10 @@ awak '/aaa/{count++} END {print count}' a.txt
 sed -n '/rpc/p' a.txt
 ```
 
-2. replace   or delete  text 
-
 ```shell 
-sed 's/foo/boo/g' data.txt
+sed 's/foo/boo/g' data.txt #  g: search in glbal model
 
-sed '/^\s*$/d' log.txt  # delete blank line
+sed '/^\s*$/d' log.txt  # d: delete line  
 
 ```
 
