@@ -5,7 +5,6 @@ categories: ["Go"]
 ---
 
 [Go defer 原理和源码剖析](https://studygolang.com/articles/35316)
-
 [The empty struct](https://dave.cheney.net/2014/03/25/the-empty-struct)
 [defer](https://github.com/cch123/golang-notes/blob/master/defer.md)
 
@@ -193,59 +192,56 @@ case 1:
    // output:0; copy value instantly
    ```
 
-case 2
-   ```go
-   func a1() (i int){
-      defer func(){
-         i += 300
-      }()
-      
-      return i;
-   }
+ c be copy  to defer.struct ,  the copyed value is 0;
 
-    func a2() int{ // return 200;;
-      var i int
-      defer func(){
-         i += 300
-      }()
-      
-      return i;
-   }
+case 2: 
+```go
+func a1() (i int) { // return  302  
+	defer func() {
+		i += 300
+	}()
+	return i + 2 
+}
 
-   ```
+func a2() int {   // return  3;
+	var i int
+	defer func() {
+		i += 300
+		fmt.Println(i)
+	}()
 
-1. change value: &var = xxxx;
-2. named return value: change returned variable directly
-2. unnamed retur4ned value:  change function's  local value
+	return i + 2
+}
+```
+
+1. a1  add the return value
+2. a2 add the local value 
 
 ## make vs new
 
-1. the same:
-   create(allocate and initialize) a instance of some dataTye;
-
-2. new and make
-   1. all type,
-   2. initialize zero value,
-   3. return pointer of value;
-
-3. make:
-   1. some type:  chan, map, slice;
-   2. initialize not zero value;
-   3. return reference
-      1. chan-> *hchan
-      2. map -> *hamp
-      3. slice-> slice
-
-4. new  in go vs other
-   1. other:
-      1. used: create object,  call constructor,
-      2. allocated in heap
-
-   2. go:
-      1. used: any type
-      2. allocate in heap or stack
+some:
+1. create variable
+2. allocate memory for some type 
 
 
+differ
+1. make: allocate and initialize(assgin a value),  **can use directly**
+2. new: allocate and not initialize, the value is default value(zero  value)
+
+
+make:
+```go
+make(map[int]int):  
+
+make(chan int)
+
+make([]int,5,10)
+
+```
+
+new  in go vs other
+other:  allocated in heap(allocate dynamic memory) and return address
+new: return address 
 
 ## empty struct/array
 
