@@ -283,6 +283,22 @@ git checkout develop
 git checkout -- a.txt # 
 ```
 
+## git ignore
+/aaa:
+ignore file or dir which named aaa   in root level 
+
+
+
+
+```bash
+/aaa # match any file or directory in root level
+aaa/ # match any directoires with name aaa
+
+test # match any file or any directories with the name test
+```
+
+
+
 ## git clean
 
 remove untracked file;
@@ -337,5 +353,9 @@ git push --set-upstream <remote> <branch>
 
 1. upstream branch
    remote branch track local branch
+
+
+
+
 
 
