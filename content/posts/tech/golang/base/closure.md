@@ -15,30 +15,27 @@ func outer() func() int {
 	}
 }
 ```
-what: 如果一个函数
-1. 访问(引用)了父函数变量
-2. 在父函数返回后还能继续访问这变量 
+what: 一个函数 访问(引用)了父函数变量,  在父函数返回后还能继续访问这变量 
+
+why call closure: 将外部变量关闭在本函数 
+
+pros:
+1.  a function can remember some satate between   calls
 
 vs  anonymous  function:   
 1. anonymous func: have no name
 2. closure: 在go, closure 都是以anonymous的形式存在，
 
+how: create  a   closure    
+ ```go
+type Closure struct {
+	F uintptr
+	X *int
+}
+```
+why varaible  keep when function return:
+和 closure 一起逃逸到heap 上
 
-how:
-
-
-
-
-3. a special object: function + refernece of  parent scope variable;
-
-    ```c
-    struct A{
-        func *FUNC
-        variable1 *Type 
-       variable2 *Type
-
-    }
-    ```
 
 2. when?
    1. anonymous  func access parent scope variable;
