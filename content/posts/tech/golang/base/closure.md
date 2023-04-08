@@ -1,14 +1,35 @@
 ---
 title: closure
 date: "2021-08-29T17:47:16+0800"
-draft: false
 categories: ["Go"]
+lastmod: 2023-04-08T00:26:33+0800
 ---
 
 
-## 1.what
+```go
+func outer() func() int {
+	var counter = 0
+	return func() int {
+		counter++
+		return counter
+	}
+}
+```
+what: 如果一个函数
+1. 访问(引用)了父函数变量
+2. 在父函数返回后还能继续访问这些变
 
-1. a special object: function + refernece of  parent scope variable;
+vs  anonymous  function:   
+1. anonymous func: have no name
+2. closure: 在go, closure 都是以anonymous的形式存在，
+
+
+how:
+
+
+
+
+3. a special object: function + refernece of  parent scope variable;
 
     ```c
     struct A{
@@ -23,45 +44,47 @@ categories: ["Go"]
    1. anonymous  func access parent scope variable;
    2. anonymous  func called delay
 
-3. vs anonymous function:
-   closure usually implemented by anonymous function
 
-## 2. analyse
 
-1. code:
+## explain why
 
-    ```go
-     func main() {
-        for i := 0; i < 10; i++ {
-         go func() {
-          println(i)
-         }()
-        }
-        time.Sleep(time.Second)
-     }
+```go
+func closure() {
+	for i := 0; i < 10; i++ {
+		go func() {
+			println(i)
+		}()
+	}
+}
+```
 
-     // case 2
-       func main() {
-           for i := 0; i < 10; i++ {
-           var q = i
-            go func() {
-             println(q)
-            }()
-           }
-           time.Sleep(time.Second)
-       }
+go func  is closure， 
+1. one cpu: g 10
+2. mutiple cpu, g 在父函数还在运行过程中
 
-   // case 3
-     func main() {
-        for i := 0; i < 10; i++ {
-         go func(i int) {
-          println(i)
-         }(i)
-        }
-        time.Sleep(time.Second)
-    }
 
-    ```
+```go
+func main() {
+	for i := 0; i < 10; i++ {
+		var q = i
+		go func() {
+			println(q)
+		}()
+	}
+	time.Sleep(time.Second)
+}
+
+func main() {
+	for i := 0; i < 10; i++ {
+		go func(i int) {
+			println(i)
+		}(i)
+	}
+	time.Sleep(time.Second)
+}
+
+```
+
 
 2. case 1:
     1. every go func is a closure, closure reference i;
@@ -73,7 +96,7 @@ categories: ["Go"]
 3. case 2:
     : closureList: {*q1,*funcA}, {*q2,*funcA}...
 
-## 4.case
+## 
 
 ### 1. counter
 
