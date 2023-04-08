@@ -17,7 +17,7 @@ func outer() func() int {
 ```
 what: 如果一个函数
 1. 访问(引用)了父函数变量
-2. 在父函数返回后还能继续访问这些变
+2. 在父函数返回后还能继续访问这变量 
 
 vs  anonymous  function:   
 1. anonymous func: have no name
