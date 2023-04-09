@@ -1,20 +1,13 @@
 ---
 title:  memory
 date: "2022-08-25T21:16:16+0800"
-draft: false
-tags: ["go","memory","garbage collector"]
+categories: ["Go"]
 ---
 [C&C++ CS OS“编写你自己的内存分配器”](https://soptq.me/2020/07/18/mem-allocator/)
 
 [C数据存储(包括const存储在哪，C++不同部分我在文中用红字已指出)](https://www.cnblogs.com/yanqi0124/p/3795547.html)
 
 [Go: Introduction to the  Analysis](https://medium.com/a-journey-with-go/go-introduction-to-the--analysis-f7610174e890)
-
-[golang 逃逸分析详解](https://zhuanlan.zhihu.com/p/91559562)
-
-[Golang逃逸分析原理剖析](https://juejin.cn/post/7055178269112401933)
-
-[9.5.4 逃逸分析](https://gocompiler.shizhz.me/9.-golang-bian-yi-qi-tao-yi-fen-xi/9.5.4-tao-yi-fen-xi)
 
 [go 内存分配](https://juejin.cn/post/7063345320779841572)
 
@@ -41,7 +34,7 @@ tags: ["go","memory","garbage collector"]
 
 [ Go: Memory Management and Memory Sweep](https://medium.com/a-journey-with-go/go-memory-management-and-memory-sweep-cc71b484de05)
 
-[[典藏版]Golang三色标记、混合写屏障GC模式图文全分析](https://segmentfault.com/a/1190000022030353)
+[典藏版Golang三色标记、混合写屏障GC模式图文全分析](https://segmentfault.com/a/1190000022030353)
 
 [Concurrent Mark and Sweep(并发标记-清除)](https://www.bookstack.cn/read/gc-handbook/spilt.3.04_GC_Algorithms_Implementations_CN.md)
 
@@ -66,119 +59,6 @@ tags: ["go","memory","garbage collector"]
 [详细总结： Golang GC、三色标记、混合写屏障机制](https://blog.51cto.com/u_15730090/5510574)
 
 
-## escape
-
-what:
-at compile determine if variable escape to heap;
-
-
-### how  
-
-> core:  变量作用域外继续被引用;
-
-
-two invariant:
-1. pointer to a stack object cannot outlive that object: 
-	> variable must be allocated in heap if it's pointer  outlive it 
-1. pointer to stack object can't be stored in heap
-	> variables must be allocated heap if it's pointer in heap
-
-
-
-
-code:
-
-```c
-object graph: a-> b -> c -> root
-
-check object grap from root
-	if root outlive a && dereference(a,b)=-1;  escape
-	 root = b
-
-
-outlive( root,a): 
-	root out of ascope:
-		funtion scope:
-				root is return parameter;
-				a in anymouse f, root out of anymous f 	
-		loop of scope
-	root in heap:
-		
-
-	root is return paramenter: true
-	root is out scope of a: true
-		function scope;
-		loop scope;
-		root in hepa
-	
-derefenece(root,a): // a in root pointer linker 
-	
-```
-
-   
-
-  
-###  case
-
-
-case 1:
- ![](https://raw.githubusercontent.com/atony2099/imgs/master/uPic/xFqZVk.jpg)
- 
-```go
-type T struct {
-    Name string
-}
-
-func escapeAnalysis(arg T) (*T, bool) {
-    l1 := arg
-    l1.Name = "Golang"
-
-    l2 := &l1
-    l3 := *l2
-    return &l3, arg.Name == "Java"
-}
-// l3 escape to
-```
-
-
-case 2:
-
-   ![EcvZrL](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20220923/EcvZrL.jpg)
-
-   ```go
-   package main
-
-   type T struct {
-       Name string
-   }
-
-   func GetT() **T {
-       var t T
-       l1 := &t
-       l2 := &l1
-       r3 := l1
-       r4 :=&r3
-
-       var l4 **T
-       l4 = l2
-       l4 = r4
-
-       return l4
-   }
-   // l1 escape
-	
-   ```
-
-case 3: 
-
-   ```go
-   func main() {
-    s := make([]int, 19999999999999)
-    s[0] = 1
-   }
-   ```
-
-   > make([]int, 19999999999999) s to heap
 
 ## growing stack
 
