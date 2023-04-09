@@ -5,7 +5,6 @@ categories: ["Go"]
 lastmod: 2023-04-08T00:26:33+0800
 ---
 
-
 ```go
 func outer() func() int {
 	var counter = 0
@@ -37,15 +36,11 @@ why varaible  keep when function return:
 和 closure 一起逃逸到heap 上
 
 
-2. when?
-   1. anonymous  func access parent scope variable;
-   2. anonymous  func called delay
-
-
 
 ## explain why
 
 ```go
+// case1
 func closure() {
 	for i := 0; i < 10; i++ {
 		go func() {
@@ -53,69 +48,23 @@ func closure() {
 		}()
 	}
 }
-```
 
-go func  is closure， 
-1. one cpu: g 10
-2. mutiple cpu, g 在父函数还在运行过程中
-
-
-```go
-func main() {
+// case2
+func closure2() {
 	for i := 0; i < 10; i++ {
-		var q = i
+		i := i
 		go func() {
-			println(q)
+			println(i)
 		}()
 	}
-	time.Sleep(time.Second)
-}
-
-func main() {
-	for i := 0; i < 10; i++ {
-		go func(i int) {
-			println(i)
-		}(i)
-	}
-	time.Sleep(time.Second)
-}
-
-```
-
-
-2. case 1:
-    1. every go func is a closure, closure reference i;
-    2. go调度时机不确定:
-    3. single processor: 10,10
-         1. for 执行完其他g 再调度: 10,10,
-         2. mutiple core: 1-10任意的数;
-
-3. case 2:
-    : closureList: {*q1,*funcA}, {*q2,*funcA}...
-
-## 
-
-### 1. counter
-
-```go
-package main
-
-import (
- "fmt"
-)
-
-func counter() func() int {
- a := 0
- return func() int {
-  a++
-  return a
- }
-
-}
-func main() {
- c := counter()
- fmt.Println(c())
- fmt.Println(c())
- fmt.Println(c())
 }
 ```
+
+
+case1: 未知 
+1. i 同时被 10个闭包引用,闭包执行时机不确定，可能在for 循环中,可能在for 循环中，结果不可预测
+2. 如果是 signle cpu, go 在 for循环后才被执行， 输出是10
+
+case 2: 乱序输出 (0,9)
+1. 闭包 引用是本地变量i,每个闭包看到的值是不一样
+

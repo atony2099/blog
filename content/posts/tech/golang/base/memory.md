@@ -66,10 +66,10 @@ tags: ["go","memory","garbage collector"]
 [详细总结： Golang GC、三色标记、混合写屏障机制](https://blog.51cto.com/u_15730090/5510574)
 
 
+## escape
 
-### what
-
-compile determine if variable escape to heap;
+what:
+at compile determine if variable escape to heap;
 
 
 ### how  
