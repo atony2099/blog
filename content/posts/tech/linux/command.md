@@ -95,7 +95,7 @@ sed '/^\s*$/d' log.txt  # d: delete line
 
 
 ### wc
-
+![](Paste Link)
 
 word, line, character, and byte count
 
