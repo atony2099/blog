@@ -31,7 +31,6 @@ how:
 2. analyse.
 
 
-
 two invariant:
 1. pointer to a stack object cannot outlive that object: 
 	> variable must be allocated in heap if it's pointer  outlive it 
