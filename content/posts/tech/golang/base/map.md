@@ -21,20 +21,30 @@ tags: ["go","hash"]
 
 [深度解密Go语言之 map](https://zhuanlan.zhihu.com/p/66676224)
 
-## what
 
-base  op:
+
+create：
+1. 字面量 创建
+2. 函数创建 
+
 ```go
 	//--1. init 
     // 1.literal 
-    var a = map[int]int{};
+    var a = map[int]int{1:1, 2:2};
+
     // 2. make 
     var b = make(map[int]int);
 
-	// --2. dele
-	delete(maps, key)
 
 ```
+basic operation:
+```go
+delete(m,"1")
+
+for k,v :=  range m
+
+```
+
 
 ## how
 
@@ -45,6 +55,9 @@ base  op:
 
 1. get   index value
 2.  get bucket index, store by tophash value ;
+
+
+
 
 ### base structure
 
