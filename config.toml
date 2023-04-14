@@ -662,7 +662,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
     enable = false
     # Google Analytics
     [params.analytics.google]
-      id = ""
+      id = "G-2NVGSN9N5V"
       # whether to anonymize IP
       # 是否匿名化用户 IP
       anonymizeIP = true
