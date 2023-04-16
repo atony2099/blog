@@ -24,8 +24,8 @@ tags: ["go","hash"]
 
 
 create：
-1. 字面量 创建
-2. 函数创建 
+1. 字面量 创建:使用常量创建
+2. 函数创建: make 
 
 ```go
 	//--1. init 
@@ -43,10 +43,15 @@ delete(m,"1")
 
 for k,v :=  range m
 
+v, ok =m["1"]
 ```
 
-
 ## how
+
+how:
+1.  hash func 
+2. seperate chaining
+
 
 ![enOaHr](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210901/enOaHr.jpg)
 ![rerUTy](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210901/rerUTy.jpg)
@@ -61,7 +66,7 @@ for k,v :=  range m
 
 ### base structure
 
-
+-.
 hash truct:
 mpas->buckets-> bmap linker  
 
@@ -220,7 +225,6 @@ why:
 	    it.startBucket = r & bucketMask(h.B)
 }
 ```
-
 
 
 

@@ -22,12 +22,17 @@ tags: ["hash"]
 
 [现在面试都这么直接的嘛？(golang map)](https://chowdera.com/2021/04/20210420190818405w.html)
 
-## 1. hash function
+
+the core to  design a map:
+1.   how to get  hash value:     hash funcitonn
+2.  how to   handle collision.
+3.   how to rehash: grow, 
+
+
+##  hash function
 
 hash function:
 do  cacultate  for input, result be  represent with  number or string(hex)
-
-
 
 考察指标
    1. quick 
@@ -49,7 +54,7 @@ hash function excample
 ```
 
 
-
+·
 ## handle collision
 
 1. open addressing；开放寻址法；
