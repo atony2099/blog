@@ -22,7 +22,6 @@ tags: ["go","hash"]
 [深度解密Go语言之 map](https://zhuanlan.zhihu.com/p/66676224)
 
 
-
 create：
 1. 字面量 创建:使用常量创建
 2. 函数创建: make 
@@ -66,7 +65,6 @@ how:
 
 ### base structure
 
--.
 hash truct:
 mpas->buckets-> bmap linker  
 
