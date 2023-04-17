@@ -31,16 +31,26 @@ the core to  design a map:
 
 ##  hash function
 
-hash function:
-do  cacultate  for input, result be  represent with  number or string(hex)
+what:  将输入数据经过一系列计算， 输出固定长度的数据 
 
-考察指标
-   1. quick 
-   2. low collision
-
+types:
+1. 加密:  低碰撞，难复原
+2. 非加密
 
 hash function excample
-1. djb:  
+
+myhash:
+```go
+func myHash(data []byte) uint32 {
+  var hash uint32
+  for _, b := range data {
+    hash = hash*13 + uint32(b)
+  }
+  return hash
+}
+```
+
+djb:  
 
 ```go
       func DJBHash(str string) uint {
@@ -52,16 +62,14 @@ hash function excample
       }
       
 ```
-
-
-·
+ 
 ## handle collision
 
 1. open addressing；开放寻址法；
    继续在原数组上探测一下空位置；
     ![vmeUmV](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210904/vmeUmV.jpg)    
 
-2. sperate chaining；
+2. separate chaining；分离的链表 
     ![v0P9Oe](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210904/v0P9Oe.jpg)
     
     使用额外的空间存储冲突；

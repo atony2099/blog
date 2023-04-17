@@ -52,13 +52,22 @@ how:
 2. seperate chaining
 
 
+### hash fun 
+
+
+
 ![enOaHr](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210901/enOaHr.jpg)
+
+64bit:
+1. last  2^b bit  code  to index bucket
+2. 8 bit  code to index bmap.array
+
+
+
 ![rerUTy](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210901/rerUTy.jpg)
 ![NrnglL](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210901/NrnglL.jpg)
 
 
-1. get   index value
-2.  get bucket index, store by tophash value ;
 
 
 
@@ -66,7 +75,7 @@ how:
 ### base structure
 
 hash truct:
-mpas->buckets-> bmap linker  
+mpas->bmap buckets-> bmap chaining  
 
 ```go
 type hmap struct {
@@ -95,27 +104,10 @@ type bmap struct {
 
 
 
-###  hash value 
-
-64bit
-1. last 2^B bit for bucket index
-2. first 8bit, tophash for  bmap index 
-
-
-
-### store by tophash
- search first empty slot in node, or  search in next node; 
- store by tophash;
-
-
-
-
 ## rehash
 
 what:
 casue:  map length update->  bucket 
-
-
 
 
 ### linker too  long/big
