@@ -37,6 +37,14 @@ types:
 1. 加密:  低碰撞，难复原
 2. 非加密
 
+
+
+why md5 is cryptographic:
+1. one-way funciton
+2. collision-resistant,
+
+
+
 hash function excample
 
 myhash:

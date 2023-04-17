@@ -55,7 +55,6 @@ how:
 ### hash fun 
 
 
-
 ![enOaHr](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210901/enOaHr.jpg)
 
 64bit:
@@ -63,13 +62,11 @@ how:
 2. 8 bit  code to index bmap.array
 
 
+### seperate  chainnng
+
 
 ![rerUTy](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210901/rerUTy.jpg)
 ![NrnglL](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210901/NrnglL.jpg)
-
-
-
-
 
 
 ### base structure
@@ -100,7 +97,6 @@ type bmap struct {
     overflow uintptr // next bmap 
 }
 ```
-
 
 
 
