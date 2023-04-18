@@ -3,6 +3,7 @@ title: "map"
 date: 2020-05-14T11:39:03+08:00
 draft: false
 tags: ["go","hash"]
+lastmod: 2023-04-18T16:47:26+0800
 ---
 
 [Map实现原理分析](https://studygolang.com/articles/27421)
@@ -15,13 +16,12 @@ tags: ["go","hash"]
 
 [哈希表](https://draveness.me/golang/docs/part2-foundation/ch03-datastructure/golang-hashmap/#33-%E5%93%88%E5%B8%8C%E8%A1%A8)
 
-[现在面试都这么直接的嘛？(golang map)](https://chowdera.com/2021/04/20210420190818405w.html)
-
 [深入理解 Go map：赋值和扩容迁移](https://segmentfault.com/a/1190000018632347)
 
 [深度解密Go语言之 map](https://zhuanlan.zhihu.com/p/66676224)
 
-
+[map 的实现原理 | Go 程序员面试笔试宝典](https://golang.design/go-questions/map/principal/)
+1
 create：
 1. 字面量 创建:使用常量创建
 2. 函数创建: make 
@@ -54,8 +54,12 @@ how:
 
 ### base structure
 
-hash truct:
-mpas->bmap buckets-> bmap chaining  
+![3Tiheke075SD](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230418/3Tiheke075SD.jpg)
+
+
+map->a   bucket(key,value array)-> overflow 
+
+array + linker node
 
 ```go
 type hmap struct {
@@ -91,17 +95,26 @@ type bmap struct {
 2. 8 bit  code to index bmap.array
 
 
-### seperate  chainnng
+###  overflow
 
 
 how:  
 1. linker node contain  a array,
-2. 提前
-
+2. 提前分配好 extra []bmap
 
 ![rerUTy](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210901/rerUTy.jpg)
 ![NrnglL](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210901/NrnglL.jpg)
 
+
+
+
+### access a key
+
+```go
+
+for range 
+
+```
 
 
 
