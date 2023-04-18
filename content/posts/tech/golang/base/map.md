@@ -52,23 +52,6 @@ how:
 2. seperate chaining
 
 
-### hash fun 
-
-
-![enOaHr](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210901/enOaHr.jpg)
-
-64bit:
-1. last  2^b bit  code  to index bucket
-2. 8 bit  code to index bmap.array
-
-
-### seperate  chainnng
-
-
-![rerUTy](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210901/rerUTy.jpg)
-![NrnglL](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210901/NrnglL.jpg)
-
-
 ### base structure
 
 hash truct:
@@ -90,13 +73,35 @@ type hmap struct {
 
 // bucket
 type bmap struct {
-    topbits  [8]uint8
+    tophash [8]uint8
     keys     [8]keytype
     values   [8]valuetype
     pad      uintptr
     overflow uintptr // next bmap 
 }
 ```
+
+### hash fun 
+
+
+![enOaHr](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210901/enOaHr.jpg)
+
+64bit:
+1. last  2^b bit  code  to index bucket
+2. 8 bit  code to index bmap.array
+
+
+### seperate  chainnng
+
+
+how:  
+1. linker node contain  a array,
+2. 提前
+
+
+![rerUTy](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210901/rerUTy.jpg)
+![NrnglL](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210901/NrnglL.jpg)
+
 
 
 
@@ -120,7 +125,7 @@ solve:
 
 ### bucket too long 
 
-cause:
+cause
 element decrease ;
 
 why:
@@ -129,10 +134,6 @@ take up more space
 
 solve:
 decrease bucket len, 缩容
-
-		
-
-
 
 
 2. goal: reassign entries to  reduce the length of linked-list
