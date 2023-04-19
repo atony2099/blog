@@ -21,7 +21,8 @@ lastmod: 2023-04-18T16:47:26+0800
 [深度解密Go语言之 map](https://zhuanlan.zhihu.com/p/66676224)
 
 [map 的实现原理 | Go 程序员面试笔试宝典](https://golang.design/go-questions/map/principal/)
-1
+
+
 create：
 1. 字面量 创建:使用常量创建
 2. 函数创建: make 
@@ -47,10 +48,9 @@ v, ok =m["1"]
 
 ## how
 
-how:
+key pointer:
 1.  hash func 
-2. seperate chaining
-
+2.  hash collision:  use array and overflow (linker node) to solve 
 
 ### base structure
 
@@ -110,9 +110,44 @@ how:
 
 ### access a key
 
-```go
+check tophash  adn check key 
 
-for range 
+```go
+for {
+	    // 遍历 bucket 的 8 个位置
+		for i := uintptr(0); i < bucketCnt; i++ {
+		    // tophash 不匹配，继续
+			if b.tophash[i] != top {
+				continue
+			}
+			// tophash 匹配，定位到 key 的位置
+			k := add(unsafe.Pointer(b), dataOffset+i*uintptr(t.keysize))
+			// key 是指针
+			if t.indirectkey {
+			    // 解引用
+				k = *((*unsafe.Pointer)(k))
+			}
+			// 如果 key 相等
+			if alg.equal(key, k) {
+			    // 定位到 value 的位置
+				v := add(unsafe.Pointer(b), dataOffset+bucketCnt*uintptr(t.keysize)+i*uintptr(t.valuesize))
+				// value 解引用
+				if t.indirectvalue {
+					v = *((*unsafe.Pointer)(v))
+				}
+				return v
+			}
+		}
+		
+		// bucket 找完（还没找到），继续到 overflow bucket 里找
+		b = b.overflow(t)
+		// overflow bucket 也找完了，说明没有目标 key
+		// 返回零值
+		if b == nil {
+			return unsafe.Pointer(&zeroVal[0])
+		}
+	}
+```
 
 ```
 
