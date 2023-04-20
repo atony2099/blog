@@ -52,7 +52,7 @@ v, ok =m["1"]
 
 key pointer:
 1.  hash func 
-2.  hash collision:  use array and overflow (linker node) to solve 
+2.  hash collision: 使用改进版的链表法，节点嵌套数组，减少内存创建和回收的cost
 
 ### base structure
 
@@ -62,6 +62,9 @@ key pointer:
 map->a   bucket(key,value array)-> overflow 
 
 array + linker node
+
+
+
 
 ```go
 type hmap struct {
