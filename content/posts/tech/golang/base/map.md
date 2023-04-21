@@ -97,7 +97,13 @@ type bmap struct {
 
 64bit:
 1. last  2^b bit  code  to index bucket
-2. 8 bit  code to index bmap.array
+2. first 8 bit  code to index bmap.array
+
+```
+if cpu support aes instruction: hash with aes
+use memhash 
+```
+
 
 
 ###  overflow
@@ -115,7 +121,8 @@ how:
 
 ### access a key
 
-check tophash  adn check key 
+1. 遍历数组和overflow 
+2. compare tophash and key
 
 ```go
 for {
@@ -154,7 +161,6 @@ for {
 	}
 ```
 
-```
 
 
 
@@ -162,6 +168,9 @@ for {
 
 what:
 casue:  map length update->  bucket 
+
+
+
 
 
 ### linker too  long/big
