@@ -166,9 +166,21 @@ for {
 
 ## rehash
 
-what:
-casue:  map length update->  bucket 
+hashing:  根据key计算index 
+rehashing:  bucket  size increase,  重新计算index; 
 
+
+
+the benefits: 
+speed up key querying,  improve performace,
+> 防止出现 worst(o)=n
+
+
+
+
+when, 监控指标
+1. load fator >  6.5 
+2. 
 
 
 
