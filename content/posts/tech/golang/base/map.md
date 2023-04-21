@@ -166,21 +166,26 @@ for {
 
 ## rehash
 
-hashing:  根据key计算index 
-rehashing:  bucket  size increase,  重新计算index; 
+
+what: 当到达某个临界点时候，通过增加bucket size 或者 其他方式， 防止 查询效率退化
 
 
 
-the benefits: 
-speed up key querying,  improve performace,
-> 防止出现 worst(o)=n
+监控指标
+1. load fator >  6.5, 核心指标
+2. overflow bucket too long: 补充指标,特殊情况
 
 
 
+how:
+1. grow bucket 
+2. decrease overflow bucket 
 
-when, 监控指标
-1. load fator >  6.5 
-2. 
+
+grow bucket: load factor > 6.5
+
+why 6.5:  
+load foactor  太小浪费空间， load factor 太大 overflow太多，6.5 是一个最佳平衡点；
 
 
 
@@ -205,9 +210,11 @@ element decrease ;
 why:
 take up more space 
 
-
 solve:
 decrease bucket len, 缩容
+
+
+
 
 
 2. goal: reassign entries to  reduce the length of linked-list
