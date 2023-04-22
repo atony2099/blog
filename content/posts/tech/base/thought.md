@@ -52,3 +52,13 @@ categories: ["thought"]
 do less configuration;
 > decrase the developer's decision;
 
+
+
+
+
+
+##  time and space 
+
+time:  the amount of time it task  
+space: the amount of memory it require to perform the task 
+

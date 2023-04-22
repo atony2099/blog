@@ -170,24 +170,43 @@ for {
 what: 当到达某个临界点时候，通过增加bucket size 或者 其他方式， 防止 查询效率退化
 
 
-
 监控指标
 1. load fator >  6.5, 核心指标
 2. overflow bucket too long: 补充指标,特殊情况
 
-
-
-how:
-1. grow bucket 
-2. decrease overflow bucket 
-
-
-grow bucket: load factor > 6.5
+### factor > 6.5
 
 why 6.5:  
 load foactor  太小浪费空间， load factor 太大 overflow太多，6.5 是一个最佳平衡点；
+在空间和时间中平衡
 
 
+data: 
+```bash
+// Picking loadFactor: too large and we have lots of overflow
+// buckets, too small and we waste a lot of space. I wrote
+// a simple program to check some stats for different loads:
+// (64-bit, 8 byte keys and values)
+//  loadFactor    %overflow  bytes/entry     hitprobe    missprobe
+//        4.00         2.13        20.77         3.00         4.00
+//        4.50         4.05        17.30         3.25         4.50
+//        5.00         6.85        14.77         3.50         5.00
+//        5.50        10.55        12.94         3.75         5.50
+//        6.00        15.27        11.67         4.00         6.00
+//        6.50        20.90        10.79         4.25         6.50
+//        7.00        27.14        10.15         4.50         7.00
+//        7.50        34.03         9.73         4.75         7.50
+//        8.00        41.10         9.40         5.00         8.00
+//
+// %overflow   = percentage of buckets which have an overflow bucket
+// bytes/entry = overhead bytes used per key/value pair
+// hitprobe    = # of entries to check when looking up a present key
+// missprobe   = # of entries to check when looking up an absent key
+```
+
+
+
+how
 
 
 ### linker too  long/big
