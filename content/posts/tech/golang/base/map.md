@@ -70,8 +70,8 @@ array + linker node
 type hmap struct {
 	count     int
 	flags     uint8
-	B         uint8
-	noverflow uint16
+	B         uint8  // 创建 2 ^ B bucket
+	noverflow uint16 // overflow 的 bucket 近似数
 	hash0     uint32
 	buckets    unsafe.Pointer
 	oldbuckets unsafe.Poiner
@@ -107,7 +107,6 @@ use memhash
 
 
 ###  overflow
-
 
 how:  
 1. linker node contain  a array,
@@ -174,6 +173,15 @@ what: 当到达某个临界点时候，通过增加bucket size 或者 其他方�
 1. load fator >  6.5, 核心指标
 2. overflow bucket too long: 补充指标,特殊情况
 
+
+
+how:
+```
+
+
+```
+
+
 ### factor > 6.5
 
 why 6.5:  
@@ -204,9 +212,34 @@ data:
 // missprobe   = # of entries to check when looking up an absent key
 ```
 
+how: 
+1. bucket * 2 
+2. 逐步迁移key,  one time one bucket 
+  ![4eqSJQ](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211111/4eqSJQ.jpg)
+
+  ![IVWhNW](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211111/IVWhNW.jpg)
 
 
-how
+###  too many overflow 
+
+
+when:
+< 16,  overflow 和bucket 数量一样多
+频繁的插入和删除导致linker 太稀疏
+```go
+func tooManyOverflowBuckets(noverflow uint16, B uint8) bool {
+	if B < 16 {
+		return noverflow >= uint16(1)<<B
+	}
+	return noverflow >= 1<<15
+}
+```
+
+
+how: 
+
+
+
 
 
 ### linker too  long/big
@@ -261,10 +294,12 @@ incremental grow:
     copy bucket only if bucket is update/add/delete;
 
 
-4. how 
-  ![4eqSJQ](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211111/4eqSJQ.jpg)
+how: 
+![RAPA3x](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211111/RAPA3x.jpg)
 
-  ![IVWhNW](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211111/IVWhNW.jpg)
+   ![uNRSW3](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211111/uNRSW3.jpg)
+
+
 
 
 ###  shrink 等量扩容 
@@ -293,9 +328,7 @@ return noverflow >= 1<<15
     add much key,then delete;
 
 4. how?
-   ![RAPA3x](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211111/RAPA3x.jpg)
-
-   ![uNRSW3](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211111/uNRSW3.jpg)
+   
 
 ## unoder
 
