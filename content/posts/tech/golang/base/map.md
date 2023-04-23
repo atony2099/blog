@@ -24,6 +24,7 @@ lastmod: 2023-04-18T16:47:26+0800
 
 [map 的实现原理 | Go 程序员面试笔试宝典](https://golang.design/go-questions/map/principal/)
 
+[遍历过程 | Go 程序员面试笔试宝典](https://golang.design/go-questions/map/range/)
 
 create：
 1. 字面量 创建:使用常量创建
@@ -166,19 +167,18 @@ for {
 ## rehash
 
 
-what: 当到达某个临界点时候，通过增加bucket size 或者 其他方式， 防止 查询效率退化
+what: 当到达某个临界点时候，通过增加bucket size，删除过多的overflow， 防止查询效率退化
 
 
-监控指标
+监控指标， when:
 1. load fator >  6.5, 核心指标
-2. overflow bucket too long: 补充指标,特殊情况
-
-
+2. overflow bucket too  many: 补充指标,特殊情况
 
 how:
 1.   allocate new bucket
-2.   逐步迁移 ， 记录迁移位置 
-
+2.   渐进式迁移，在更新或者删除处罚变迁动作
+	
+	
 ```go
 func hashGrow(t *maptype, h *hmap) {
 	// B+1 相当于是原来 2 倍的空间
@@ -213,6 +213,30 @@ func hashGrow(t *maptype, h *hmap) {
 }
 ```
 
+```go
+func mapdelete(t *maptype, h *hmap, key unsafe.Pointer) {
+	.....
+
+  bucket := hash & bucketMask(h.B)
+  if h.growing() {
+    growWork(t, h, bucket)
+  }
+}
+
+func growWork(t *maptype, h *hmap, bucket uintptr) {
+  // 搬迁正在使用的旧 bucket
+  evacuate(t, h, bucket&h.oldbucketmask())
+  // 再搬迁一个 bucket，以加快搬迁进程
+  if h.growing() {
+    evacuate(t, h, h.nevacuate)
+  }
+}
+
+func (h *hmap) growing() bool {
+  return h.oldbuckets != nil
+}
+
+```
 
 
 
@@ -256,13 +280,10 @@ how:
 
 ###  too many overflow 
 
-
-when:
-< 16,  overflow 和bucket 数量一样多
-频繁的插入和删除导致linker 太稀疏
+why: 对load fator > 6.5
 ```go
 func tooManyOverflowBuckets(noverflow uint16, B uint8) bool {
-	if B < 16 {
+	if B < 16 {  // overflow 和bucket一样多
 		return noverflow >= uint16(1)<<B
 	}
 	return noverflow >= 1<<15
@@ -367,33 +388,41 @@ return noverflow >= 1<<15
 ## 遍历过程以及无序
 
 
-1.   generate random start bucket index 
+
+
+
+###  traverse
+
+1.   generate random start bucket index  and offset 
+```go
+r := uintptr(fastrand())
+if h.B > 31-bucketCntBits {
+	r += uintptr(fastrand()) << 31
+}
+
+// 从哪个 bucket 开始遍历
+it.startBucket = r & (uintptr(1)<<h.B - 1)
+// 从 bucket 的哪个 cell 开始遍历
+it.offset = uint8(r >> h.B & (bucketCnt - 1))
 ```
 
 
-
-```
-
-
+2. 开始遍历,  如果 in 迁移 state, 检测对应的老bucket 是否迁移过
+	1. 未迁移， 则遍历老bucket 
 
 
 
+![Qmod6tEuJ2Ud](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230423/Qmod6tEuJ2Ud.png)
 
+
+![ZjjTHOWNOCxe](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230423/ZjjTHOWNOCxe.jpg)
+
+
+### unorder 
 
 why:
-
-1. map进行扩容导致 bucket顺序发生改变
-2.  go add random code  when  traversal: startBuckIndex = random 
-```go 
-  func mapiterinit(t *maptype, h *hmap, it *hiter) { 
-            r := uintptr(fastrand())
-         	if h.B > 31-bucketCntBits {
-         		r += uintptr(fastrand()) << 31
-         	}
-	    it.startBucket = r & bucketMask(h.B)
-}
-```
-
+1. map 是一个不稳定结构， 常常需要扩容， 导致，key的顺序经常发生改变
+2.  go在遍历开始生成随机的遍历起始位置，为避免给新手程序员误解
 
 
 
