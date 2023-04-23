@@ -176,11 +176,44 @@ what: 当到达某个临界点时候，通过增加bucket size 或者 其他方�
 
 
 how:
-1.  
+1.   allocate new bucket
+2.   逐步迁移 ， 记录迁移位置 
+
+```go
+func hashGrow(t *maptype, h *hmap) {
+	// B+1 相当于是原来 2 倍的空间
+	bigger := uint8(1)
+
+	// 对应条件 2
+	if !overLoadFactor(int64(h.count), h.B) {
+		// 进行等量的内存扩容，所以 B 不变
+		bigger = 0
+		h.flags |= sameSizeGrow
+	}
+	// 将老 buckets 挂到 buckets 上
+	oldbuckets := h.buckets
+	// 申请新的 buckets 空间
+	newbuckets, nextOverflow := makeBucketArray(t, h.B+bigger)
+
+	flags := h.flags &^ (iterator | oldIterator)
+	if h.flags&iterator != 0 {
+		flags |= oldIterator
+	}
+	// 提交 grow 的动作
+	h.B += bigger
+	h.flags = flags
+	h.oldbuckets = oldbuckets
+	h.buckets = newbuckets
+	// 搬迁进度为 0
+	h.nevacuate = 0
+	// overflow buckets 数为 0
+	h.noverflow = 0
+
+	// ……
+}
 ```
 
 
-```
 
 
 ### factor > 6.5
@@ -331,7 +364,21 @@ return noverflow >= 1<<15
 4. how?
    
 
-## unoder
+## 遍历过程以及无序
+
+
+1.   generate random start bucket index 
+```
+
+
+
+```
+
+
+
+
+
+
 
 why:
 
