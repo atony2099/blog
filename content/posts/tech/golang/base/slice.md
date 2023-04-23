@@ -5,27 +5,57 @@ draft: false
 categories: ["Go"]
 ---
 
+[切片的容量是怎样增长的 | Go 程序员面试笔试宝典](https://golang.design/go-questions/slice/grow/)
 
-## what 
-1. what: dynamic array,  basic on array;
-2. length and cap:
-    length: dynamic array(slice) length;
-    cap: static array length;
+##  basic operator 
 
-3. create:
-   ```go
-    // 1. literal
-    var a = []int{1,2,3};
-    // 2. make 
-    var a1 = make([]int,1,3) // length,cap;
-    
-    // 3. cut from other slice;
-    var a2 = a[:];
-    var a3 = a[0:len(cap)]; // max cut length = len(cap)
-     
-   ```
+create:
 
-## how 
+```go
+ s := []int{1,2,3}
+ s1 := make([]int, 2, 2)
+
+fmt.Println(len(s1),cap(s1))
+```
+
+basic opereate
+
+```go 
+// append 
+s = append(s,4)
+
+// cut 
+s = s[0:1]
+
+length := len(s)
+
+```
+
+展开
+```go
+s1 := s[0:1]
+s2 := s[1:]
+
+s = append(s1,s2...)
+
+```
+
+
+
+### how
+
+### vs array
+
+slice: dynamic array
+
+1. dynamic size  and fixed size
+2.  pass by value vs pss by reference: 数组不会对原数组产生影响
+4.  in fixed size:  array more efficient 
+
+
+
+### structure
+
 
 struct: 
 ```go
@@ -37,8 +67,9 @@ type  arrray  struct{
 }
 ```
 
-1. len: slice length
-2. cap:  underlying array lengh;
+append:
+1. 小于 cap,  在底层数组append 
+2. 大于cap,扩容
 
 
 grow:
