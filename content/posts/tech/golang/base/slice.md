@@ -42,6 +42,9 @@ s = append(s1,s2...)
 
 
 
+
+
+
 ### how
 
 ### vs array

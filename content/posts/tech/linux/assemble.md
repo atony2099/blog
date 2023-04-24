@@ -13,7 +13,11 @@ categories: ["linux"]
 [Data Alignment](http://books.gigatux.nl/mirror/kerneldevelopment/0672327201/ch19lev1sec3.html)
 [关于内存对齐，看我](https://juejin.cn/post/6870162226032934926#heading-2)
 
-## memory aligin
+## memory alignment
+
+
+what:
+
 
 ### 1. what？
 决定变量地址的过程，确保一次访问能获取到全部数据；
