@@ -41,26 +41,53 @@ s = append(s1,s2...)
 ```
 
 
+### empty slice vs nil slice
+
+same:
+ 行为相同： 
+ 1. len, cap == 0, 
+ 2. can append   directly 
+
+why same：
+append时候都会调用 mallocgc来创建新的underlying array
+
+
+different:
+1.  nil slice:  underlying array is nil, 
+2.  empty slice: underlying array is empty
+3.  marshal: nil->{"a":null}, empty->{"a":[]}
 
 
 
-
-### how
 
 ### vs array
 
-slice: dynamic array
+1. size: dynamice vs fixed
+array must have a fixed size when created, more efficent when size is known
 
-1. dynamic size  and fixed size
-2.  pass by value vs pss by reference: 数组不会对原数组产生影响
-4.  in fixed size:  array more efficient 
+```go
+s := [...]int{1,2,3}
+```
+
+2. pass: value vs reference，new array won't affect origin array 
+
+```go
+s := [...]int{1, 2, 3}
+arr1 := s
+slice1 := s[:]
+arr1[0] = 10
+slice1[1] = 20
+
+fmt.Println(s) // [1,20,3]
+```
 
 
 
-### structure
+
+## how
 
 
-struct: 
+underlying struct: 
 ```go
 type  arrray  struct{
     len int
@@ -70,35 +97,49 @@ type  arrray  struct{
 }
 ```
 
-append:
-1. 小于 cap,  在底层数组append 
-2. 大于cap,扩容
+
+how to grow：
+<  threshod = 256 || 1024: 双倍扩容
+\>= threshod: oldcap+(oldcap+3*256)/4 || 1.25 
 
 
-grow:
-1. < cap:
-	1. increase slice length: `s = s[0:n]`
-	2. underlying  array append
+```go
+// go 1.18 src/runtime/slice.go:178
+func growslice(et *_type, old slice, cap int) slice {
+    // ……
+    newcap := old.cap
+	doublecap := newcap + newcap
+	if cap > doublecap {
+		newcap = cap
+	} else {
+		const threshold = 256
+		if old.cap < threshold {
+			newcap = doublecap
+		} else {
+			for 0 < newcap && newcap < cap {
+                // Transition from growing 2x for small slices
+				// to growing 1.25x for large slices. This formula
+				// gives a smooth-ish transition between the two.
+				newcap += (newcap + 3*threshold) / 4
+			}
+			if newcap <= 0 {
+				newcap = cap
+			}
+		}
+	}
+	// ……
+    
+	capmem = roundupsize(uintptr(newcap) * ptrSize)
+	newcap = int(capmem / ptrSize)
+}
+```
+
 
 
 2.  > cap:
 	1. get new capicity: double or 1.24;
 	2. make new array; copy old value to new array
 			`newS = make([]T,n,n); copy(newS: oldS);`
-
-
-
-
-
-## other
-### empty slice vs nil slice;
-same: 
-1. can append element,
-2. len and cap  == 0 
-different:
-1.  nil slice:  underlying array is nil, 
-2.  empty slice: underlying array is empty
-3.  marshal: nil->{"a":null}, empty->{"a":[]}
 
 
 

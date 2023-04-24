@@ -27,32 +27,35 @@ a way of arranging data in memory so that it can be accessed faster by the proce
 
 
 why：
-cpu 按照 word(32bit and 64bit)读取数据，如果不按照特定的位置排列好数据， 一个数据可能要读取多次
-
-
- 
+cpu 按照 word(32bit and 64bit)读取数据，如果不按照特定的位置排列好数据， 一个数据耗费更多次cpu时间去读取
 
 
 
-### why?
+example:
 
-cpu access memory  byte by byte; 
-word by word;
+alignment
+![n8GUMZFfNgHD](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230424/n8GUMZFfNgHD.jpg)
 
-a 32bit(word=4byte) cpu read address: 0,4,8,12.....
+non-alignment
+![Q7GoAgsPs88Z](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230424/Q7GoAgsPs88Z.jpg)
 
-数据落在某个读取序列范围内；避免一个数据读取多次；
 
 
-### how 
-nautal align:  address = mutiple of size; 
 
-#### 1. basic type
-natual align 
+## how  to alignment
 
-#### 2. complex;
 
-1. struct: 加入padding如何确保每个element   natual align; 
+### primitive  type 
+放置在特地位置
+
+-   short: 2 bytes (aligned to even addresses)  
+    short：2 字节（与偶数地址对齐）
+-   int: 4 bytes (aligned to addresses divisible by 4)  
+    int：4字节（对齐到可被4整除的地址）
+
+
+###  non-primitive
+add padding: 插入填充字节
 
 ```
 //32位系统

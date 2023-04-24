@@ -217,16 +217,26 @@ func a2() int {   // return  3;
 1. a1  add the return value
 2. a2 add the local value 
 
-## make vs new
+## make&&new
 
 some:
 1. create variable
 2. allocate memory for some type 
 
 
+
 differ
-1. make: allocate and initialize(assgin a value),  **can use directly**
-2. new: allocate and not initialize, the value is default value(zero  value)
+
+1. initialize value
+	1. make:   initialize(assgin a value),  **can use directly**
+	2. new:  not initialize value,  the value then be assigned by zero value 
+
+2. return 
+	1. make: return reference
+	2. new: return pointer
+
+
+4. return value
 
 
 make:
