@@ -10,17 +10,29 @@ categories: ["linux"]
 [函数调用之堆栈原理（二）](https://zhuanlan.zhihu.com/p/54954221)
 
 [C/C++内存对齐详解](https://zhuanlan.zhihu.com/p/30007037)
+
 [Data Alignment](http://books.gigatux.nl/mirror/kerneldevelopment/0672327201/ch19lev1sec3.html)
+
 [关于内存对齐，看我](https://juejin.cn/post/6870162226032934926#heading-2)
+
+[What is data alignment? - WolfSound](https://thewolfsound.com/what-is-data-alignment/)
+
 
 ## memory alignment
 
 
-what:
+what: 
+将数据排列在特定内存位置，以加快cpu访问数据的速度
+a way of arranging data in memory so that it can be accessed faster by the processo
 
 
-### 1. what？
-决定变量地址的过程，确保一次访问能获取到全部数据；
+why：
+cpu 按照 word(32bit and 64bit)读取数据，如果不按照特定的位置排列好数据， 一个数据可能要读取多次
+
+
+ 
+
+
 
 ### why?
 
