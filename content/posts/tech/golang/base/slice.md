@@ -24,10 +24,16 @@ basic opereate
 // append 
 s = append(s,4)
 
-// cut 
+// cut
 s = s[0:1]
 
-length := len(s)
+
+
+
+
+
+
+
 
 ```
 
@@ -86,7 +92,6 @@ fmt.Println(s) // [1,20,3]
 
 ## how
 
-
 underlying struct: 
 ```go
 type  arrray  struct{
@@ -99,9 +104,8 @@ type  arrray  struct{
 
 
 how to grow：
-<  threshod = 256 || 1024: 双倍扩容
-\>= threshod: oldcap+(oldcap+3*256)/4 || 1.25 
-
+<  threshod = 256 || 1024:  双倍扩容
+\>= threshod:   oldcap+(oldcap+3*256)/4 || 1.25 
 
 ```go
 // go 1.18 src/runtime/slice.go:178
@@ -136,10 +140,14 @@ func growslice(et *_type, old slice, cap int) slice {
 
 
 
-2.  > cap:
-	1. get new capicity: double or 1.24;
-	2. make new array; copy old value to new array
-			`newS = make([]T,n,n); copy(newS: oldS);`
+simple code
+
+```go
+
+
+
+
+```
 
 
 
