@@ -5,56 +5,29 @@ categories: ["Go"]
 ---
 
 [Go defer 原理和源码剖析](https://studygolang.com/articles/35316)
+
 [The empty struct](https://dave.cheney.net/2014/03/25/the-empty-struct)
-[defer](https://github.com/cch123/golang-notes/blob/master/defer.md)
+
+[deferx](https://github.com/cch123/golang-notes/blob/master/defer.md)
 
 ## type
 
-1. basic
-   1. int
-   2. float32,float34
-   3. string
-2. composite type
-   1. container:
+basic:
+1. int, int8,int32
+2. float32,float34
+3. string
+
+composite  type:
+1. container:
       1. array
       2. map
       3. slice
-   2. pointer;;
-   3. channel;
-   4. struct;
-   5. interface
+2. pointer
+3.  channel;
+4. struct;
+5. interface
+6. function 
 
-## comparable
-
-1. basic principle
-   1. some type;;
-   2. child elements are equal;
-
-### comparable
-
-1. if conditions are true, comparable:  array, struct, interface
-   1. fields or elements  are comparable -> array,struct(compile error)
-   2. acutal types are comparable: interface(or wil panic)
-
-2. equal:
-   1. struct:
-      1. some type
-      2. fields are DeepEqual
-   2. array:
-      1. elements are equal
-   3. interface:
-      1. acutal types are equal
-
-### not comparable type
-
-function, map, slice
-only use refect.DeepEqual;
-
-1. function: both nil;
-
-2. map: key and value are equal;
-
-3. slice: index and value are equal;
 
 ## defer
 
@@ -224,7 +197,6 @@ some:
 2. allocate memory for some type 
 
 
-
 differ
 
 1. initialize value
@@ -262,7 +234,6 @@ feature:
 ```go
 func main() {
 
-
 	var s1, s2 struct{}
 
 	fmt.Println(unsafe.Sizeof(s1), unsafe.Sizeof(s2), unsafe.Pointer(&s1), unsafe.Pointer(&s2))
@@ -273,8 +244,26 @@ func main() {
 ```
 
 
-use cae:
-1.  element in signal channel
+use case:   不需要实际变量的场景下, 作为一个占位符， 优化内存
+
+1. channel  同步信号
+2. 作为mthod(不需要更新状态)的实现类型 
+3. map 实现 set 
+
+```go
+func addtoSets(a ...int) map[int]struct{} {
+	m := make(map[int]struct{})
+	for _, v := range a {
+		m[v] = struct{}{}
+	}
+
+	return m
+}
+
+```
+
+
+
 
 ## nil value; 
 
@@ -322,3 +311,36 @@ func main() {
 (interface{})(nil) == (*int)(nil) // fasle
 (*int)(nil) == (*bool)(nil)   // compile error 
 ```
+
+
+
+## comparable
+
+what:
+是否可以使用 ==；
+
+### comparable,==
+
+1. primitive type:same value
+2.  pointer: same address 
+3.  channel: same reference
+
+```go
+var a = make(chan int)
+b := a
+```
+
+4. struct: if child filed are comparable 
+5. interface: if actual type are comparable 
+
+
+### uncomparable 
+
+不能使用==，只能 reflect.DeepEqual 
+
+1. function: both nil;
+2. map: key and value are equal;
+3. slice: index and value are equal;
+
+
+

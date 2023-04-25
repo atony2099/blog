@@ -28,9 +28,8 @@ s = append(s,4)
 s = s[0:1]
 
 
-
-
-
+// max slice lenght=cap
+s = s[:cap(s)]
 
 
 
@@ -103,9 +102,24 @@ type  arrray  struct{
 ```
 
 
-how to grow：
-<  threshod = 256 || 1024:  双倍扩容
-\>= threshod:   oldcap+(oldcap+3*256)/4 || 1.25 
+### grow
+
+
+cap容量足够:  简单的改变len就能实现
+```go
+var s = make([]int,5,10)
+len(s) // 5
+s = s[:10]
+len(s) // 10
+```
+
+
+
+
+cap 容量不够: 增加cap
+
+1. <  threshod = 256 || 1024:  双倍扩容
+2. \>= threshod:   oldcap+(oldcap+3*256)/4 || 1.25 
 
 ```go
 // go 1.18 src/runtime/slice.go:178
@@ -144,7 +158,30 @@ simple code
 
 ```go
 
+func appendInt(s []int, list ...int) []int {
+	originCap, originLength := cap(s), len(s)
+	needCAP := len(s) + len(list)
 
+	if needCAP > originCap {
+		doubleCap := originCap * 2
+		var newCap int
+		if doubleCap < needCAP {
+			newCap = needCAP
+		} else {
+			newCap = doubleCap
+		}
+		newSlice := make([]int, newCap)
+		copy(newSlice, s)
+		s = newSlice
+	}
+
+	// slice扩容一次
+	s = s[:needCAP]
+
+	copy(s[originLength:], list)
+	return s
+
+}
 
 
 ```

@@ -31,6 +31,8 @@ categories: ["Go"]
 
 
 
+
+
 ## defer
 
 ### what
@@ -75,36 +77,6 @@ categories: ["Go"]
 1. clean action:
    1. close i/o, channel; 
    2. cancel Context
-
-
-## make vs new 
-1. make: 
-    1. only for map,slice,chan
-    2. initialize to specific value
-       1. slice:  SliceHeader 
-       2. map: *runtime.hmap
-       3. chan: *runtime.hchan
-    3. return  the value of Type
-2. new:     
-    1. for all types;
-    2. initialize to zero value;
-    3. return a pointer to the value 
-
-3. same:
-   1. allocate and initialize memory 
-
-
-
-
-4. new in Go vs in other
-    purpose:
-       1. other: for class;
-       2. go: all types;
-   
-    initialized  value:
-        1.  other:  call constructor to build object;
-        2. go: zero value;
-
 
 
 
