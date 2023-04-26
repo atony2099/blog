@@ -1,4 +1,3 @@
-
 ---
 title: oop in gp 
 date: "2021-10-01T13:58:02+0800"
@@ -32,9 +31,16 @@ tags: ["oop"]
 
 program:  a set of instructions
 
-program   paradigm:  一系列理念和方法 
+program   paradigm:   
 
-命令式, imperative:   描述 如何计算， 如何做
+1. 一系列理念和方法, a set of concept,practice  and approaches  to  code
+2.  编码的方式 
+
+
+
+### types 
+
+命令式, imperative:   如何做 
 1. 过程:  指令按照function 分组,
 ```c
 func1:
@@ -47,7 +53,9 @@ func2:
 ```
 2.  对象: 指令与它操作的状态(对象)分组
 
-declarative:  声明， 只描述结果，不管如何做
+declarative:  
+声明， 做什么,比如 sql, select data from table1,  查询出 data 数据，不管如何具体查
+
 1. 函数式
 2. reactive
 3. domain-specific language:

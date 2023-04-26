@@ -7,6 +7,9 @@ lastmod: 2021-04-06T22:50:18+0800
 ---
 
 
+[Help: Shadowed variables · YourBasic Go - https://yourbasic.org/golang/gotcha-shadowing-variables/](https://yourbasic.org/golang/gotcha-shadowing-variables/)
+
+
 函数是每门编程语言重要组成部分，golang作为一门现代化的语言，函数上有自己的一些特点
 
 
@@ -218,7 +221,7 @@ func split(sum int) (x, y int) {
 
 ```
 
-###  shadowed error
+###  shadowed variable 
 
 when
 1. 内部作用域的变量和外部作用域变量有相同的类型和值，
@@ -227,32 +230,43 @@ when
 1. A shadowed variable is a variable declared in an inner scope with the same name and type as a variable in an outer scope,
 2. where the outer variable is mentioned after the inner one
 
-behavoir:
-外部变量被内部变量覆盖(遮挡);    在内部作用域没有被进行任何赋值操作; 
+behavior:
+外部变量被内部变量覆盖(遮挡)-> 在内部作用域没有被进行任何赋值操作(使用); 
 不符合我们的预期
 
+example:
 
+```go
+func main(){
+	n := 1
+	if n >=1 {
+		n := 0
+		n++
+	}
+	fmt.Println(n)  // 1
 
-2. what:  compile errror, 当命名的返回变量 
-
-3. when: 
-   1. in child scope, return parameters is overwritten 2. naked return
-
-	> return parameters is not at in the scope of return;
-
-   ```go
-   func Foo() (n int, err error) {
-       if true {
-           err := fmt.Errorf("Invalid") // err is shadowed during return
-           return
-       }
-       return
-   }
-
-   ```
+}
+```
 
 
 
+what happen to compile: 报错
+1. 老版本:   shadow err
+2. 新版本:   return parameter errr not used in scope  at return 
+
+```go
+func Foo() (n int, err error) {
+	if true {
+		err := fmt.Errorf("Invalid")
+		return
+	}
+	return
+}
+```
+
+solve:
+1. 明确的return 
+2. 不要重名
 
 
 
