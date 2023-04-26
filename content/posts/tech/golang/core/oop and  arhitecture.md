@@ -37,11 +37,30 @@ program   paradigm:
 2.  编码的方式 
 
 
-
 ### types 
 
-命令式, imperative:   如何做 
-1. 过程:  指令按照function 分组,
+1.  命令式, imperative:   如何做
+	1. procedural
+	2. oop
+2. declarative:  做什么,比如 sql, select data from table1,  查询出 data 数据，不管如何具体查
+	1.  函数式
+	2. reactive
+	3. domain-specific language:
+		1. sql
+		2. html
+
+
+
+oop vs procedural
+|procedural | oop|
+
+1. procedural
+	1.  程序
+	2. 
+
+2. oop
+	1. 以对象为核心
+3. 过程:  指令按照function 分组,
 ```c
 func1:
 	do1(data1)
@@ -53,14 +72,15 @@ func2:
 ```
 2.  对象: 指令与它操作的状态(对象)分组
 
-declarative:  
-声明， 做什么,比如 sql, select data from table1,  查询出 data 数据，不管如何具体查
 
-1. 函数式
-2. reactive
-3. domain-specific language:
-	1. sql
-	2. html
+声明， 
+
+
+
+### oop vs procedural
+
+1. 
+
 
 
 good  code: 易维护代码
