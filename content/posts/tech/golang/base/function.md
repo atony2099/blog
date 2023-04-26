@@ -220,7 +220,20 @@ func split(sum int) (x, y int) {
 
 ###  shadowed error
 
-1. what:  compile errror, 当命名的返回变量 
+when
+1. 内部作用域的变量和外部作用域变量有相同的类型和值，
+2. 外部变量在内部变量声明后继续被使用
+
+1. A shadowed variable is a variable declared in an inner scope with the same name and type as a variable in an outer scope,
+2. where the outer variable is mentioned after the inner one
+
+behavoir:
+外部变量被内部变量覆盖(遮挡);    在内部作用域没有被进行任何赋值操作; 
+不符合我们的预期
+
+
+
+2. what:  compile errror, 当命名的返回变量 
 
 3. when: 
    1. in child scope, return parameters is overwritten 2. naked return
