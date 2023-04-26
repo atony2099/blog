@@ -1,6 +1,6 @@
 
 ---
-title: Go基础1, 函数 function
+title: Go function
 date: "2020-10-11T20:16:30+0800"
 category: ["Go"]
 lastmod: 2021-04-06T22:50:18+0800
@@ -53,7 +53,7 @@ func main() {
 }
 ```
 
-### 2. 可以定义多个返回值并为返回值命名
+### 可以定义多个返回值并为返回值命名
 
 函数返回多个值是开发中很常见的需求，然而大部分语言都不直接支持返回多个值，需程序员们另辟蹊径，通常解决方法是把多个值用对象或者数组包装起来，如 js 可以把多个返回值放在一个object中
 
@@ -94,52 +94,6 @@ func nextInt(b []byte, pos int) (value, nextPos int) {
   ....
 }
 ```
-
-
-
-
-
-#### 1. naked return 
-
-如果返回值已经命名，函数可以直接return不携带返回值,这种称为naked return(裸返回)， naked return在较短的函数中使用可以简化代码，但一般不建议在较长的函数内使
-
-用，它会降低函数可读性
-
-```go
-func split(sum int) (x, y int) {
-	x = sum * 4 / 9
-	y = sum - x
-	return
-}
-
-```
-
-#### 2. shadowed error
-
-1. what？
-	compile error;
-
-2. when: 
-   1. in child scope, return parameters is overwritten 2. naked return
-
-	> return parameters is not at in the scope of return;
-
-   ```go
-   func Foo() (n int, err error) {
-       if true {
-           err := fmt.Errorf("Invalid") // err is shadowed during return
-           return
-       }
-       return
-   }
-
-   ```
-
-
-
-
-
-
 
 ### 3. 支持一等函数（first class function)和高阶函数(high order function) 
 
@@ -245,7 +199,51 @@ type Closure Struct {
 
 
 
-## 4. function 类型
+
+
+
+
+## return 
+
+###  naked return 
+
+如果返回值已经命名，函数可以直接return不携带返回值,这种称为naked return(裸返回)， naked return在较短的函数中使用可以简化代码，但一般不建议在较长的函数内使用，它会降低函数可读性
+
+```go
+func split(sum int) (x, y int) {
+	x = sum * 4 / 9
+	y = sum - x
+	return
+}
+
+```
+
+###  shadowed error
+
+1. what:  compile errror, 当命名的返回变量 
+
+3. when: 
+   1. in child scope, return parameters is overwritten 2. naked return
+
+	> return parameters is not at in the scope of return;
+
+   ```go
+   func Foo() (n int, err error) {
+       if true {
+           err := fmt.Errorf("Invalid") // err is shadowed during return
+           return
+       }
+       return
+   }
+
+   ```
+
+
+
+
+
+
+##  function 类型
 ```go
 func xiao(name string){
 
@@ -270,8 +268,6 @@ var x Person = xiaodong
    2. light access control: 
       1. public: upper case
       2. private: lower case
-
-
 
 
 ##  how it work

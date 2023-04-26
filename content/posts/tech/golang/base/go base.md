@@ -344,3 +344,13 @@ b := a
 
 
 
+
+### two  nil alway == ?
+nil 的类型一致才相等 
+```go
+var p *int = nil
+var i interface{} = nil
+if p == i {
+	fmt.Println("Equal")
+}
+```
