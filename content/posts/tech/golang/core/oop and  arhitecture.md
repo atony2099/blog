@@ -3,6 +3,12 @@ title: oop in gp
 date: "2021-10-01T13:58:02+0800"
 tags: ["oop"]
 ---
+
+
+[Differences between Procedural and Object Oriented Programming - GeeksforGeeks - https://www.geeksforgeeks.org/differences-between-procedural-and-object-oriented-programming/](https://www.geeksforgeeks.org/differences-between-procedural-and-object-oriented-programming/)
+
+[Differences between Procedural and Object Oriented Programming - https://www.tutorialspoint.com/differences-between-procedural-and-object-oriented-programming](https://www.tutorialspoint.com/differences-between-procedural-and-object-oriented-programming)
+
 [The SOLID Principles of Object-Oriented Programming Explained in Plain English](https://www.freecodecamp.org/news/solid-principles-explained-in-plain-english/)
 
 [为什么老鸟要告诉你优先使用组合而不是继承？](https://lovoedu.gitee.io/javablog/2017/06/01/20170601/)
@@ -49,38 +55,59 @@ program   paradigm:
 		1. sql
 		2. html
 
+oop vs procedural:
+| parame               | procedural      | oop         |
+| -------------------- | --------------- | ----------- |
+| 程序划分为           | function        | object      |
+| maintain             | easy            | hard        |
+| **code reusability** | no              | inheritance |
+| **Priority**         | function        | data        |
+| access modifier      | no, less secure | yes         |
+| abstrct                     |                 |     基于现实世界进行抽象        |
 
 
-oop vs procedural
-|procedural | oop|
+procedural
+```python
+# Procedure to calculate the area of a rectangle
+def calculate_area(length, width):
+    area = length * width
+    return area
 
-1. procedural
-	1.  程序
-	2. 
+# Prompt user for input
+length = float(input("Enter the length of the rectangle: "))
+width = float(input("Enter the width of the rectangle: "))
 
-2. oop
-	1. 以对象为核心
-3. 过程:  指令按照function 分组,
-```c
-func1:
-	do1(data1)
-	do2(data2)
+# Calculate area using the procedure
+area = calculate_area(length, width)
 
-func2:
-	do3
-	do4
+# Display result
+print("The area of the rectangle is:", area)
+
 ```
-2.  对象: 指令与它操作的状态(对象)分组
+oop
+```python
+# Rectangle class
+class Rectangle:
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+        
+    def calculate_area(self):
+        area = self.length * self.width
+        return area
 
+# Prompt user for input
+length = float(input("Enter the length of the rectangle: "))
+width = float(input("Enter the width of the rectangle: "))
 
-声明， 
+# Create Rectangle object and calculate area
+rect = Rectangle(length, width)
+area = rect.calculate_area()
 
+# Display result
+print("The area of the rectangle is:", area)
 
-
-### oop vs procedural
-
-1. 
-
+```
 
 
 good  code: 易维护代码
