@@ -288,13 +288,6 @@ var x Person = xiaodong
 也可以显示定义一种function类型；是否属于该函以参数和返回值作为依据；
 
 
-## methods
-1. what's 
-	function+ data,light class
-   1. have no constructor,inherit
-   2. light access control: 
-      1. public: upper case
-      2. private: lower case
 
 
 ##  how it work
@@ -352,3 +345,59 @@ pros:
 
 cons:
 1.  high cost 
+
+
+
+
+##  method
+
+what: a function with  a  receiver
+
+example:
+```go
+type Person struct {
+	name string 
+	age int
+
+}
+
+func (p *Person)GetName() string{
+
+	return p.name
+}
+
+func (p *Person)SetName(name string){
+	
+	if name == "" {
+		// do nothing
+		return	
+	}
+	p.name = name
+
+}
+
+
+```
+
+
+
+feature: 
+1. 语法糖, methods可以将接受者转换成特定类型
+
+```go
+func (p Person)getName(){}
+func (p *Person)getName1(){}
+
+p *Person
+p.getName(); //->  *p.getName()
+
+
+p Person
+p.getName1(); // -> (&p).getName()
+
+```
+
+how it work:
+被转换为普通的函数调用， 接受者被当做一个普通的函数
+
+p.getName() == getName(p)

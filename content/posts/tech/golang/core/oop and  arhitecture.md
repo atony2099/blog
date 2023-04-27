@@ -1,11 +1,13 @@
 ---
-title: oop in gp 
+title: oop in go 
 date: "2021-10-01T13:58:02+0800"
 tags: ["oop"]
+lastmod: 2023-04-27T21:03:20+0800
 ---
 
-
 [Differences between Procedural and Object Oriented Programming - GeeksforGeeks - https://www.geeksforgeeks.org/differences-between-procedural-and-object-oriented-programming/](https://www.geeksforgeeks.org/differences-between-procedural-and-object-oriented-programming/)
+
+[How to Keep Your Code Clean With Object Encapsulation - https://www.makeuseof.com/how-to-keep-your-code-clean-with-object-encapsulation/ - https://www.makeuseof.com/what-is-the-dom/ - https://www.makeuseof.com/how-to-keep-your-code-clean-with-object-encapsulation/](https://www.makeuseof.com/how-to-keep-your-code-clean-with-object-encapsulation/)
 
 [Differences between Procedural and Object Oriented Programming - https://www.tutorialspoint.com/differences-between-procedural-and-object-oriented-programming](https://www.tutorialspoint.com/differences-between-procedural-and-object-oriented-programming)
 
@@ -55,7 +57,7 @@ program   paradigm:
 		1. sql
 		2. html
 
-oop vs procedural:
+###  oop vs procedural:
 | parame               | procedural      | oop         |
 | -------------------- | --------------- | ----------- |
 | 程序划分为           | function        | object      |
@@ -63,7 +65,7 @@ oop vs procedural:
 | **code reusability** | no              | inheritance |
 | **Priority**         | function        | data        |
 | access modifier      | no, less secure | yes         |
-| abstrct                     |                 |     基于现实世界进行抽象        |
+| abstrct                     |     无            |     基于现实世界进行抽象        |
 
 
 procedural
@@ -116,125 +118,111 @@ good  code: 易维护代码
 4.   高 复用
 
 
-## oop
-
-what: 基于对象完成任务 
-
-VS： 
-1. 面向过程:  function 为基本单元
-2. oop:  对象为基本单元; 
-
-object =  data+function 
 
 
 
-goal:
-1. low couple
-2.  easy extend
-3. high resuable 
+## oop pinciple 
 
+what's principle: 
+1. 原则,原理， 指导方针， 实现oop 的基础
 
-example:
-```go
-// 1. 减少账户金额
-func decreaeAcccount(aocunt int, price int) int{
-    return  
-}
-// 2. 减少库存；
-func decreaseProduct(total, decrease int)int{
-    return total - decrease
-}
-
-var customMoney = 100;
-var totalProduct = 10;
-
-customMoney =  decreaeAcccount(customMoney,20)
-totalProduct =  decreaseProduce(totalProduct,1)
-
-print(customMoney, totalProduct)
-```
-```go
-class Product(){
-    int  TotalCount
-
-    func instructor(count int){
-        this.TotalCount = count;
-    }
-   func decreaseProduct(count int)int{
-    return count--
-    }
-}
-
-class Customer(){
-    int  TotalCount
-
-    func instructor(count int){
-        this.TotalCount = count;
-    }
-   func decreaseAccount(count int){
-        this.TotalCount -= count
-    }
-}
-// 1. 初始产品数
-var p = new Product(10);
-// 2. 初始金额
-var cus = new Customer(100);
-
-// 1. 减少账户金额
-cus.decreaseAccount(20)
-// 2. 减少库存
-p.decreaeProduct(1)
-
-print(cus.TotalCount, p.TotalCount)
-
-```
-
-
-
+four principle in oop  
+1. 抽象
+2. 封装
+3. 继承
+4. 多态
 
 
 ###  Encapsulation
 ![Y7chBP](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211002/Y7chBP.jpg)
 
-what : 
-1. 将实体相关数据和行为放在一起；
-2. 对外只暴露有限的方法； 对属性的访问通过方法；
+also:   hiding info 
 
+how：
+1. 将实体相关数据和行为打包在一起: clsss 
+2. 限制内部访问，除了指定之外: public , 
 
 
 benefit: 
-1. 隔离变化: 易修改
-2. 低耦合: 只暴露必要的 
+1. 可维护性: 减少内部修改对外部产生的影响
+2. 安全: 限制对敏感数据的访问(limit data access)； 数据以正确的方式修改(prevent  unwanted modifications)
 
-how: 
-1. access level:
-	1.  public/private....   methods
-	2.  set and getter property
-2.  constructor
 
-go: 
-1.  no  constructor,  需要自定义
-```
-NewPerson(name string)
-```
-2.  less  access  level:   puiblic and private
-```
-type Person struct {
-	  Name string
+example:
+
+```java
+public class Person {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getAge() {
+        return this.age;
+    }
+
+    public void setAge(int age) {
+        if (age >= 0 && age <= 120) {
+            this.age = age;
+        } else {
+            throw new IllegalArgumentException("Age must be between 0 and 120.");
+        }
+    }
 }
 
-func  Run()
-func  cry()
 ```
 
+#### how go  do it  
+
+1. 使用type and methods  模仿 class, 
+2. 使用大小写控制访问权限
+
+
+```go
+
+type Person struct {
+	name  string // private
+}
+
+
+func (p *Person)GetName()string{
+	return p.name
+}
+
+func (p *Person)SetName(name string)string {
+	p.name = name
+}
+
+
+
+```
+
+
+
+
+### abstraction
 
 
 ###  inherit
 
-是什么:
-通过  extend 等关键字获得父类的成员变量和方法；
+是什么:   通过  extend 等关键字获得父类的成员变量和方法；
 
-benefit: resuable 
+pros: 代码复用，减少冗余 
+cons:  父类与子类强耦合，不易于维护
+
+
+
+为什么 embeded不是继承：
+继承一般是通过动态绑定方法，而go 方法在编译期就绑定好了，
+
+
 
 how: 
 1. overwrite
@@ -244,8 +232,23 @@ how:
 inherit  in go: 
 没有继承， 只有embed(anonymous field)
 
+#### inherit in go
+
+
+
+
+
+
+
+
 
 ###  polymorphism
+
+
+
+
+
+
 what:  
 same  interface have different underlying  data types;
 class/function have different  forms
