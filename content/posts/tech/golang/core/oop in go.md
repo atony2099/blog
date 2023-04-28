@@ -5,11 +5,13 @@ tags: ["oop"]
 lastmod: 2023-04-27T21:03:20+0800
 ---
 
-[Differences between Procedural and Object Oriented Programming - GeeksforGeeks - https://www.geeksforgeeks.org/differences-between-procedural-and-object-oriented-programming/](https://www.geeksforgeeks.org/differences-between-procedural-and-object-oriented-programming/)
+[Type embedding: Golang's fake inheritance | DoltHub Blog ](https://www.dolthub.com/blog/2023-02-22-golangs-fake-inheritance/)
 
-[How to Keep Your Code Clean With Object Encapsulation - https://www.makeuseof.com/how-to-keep-your-code-clean-with-object-encapsulation/ - https://www.makeuseof.com/what-is-the-dom/ - https://www.makeuseof.com/how-to-keep-your-code-clean-with-object-encapsulation/](https://www.makeuseof.com/how-to-keep-your-code-clean-with-object-encapsulation/)
+[Differences between Procedural and Object Oriented Programming - GeeksforGeeks ](https://www.geeksforgeeks.org/differences-between-procedural-and-object-oriented-programming/)
 
-[Differences between Procedural and Object Oriented Programming - https://www.tutorialspoint.com/differences-between-procedural-and-object-oriented-programming](https://www.tutorialspoint.com/differences-between-procedural-and-object-oriented-programming)
+[How to Keep Your Code Clean With Object Encapsulation](https://www.makeuseof.com/how-to-keep-your-code-clean-with-object-encapsulation/)
+
+[Differences between Procedural and Object Oriented Programming ](https://www.tutorialspoint.com/differences-between-procedural-and-object-oriented-programming)
 
 [The SOLID Principles of Object-Oriented Programming Explained in Plain English](https://www.freecodecamp.org/news/solid-principles-explained-in-plain-english/)
 
@@ -34,6 +36,9 @@ lastmod: 2023-04-27T21:03:20+0800
 [Object-Oriented Programming in GO](https://medium.com/@canoguz/object-oriented-programming-in-go-e50f8fe4a620)
 
 [Explaining Clean Architecture](https://oncehub.com/blog/explaining-clean-architecture)
+
+
+
 
 ## program   paradigm
 
@@ -220,7 +225,9 @@ cons:  父类与子类强耦合，不易于维护
 
 
 为什么 embeded不是继承：
-继承一般是通过动态绑定方法，而go 方法在编译期就绑定好了，
+1. 继承一般是通过动态绑定方法，而go 方法在编译期就绑定好了
+2. 实际上 是个语法糖 
+
 
 
 
