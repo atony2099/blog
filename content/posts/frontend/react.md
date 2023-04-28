@@ -2,7 +2,7 @@
 title:  react
 date: 2023-04-27T00:13:24+08:00
 lastmod: 2023-04-27T00:13:24+08:00
-categories: ["forntend"]
+categories: ["frontend"]
 tags: ["react"]
 ---
 

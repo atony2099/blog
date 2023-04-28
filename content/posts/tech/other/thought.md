@@ -4,6 +4,8 @@ date: "2021-10-22T01:03:09+0800"
 draft: false
 categories: ["thought"]
 ---
+
+
 > ariticl state: TOOD
 
 在整个繁杂的科学计算机, 是由一些基本的编程思想构建起来的， 编程思想，一个简单的定义就是
