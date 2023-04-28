@@ -128,14 +128,45 @@ good  code: 易维护代码
 
 ## oop pinciple 
 
+
 what's principle: 
 1. 原则,原理， 指导方针， 实现oop 的基础
 
 four principle in oop  
-1. 抽象
+1. 抽象:
 2. 封装
 3. 继承
 4. 多态
+
+
+why  go not prue  oop:
+go 没有实现  oop 全部特性: 特别是继承
+
+
+
+
+
+
+### abstract
+
+what:
+抽象出一个事物的最基本特征，忽略其细节:   
+遥控器: changeVolunm; changeChannel 
+
+how:
+通过abstract class 或者interface实现 
+
+
+
+#### how go 
+
+use interface
+
+
+
+
+
+
 
 
 ###  Encapsulation
@@ -224,12 +255,55 @@ cons:  父类与子类强耦合，不易于维护
 
 
 为什么 embeded不是继承：
-1. 继承一般是通过动态绑定方法，而go 方法在编译期就绑定好了
-2. 实际上 是组合的语法糖,
+1. 没有继承关系:  a is b 
 
+```
+childInstance instanceof  SuperClass
+```
+
+2. 方法没有动态绑定: 继承一般是通过动态(运行时)绑定方法，而go 方法在编译期就绑定好了
+
+```go
+package main
+
+import "fmt"
+
+type Person struct {
+	Name string
+}
+
+func (p *Person) Greet() {
+	fmt.Println("Hello, I am a person", p.String())
+}
+
+func (p *Person) String() string {
+	return "i am happy"
+}
+
+type Male struct {
+	*Person
+}
+
+func (m *Male) string() string {
+	return "i am sad"
+}
+
+func main() {
+
+	var f = &Male{Person: &Person{Name: "tony"}}
+
+	f.Greet() //  expected "i am sad  "
+
+}
 
 ```
 
+
+3. 是组合的语法糖
+
+```go
+f.Greet()== f.Person.Greet()
+f.Name == f.Person.Name
 
 ```
 
@@ -253,42 +327,69 @@ inherit  in go:
 
 
 
-
-
-
 ###  polymorphism
 
-
-
-
-
-
-what:  
-same  interface have different underlying  data types;
-class/function have different  forms
+what:  一个东西(方法, 对象 )可以有多种形态
 
 types: 
-1.  subType  polymorphism
-2.  methods overloading
+1.  override: 重写 
+2.  overload: 重载
 
-method overloading: 
-```java 
-class Calculator{  
-	public int sum(int a, int b){  
-	return a+b;  
-	}  
-	  
-	public int sum(int a, int b, int c){  
-	return a+b+c;  
-	}  
+```java
+package com.journaldev.examples;
+
+import java.util.Arrays;
+
+// overload 
+public class Processor {
+
+	public void process(int i, int j) {
+		System.out.printf("Processing two integers:%d, %d", i, j);
+	}
+
+	public void process(int[] ints) {
+		System.out.println("Adding integer array:" + Arrays.toString(ints));
+	}
+
+	public void process(Object[] objs) {
+		System.out.println("Adding integer array:" + Arrays.toString(objs));
+	}
 }
+
+// override
+class MathProcessor extends Processor {
+
+	@Override
+	public void process(int i, int j) {
+		System.out.println("Sum of integers is " + (i + j));
+	}
+
+	@Override
+	public void process(int[] ints) {
+		int sum = 0;
+		for (int i : ints) {
+			sum += i;
+		}
+		System.out.println("Sum of integer array elements is " + sum);
+	}
+
+}
+
 ```
 
-go:   interface  
 
-benefit:
-1.  reduce redundancy
-2.  easy  extend 
+
+
+#### polymorphism in go 
+
+limit: go只能 使用interface实现多态
+
+highlight:  不需要显式的指定 实现interface 
+
+interface: 
+
+
+
 
 
 
