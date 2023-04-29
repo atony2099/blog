@@ -160,12 +160,7 @@ how:
 
 #### how go 
 
-use interface
-
-
-
-
-
+use interface  
 
 
 
@@ -175,11 +170,10 @@ use interface
 also:   hiding info 
 
 how：
-1. 将实体相关数据和行为打包在一起: clsss 
-2. 限制内部访问，除了指定之外: public , 
+1. 打包:  将实体相关数据和行为打包在一起: clsss 
+2. 隐藏: 使用private or其他方式 隐藏信息，除特定方法外
 
-
-benefit: 
+pros: 
 1. 可维护性: 减少内部修改对外部产生的影响
 2. 安全: 限制对敏感数据的访问(limit data access)； 数据以正确的方式修改(prevent  unwanted modifications)
 
@@ -218,8 +212,7 @@ public class Person {
 #### how go  do it  
 
 1. 使用type and methods  模仿 class, 
-2. 使用大小写控制访问权限
-
+2. 使用大小写控制访问权限: packge level 
 
 ```go
 
@@ -241,27 +234,40 @@ func (p *Person)SetName(name string)string {
 ```
 
 
-
-
-### abstraction
-
-
 ###  inherit
 
-是什么:   通过  extend 等关键字获得父类的成员变量和方法；
+是什么:   通过  extend 等关键字继承 父类的属性和方法；
 
 pros: 代码复用，减少冗余 
 cons:  父类与子类强耦合，不易于维护
 
 
+####  inherit   in go 
+go 没有继承，只有组合:
+1. 普通组合:  成员变量
+2. 内嵌: 匿名成员变量
+
+```go
+
+type Dog  struct{
+	Base Animal
+}
+
+type Dog struct{
+	Animal
+}
+
+```
+
+
 为什么 embeded不是继承：
-1. 没有继承关系:  a is b 
+1. 没有建立 继承关系:  a is b 
 
 ```
 childInstance instanceof  SuperClass
 ```
 
-2. 方法没有动态绑定: 继承一般是通过动态(运行时)绑定方法，而go 方法在编译期就绑定好了
+2. 方法没有动态绑定(无法实现真正的重写): 继承一般是通过动态(运行时)绑定方法，而embed 方法在编译期就绑定好了
 
 ```go
 package main
@@ -306,23 +312,6 @@ f.Greet()== f.Person.Greet()
 f.Name == f.Person.Name
 
 ```
-
-
-
-
-
-
-how: 
-1. overwrite
-2. subType 
-3. call  property and func directly
-
-inherit  in go: 
-没有继承， 只有embed(anonymous field)
-
-#### inherit in go
-
-
 
 
 
@@ -386,10 +375,18 @@ limit: go只能 使用interface实现多态
 
 highlight:  不需要显式的指定 实现interface 
 
-interface: 
+interface example : 
+```go
+func main() {
+	var ma Bird = Mahjong{"mahjong"}
+	var a Bird = Eagle{"Eagle"}
 
-
-
+	var birdList = []Bird{ma, a}
+	for _, v := range birdList {
+		v.fly()
+	}
+}
+```
 
 
 
