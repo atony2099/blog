@@ -7,6 +7,8 @@ lastmod: 2023-04-15T11:58:24+0800
 tags: ["chatgpt"]
 ---
 
+
+
 ##  refactor code
 
 1. Review the following code and refactor it to make it more DRY and adopt the SOLID programming principles.
@@ -24,6 +26,15 @@ tags: ["chatgpt"]
 
 ## quality
 1. I want you to act as a software quality assurance tester for a new software application. Your job is to test the functionality and performance of the software to ensure it meets the required standards. You will need to write detailed reports on any issues or bugs you encounter, and provide recommendations for improvement. Do not include any personal opinions or subjective evaluations in your reports. 
+
+
+##  summary the text
+
+
+
+
+
+
 
 
 
