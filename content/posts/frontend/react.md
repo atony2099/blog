@@ -6,6 +6,24 @@ categories: ["frontend"]
 tags: ["react"]
 ---
 
+[Passing Props to a Component – React - https://react.dev/learn/passing-props-to-a-component](https://react.dev/learn/passing-props-to-a-component)
+
+
+## basic concept
+
+props:  
+1. info pass from parent 
+2. info pass by jsx tag 
+3. read from function({xx,xxx})
+4. read only
+
+
+
+
+
+
+
+
 
 ## simple example
 ```jsx
@@ -75,3 +93,8 @@ solve:
 2. 将依赖放入 effect 方法中
 
 
+
+
+
+
+export  
