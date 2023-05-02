@@ -1,5 +1,5 @@
 ---
-title:  go base
+title: basic
 date: "2021-02-28T09:17:11+0800"
 categories: ["Go"]
 ---
@@ -11,6 +11,7 @@ categories: ["Go"]
 [deferx](https://github.com/cch123/golang-notes/blob/master/defer.md)
 
 ## type
+
 
 basic:
 1. int, int8,int32
@@ -27,6 +28,18 @@ composite  type:
 4. struct;
 5. interface
 6. function 
+
+
+from value type and reference type:
+value type: store the value of data;
+reference type: store the reference  of data
+
+value type:
+
+
+
+
+
 
 
 ## defer

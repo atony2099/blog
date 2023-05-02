@@ -401,3 +401,11 @@ how it work:
 被转换为普通的函数调用， 接受者被当做一个普通的函数
 
 p.getName() == getName(p)
+
+
+
+### receiver 
+
+pointer receiver: `*p`
+value receiver: 
+
