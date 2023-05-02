@@ -12,7 +12,7 @@ categories: ["Go"]
 
 ## type
 
-
+form basic  or not:
 basic:
 1. int, int8,int32
 2. float32,float34
@@ -30,13 +30,30 @@ composite  type:
 6. function 
 
 
-from value type and reference type:
+
+from value type or not:
 value type: store the value of data;
 reference type: store the reference  of data
 
-value type:
+value type: 
 
+-   Numeric types:
+    -   `int`, `int8`, `int16`, `int32`, `int64`
+    -   `uint`, `uint8`, `uint16`, `uint32`, `uint64`, `uintptr`
+    -   `float32`, `float64`
+    -   `complex64`, `complex128`
+-   Boolean type: `bool`
+-   String type: `string`
+-   Array type: `[]T`
+-   Struct type: `struct{}`
+-   Interface type: `interface{}`
 
+reference type: 
+-   Pointer type: `*T`
+-   Slice type: `[]T`
+-   Map type: `map[K]V`
+-   Channel type: `chan T`
+-   Function type: `func(params) returnType`
 
 
 

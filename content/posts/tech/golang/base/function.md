@@ -406,6 +406,9 @@ p.getName() == getName(p)
 
 ### receiver 
 
-pointer receiver: `*p`
-value receiver: 
+|         | pointer receiver     | value receiver       |
+| ------- | -------------------- | -------------------- |
+| feature | 无法改变recevier的值 | 可以改变receiver的值 |
+|    use case     |             read/write; only read but  big size        |    only  read                |
+
 
