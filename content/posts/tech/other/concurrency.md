@@ -9,6 +9,36 @@ categories: ["concurrency"]
 
 [Thread Safety and Immutability](http://tutorials.jenkov.com/java-concurrency/thread-safety-and-immutability.html)
 
+
+
+## model list
+
+cateory by shared state:
+1. share state: thread
+	
+1. seperate state: actor(eerlang, scale ), csp 
+
+
+|     | shared state | seperate state |
+| --- | ------------ | -------------- |
+| diff    |              |                |
+
+
+
+
+
+shared memory：
+csp:  Communicating Sequential Processes,通信顺序进程
+
+
+|                  | shared memory        | csp     |
+| ---------------- | -------------------- | ------- |
+| how to pass data/communicate | access shared memory | channel |
+| syn             |       need sync               |        |
+
+
+
+
 ## thread safe;
 
 why: 多线程同时修改统一变量，读写非原子性导致另一个线程数据被覆盖；
