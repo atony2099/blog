@@ -28,6 +28,10 @@ tags: ["go","locker","map"]
 [ Deep Understanding of Golang Mutex](https://levelup.gitconnected.com/deep-understanding-of-golang-mutex-9964b02c56e9)
 
 ## read-write atomic instruction
+
+
+
+
 1. what？
    读和写原子操作，是实现锁的基础；
 

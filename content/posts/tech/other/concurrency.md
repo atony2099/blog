@@ -13,13 +13,20 @@ categories: ["concurrency"]
 
 ## model list
 
-cateory by shared state:
-1. share state: 通过共享状态传递数据; thread 
-		1. pros:
-	1. cons:
-2. seperate state:  通过通信传递数据； actor(eerlang, scale ), csp 
-	1. pros:
-	2. conss:
+**share state**:  
+1. 共享状态
+2. 通过共享状态通信 
+![Hbihf2f5WUwh](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230505/Hbihf2f5WUwh.jpg)
+example: thread
+pros:
+cons:
+
+
+**seperate state：**
+1. 独享状态
+2. 通过通信传递数据； 
+![CmisOqvvx1Hy](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230505/CmisOqvvx1Hy.jpg)
+example: actor(eerlang, scale ), csp 
 
 
 

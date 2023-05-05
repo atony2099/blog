@@ -8,6 +8,81 @@ draft: false
 ---
 
 
+[  race condition](https://www.techtarget.com/searchstorage/definition/race-condition#:~:text=A%20race%20condition%20is%20an,sequence%20to%20be%20done%20correctly.)
+
+
+##  data race and race condition
+
+### race conditon 
+
+1. 并发时候结果不确定(没有同步机制)
+3.  结果不符合我们的预期
+
+
+```go
+func main() {
+    go func() {
+        for {
+            fmt.Println("Thread B")
+        }
+    }
+    for {
+        fmt.Println("Thread A")
+    }
+}
+```
+如果我们期望按照  threadA-threadb 交替输出，则是race conditon 
+
+
+
+
+
+### data race 
+
+
+
+
+
+
+
+
+```
+
+
+
+
+未获得预期的结果
+1. 多个线程并发执行, 访问了共享资源
+2. 正确的结果需要依赖多个线程按照特定顺序执行. 
+3. 但是多线程并未按照特定的顺序执行, 线程执行的顺序不可预期的
+
+1. In concurrent programming,
+2. a race condition occurs when the correct behavior of a program depends on the order or timing of two or more threads' execution
+3. and that order or timing is unpredictable.
+
+
+
+type：
+critial race conditon:   发生了race  condition, 但是结果不影响程序的正确性
+non-critical  conditon: 发生了race conditon, 但影响程序正确性
+
+non-critail race conditon 
+```
+
+
+```
+
+
+###  data race
+
+
+
+## problem:
+
+
+
+
+
 
 
 what:
