@@ -10,14 +10,15 @@ draft: false
 
 [  race condition](https://www.techtarget.com/searchstorage/definition/race-condition#:~:text=A%20race%20condition%20is%20an,sequence%20to%20be%20done%20correctly.)
 
+[Data Races vs Race Conditions - Cronokirby - https://cronokirby.com/posts/2019/06/data-races-vs-race-conditions/data-races-vs-race-conditions/](https://cronokirby.com/posts/2019/06/data-races-vs-race-conditions/data-races-vs-race-conditions/)
 
 ##  data race and race condition
 
 ### race conditon 
 
-1. 并发时候结果不确定(没有同步机制)
-3.  结果不符合我们的预期
-
+在并发的程序里
+1. 产生不确定行为,non-determinism
+3. 我们预期程序总是产生特定行为
 
 ```go
 func main() {
@@ -35,9 +36,11 @@ func main() {
 
 
 
-
-
 ### data race 
+1. 多个线程同时访问一个变量
+2. 至少有一个是写入操作
+
+
 
 
 

@@ -18,8 +18,10 @@ categories: ["concurrency"]
 2. 通过共享状态通信 
 ![Hbihf2f5WUwh](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230505/Hbihf2f5WUwh.jpg)
 example: thread
-pros:
+pros:  
+1. 更容易编程/实现
 cons:
+1. 更多并发问题:  data race and deadlock
 
 
 **seperate state：**
@@ -28,6 +30,22 @@ cons:
 ![CmisOqvvx1Hy](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230505/CmisOqvvx1Hy.jpg)
 example: actor(eerlang, scale ), csp 
 
+pros:
+1. 较少并发的问题: data-race, deadlock
+cons:
+1. 实现起来更复杂:需要将任务抽象成多个子任务，再通过channel 串联起来
+
+
+don't communitcate by share memory , share memory  by communicating:
+
+不要通过共享方式进行通信；而是使用通道的方式进行通信；
+
+
+
+
+
+
+## how to do in csp
 
 
 
@@ -37,14 +55,8 @@ example: actor(eerlang, scale ), csp
 
 
 
-shared memory：
-csp:  Communicating Sequential Processes,通信顺序进程
 
 
-|                  | shared memory        | csp     |
-| ---------------- | -------------------- | ------- |
-| how to pass data/communicate | access shared memory | channel |
-| syn             |       need sync               |        |
 
 
 
