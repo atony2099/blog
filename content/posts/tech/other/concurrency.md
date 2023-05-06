@@ -47,29 +47,24 @@ don't communitcate by share memory , share memory  by communicating:
 
 ## how to do in csp
 
-csp:
+csp: 
+1. 任务拆分成多个子任务，任务之间通过channel 连接 
+
+tips:
+1. go routinue 一般 只读写内部数据(包含参数);并通过channel 对外传输数据
+ 2. sub task type:
+	1. produce data: 并发 
+	2.  write data: only on goroutine
 
 
-1. 拆分任务
-2.  producer:
-	1. 并发执行
-	2. 执行耗时任何
-	3.  
-
-4. 使用channel 共享数据
-5. 将任务 拆分为多个stage
-6.  数据更新在一个特定的goroutine中
 
 example: bank account
 
-produce1:
-1.  send update
-2. receive result
-	 
-consumer:
-1. update balance
-2. send back 
-	
+1. 拆分任务：
+	1. 获取需要改变的类型和数据
+	2. 写入balance 
+
+
 
 
 
