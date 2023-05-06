@@ -46,6 +46,7 @@ don't communitcate by share memory , share memory  by communicating:
 
 
 ## how to do in csp
+原则: 不直接读取/写入
 
 
 
