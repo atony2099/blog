@@ -46,8 +46,30 @@ don't communitcate by share memory , share memory  by communicating:
 
 
 ## how to do in csp
-原则: 不直接读取/写入
 
+csp:
+
+
+1. 拆分任务
+2.  producer:
+	1. 并发执行
+	2. 执行耗时任何
+	3.  
+
+4. 使用channel 共享数据
+5. 将任务 拆分为多个stage
+6.  数据更新在一个特定的goroutine中
+
+example: bank account
+
+produce1:
+1.  send update
+2. receive result
+	 
+consumer:
+1. update balance
+2. send back 
+	
 
 
 
