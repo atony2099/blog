@@ -53,10 +53,14 @@ csp:
 tips:
 1. go routinue 一般 只读写内部数据(包含参数);并通过channel 对外传输数据
  2. sub task type:
-	1. produce data: 并发 
-	2.  write data: only on goroutine
+	1. producer: 并发获取数据
+	2. consumer : 如果涉及到数据合并，不能并发
 
-
+csp model:
+1. 1-chan->1:常见
+2. n-chan->1:最常见 
+3. 1-chan->n: pool
+4. m-chan->n(m>n): 不常见
 
 example: bank account
 
@@ -64,12 +68,76 @@ example: bank account
 	1. 获取需要改变的类型和数据
 	2. 写入balance 
 
+```c
+
+var  updateChan
+
+go func: // producer 
+	go:
+	
+		update<- 100, deposite
+	
+	go:
+		update<- -50, withdraw
+
+
+go func: // writer
+
+
+
+	for ammout  :=  range updateChan
+		balance+=amount
+
+```
+
+
+
+example search: 
+
+```c
+
+
+
+var searchChan
+var dbChan 
+go func:
+	for _, ele := range array
+		go search(ele, searchChan) // stage1,producer 
+
+go func:
+	var maps 
+	for  result range   searchChan
+		maps[result.url] = result.content
+
+
+	go getDB(maps["google.com"],maps["facebook.com"],dbChan)
+	go getDB(mapsp["twiter.com"],maps["abc.com"],dbChan)
+
+
+
+go func:
+	for result range dbChan
+
+```
+
+
+
+
+
+### pitfall
+
+
+#### goroutine leak 
+
+case:
 
 
 
 
 
 
+
+#### 
 
 
 
