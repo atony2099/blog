@@ -92,7 +92,7 @@ go func: // writer
 
 
 
-example search: 
+example search:  n->1,  n->1
 
 ```c
 
@@ -129,7 +129,19 @@ go func:
 
 #### goroutine leak 
 
-case:
+leak:  已经使用完的资源未被回收
+goroutine  leak: 已使用完的goroutine.....
+
+
+when: 
+1. 生产者未关闭:关闭
+2. 提前退出:
+	1.  消费者提前退出:  
+	2.  生产者退出:  关闭
+
+
+
+
 
 
 
