@@ -139,8 +139,28 @@ date-race condition:
     3. semaphore
    
 
+semaphore:
 
-3. semaphore?
+
+```c
+
+semaphore = 3; // max concurrency. 
+waitqueue = [];
+
+
+wait(p):
+	semaphore--
+	if seamphore<=0: 
+		push(waitqueue,currentThread);
+		sleep
+	
+
+signal(v):
+	semaphore++
+	if waitqueue.len >=0:
+		wakeup waitqueue.first
+
+```
 
     1. wait;
         p(s): 

@@ -378,23 +378,32 @@ go func:
 
 ## buffer channel 
 
-buffer:  在缓存前阻塞，非同步
-unbuffer: 立即阻塞,同步
+buffer:  非阻塞， 非同步
+unbuffer: 阻塞， 同步  
+
+unbuffer use case:
+1. 限流: 控制最大并发数
+2.  减少生产者的阻塞
+
+```
+
+cotrol = make(chan struct{},3)
+for _,value :=  range []int{1,2,3}:
+	 control <- struct{}
+	 go func:
+		xxx
+		<-control
+
+```
 
 
-use case:
+unbuffer use case:
+1. 信号同步
 
 
 
-
-
-
-
-
-
-
-1. not block and not sync 
-2. block only if 
+3. not block and not sync 
+4. block only if 
 	1. producer: buffer is full
 	2. consumer: bufer is empty 
 
@@ -419,23 +428,30 @@ go sender:
 
 
 ```c
-g1:
+
+
+c1 := make(chan int,1)
+c2 : = make(chan int,1)
+
+
+
+g1: // c1.full, block.
+	// 
 	c1<-1
-	dosth 
+	fmt.Println(1)
 	c2<-1  // unblock c2
 	c1<-1 // block me 
-	dosth //
+	fmt.Println(3)
 	c2<-1 // unblock c2
 	c1<-1 // block me 
 	...
 
-
-g2:
-	<-c2 // block me
-	dosth 
+g2: // c2.empty, bloock
+	<-c2 // block  
+	fmt.Println(2)
 	<-c1 // unbock g1
-	<-c2 //block me 
-	dosth 
+	<-c2 //block   
+	fmt.Println(4)
 	<-c1 // unblock c1
 	<-c2 // block me 
 ```
