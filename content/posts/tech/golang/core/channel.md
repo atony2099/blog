@@ -378,6 +378,21 @@ go func:
 
 ## buffer channel 
 
+buffer:  在缓存前阻塞，非同步
+unbuffer: 立即阻塞,同步
+
+
+use case:
+
+
+
+
+
+
+
+
+
+
 1. not block and not sync 
 2. block only if 
 	1. producer: buffer is full
