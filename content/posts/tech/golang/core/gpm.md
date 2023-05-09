@@ -220,27 +220,34 @@ role:
 ### G
 
 structure: 
+gobuf:  register info,  used for context switch
+stack: 当前 g使用的stack; 
+stauts:  g status
+m: 对应的线程 
+
 ```go
-type g struct {
- stack struct {
-  lo uintptr
-  hi uintptr
- }        // 栈内存：[stack.lo, stack.hi)
- stackguard0 uintptr
- stackguard1 uintptr
 
- _panic       *_panic
- _defer       *_defer
- m            *m    // 当前的 m
- sched        gobuf
- stktopsp     uintptr  // 期望 sp 位于栈顶，用于回溯检查
- param        unsafe.Pointer // wakeup 唤醒时候传递的参数
- atomicstatus uint32
- goid         int64
- preempt      bool        // 抢占信号，stackguard0 = stackpreempt 的副本
- timer        *timer         // 为 time.Sleep 缓存的计时器
+type g struct { 
+	// 当前 Goroutine 的栈内存范围 [stack.lo, stack.hi)
+	stack       stack 
+	// 用于调度器抢占式调度  
+	stackguard0 uintptr   
 
- ...
+	_panic       *_panic  
+	_defer       *_defer  
+	// 当前 Goroutine 占用的线程
+	m            *m       
+	// 存储 Goroutine 的调度相关的数据
+	sched        gobuf 
+	// Goroutine 的状态
+	atomicstatus uint32 
+	// 抢占信号
+	preempt       bool // preemption signal, duplicates stackguard0 = stackpreempt
+	// 抢占时将状态修改成 `_Gpreempted`
+	preemptStop   bool // transition to _Gpreempted on preemption; otherwise, just deschedule
+	// 在同步安全点收缩栈
+	preemptShrink bool // shrink stack at synchronous safe point
+	...
 }
 
 type gobuf struct {
@@ -294,26 +301,27 @@ light thread;
 #### 2. struct
 
 ```go
-type g struct {
- stack struct {
-  lo uintptr
-  hi uintptr
- }        // 栈内存：[stack.lo, stack.hi)
- stackguard0 uintptr
- stackguard1 uintptr
+type g struct { 
+	// 当前 Goroutine 的栈内存范围 [stack.lo, stack.hi)
+	stack       stack 
+	// 用于调度器抢占式调度  
+	stackguard0 uintptr   
 
- _panic       *_panic
- _defer       *_defer
- m            *m    // 当前的 m
- sched        gobuf
- stktopsp     uintptr  // 期望 sp 位于栈顶，用于回溯检查
- param        unsafe.Pointer // wakeup 唤醒时候传递的参数
- atomicstatus uint32
- goid         int64
- preempt      bool        // 抢占信号，stackguard0 = stackpreempt 的副本
- timer        *timer         // 为 time.Sleep 缓存的计时器
-
- ...
+	_panic       *_panic  
+	_defer       *_defer  
+	// 当前 Goroutine 占用的线程
+	m            *m       
+	// 存储 Goroutine 的调度相关的数据
+	sched        gobuf 
+	// Goroutine 的状态
+	atomicstatus uint32 
+	// 抢占信号
+	preempt       bool // preemption signal, duplicates stackguard0 = stackpreempt
+	// 抢占时将状态修改成 `_Gpreempted`
+	preemptStop   bool // transition to _Gpreempted on preemption; otherwise, just deschedule
+	// 在同步安全点收缩栈
+	preemptShrink bool // shrink stack at synchronous safe point
+	...
 }
 
 type gobuf struct {
