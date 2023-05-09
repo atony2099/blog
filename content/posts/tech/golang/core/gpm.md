@@ -43,29 +43,35 @@ category: ["go","scheduler"]
 
 [Go 为什么这么“快”](https://mp.weixin.qq.com/s/2Q_o8NLidMXc-DtoinPwSQ)
 
-[[Golang三关-典藏版] Golang 调度器 GMP 原理与调度全分析](https://learnku.com/articles/41728)
+[Golang三关-典藏版 Golang 调度器 GMP 原理与调度全分析](https://learnku.com/articles/41728)
 
 ## overview
 
-### over
 
 ![1qtA3o](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210911/1qtA3o.jpg)
 ![](https://img.draveness.me/2020-02-05-15808864354595-golang-scheduler.png)
 
 ![YYkPj1](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20220418/YYkPj1.png)
 
-1. what:
-   1. 调度系统: go实现的调度系统，
-   2. feature:
+what:
+1. 调度系统: go实现的调度系统，
+2. feature:
       1. run in user space;
       2. 协作式调度
 
-2. role:
-   1. g: todo task,  a light thread;
-   2. proceessor: connector
-   3. machine: 运行得实体,对应一个os thread
+role:
+1. g:  用户线程，包含等待被执行的function code 
+2. processor：连接 machine 和 g
+3. machine: 系统线程，执行g
 
-### 1.  processor
+
+4. g: todo task,  a light thread;
+5. proceessor: connector
+6. machine: 运行得实体,对应一个os thread
+
+## gmp
+
+###  processor
 
 1. state:
    ![DtWAoL](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20220418/DtWAoL.jpg)
@@ -211,12 +217,51 @@ category: ["go","scheduler"]
  1. limit the active machine count
  2. if the i/o increase, the machine count increase
 
-### 3. G
+### G
 
-#### 1. basic
+structure: 
+```go
+type g struct {
+ stack struct {
+  lo uintptr
+  hi uintptr
+ }        // 栈内存：[stack.lo, stack.hi)
+ stackguard0 uintptr
+ stackguard1 uintptr
 
-1. what？ 
- light thread;
+ _panic       *_panic
+ _defer       *_defer
+ m            *m    // 当前的 m
+ sched        gobuf
+ stktopsp     uintptr  // 期望 sp 位于栈顶，用于回溯检查
+ param        unsafe.Pointer // wakeup 唤醒时候传递的参数
+ atomicstatus uint32
+ goid         int64
+ preempt      bool        // 抢占信号，stackguard0 = stackpreempt 的副本
+ timer        *timer         // 为 time.Sleep 缓存的计时器
+
+ ...
+}
+
+type gobuf struct {
+ // 栈指针
+ sp   uintptr
+ // 程序计数器
+ pc   uintptr
+ // gobuf对应的Goroutine
+ g    guintptr 
+ // 系统调用的返回值
+ ret  sys.Uintreg
+ ...
+}
+```
+
+#### basic
+
+
+
+what
+light thread;
 
 2. process vs  thread  vs  goroutine;
  1. same:

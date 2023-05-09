@@ -378,12 +378,19 @@ go func:
 
 ## buffer channel 
 
-buffer:  非阻塞， 非同步
+buffer:  
+1. 非阻塞， 非同步
+
+
+pros:
+
+cons:
+
 unbuffer: 阻塞， 同步  
 
 unbuffer use case:
 1. 限流: 控制最大并发数
-2.  减少生产者的阻塞
+2.  解耦: producer and consumer,  让生产者不会被消费者所阻塞
 
 ```
 
@@ -398,8 +405,7 @@ for _,value :=  range []int{1,2,3}:
 
 
 unbuffer use case:
-1. 信号同步
-
+1. synchronize, ensure that data is processed immediately
 
 
 3. not block and not sync 
