@@ -224,7 +224,6 @@ gobuf:  register info,  used for context switch
 stack: 当前 g使用的stack; 
 stauts:  g status
 m: 对应的线程 
-
 ```go
 
 type g struct { 
@@ -263,14 +262,24 @@ type gobuf struct {
 }
 ```
 
-#### basic
+
+**status**:
+1. prepare: idle-> runable
+2. run: running 
+3. block:
+	1. waiting 
+	2. sysemblocking 
+ ![GjS7Qr](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210914/GjS7Qr.jpg)
+ ![wkwbum](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20220720/wkwbum.jpg)
+
+
+process vs  thread  vs  goroutine
+
+
+same:
 
 
 
-what
-light thread;
-
-2. process vs  thread  vs  goroutine;
  1. same:
        1. 对cpu而言，他们都是一样的， to do instruction;
        2. struct{insrtuctsList, memory }
@@ -281,8 +290,8 @@ light thread;
      > 减少切换成本->提高cpu使用效率；
  
 3. state
- ![GjS7Qr](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210914/GjS7Qr.jpg)
- ![wkwbum](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20220720/wkwbum.jpg)
+
+
 
  1. runable: to be excuted
  2. running: be excuted
