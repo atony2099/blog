@@ -217,9 +217,10 @@ role:
  1. limit the active machine count
  2. if the i/o increase, the machine count increase
 
-### G
+### goroutine
 
-structure: 
+**structure:**
+
 gobuf:  register info,  used for context switch
 stack: 当前 g使用的stack; 
 stauts:  g status
@@ -264,6 +265,7 @@ type gobuf struct {
 
 
 **status**:
+
 1. prepare: idle-> runable
 2. run: running 
 3. block:
@@ -273,78 +275,26 @@ type gobuf struct {
  ![wkwbum](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20220720/wkwbum.jpg)
 
 
-process vs  thread  vs  goroutine
-
+**process vs  thread  vs  goroutine:**
 
 same:
+1. 独立的指令执行路径, independent execution paths
+2. 独立的stack and  register 
+
+differ:   more lightweight
+1. thread: 共享process's memory
+2. goroutine:  共享(多路复用 ) thread 
 
 
+**cheaper:**
+1. less stack
+2.  less switch cost:
+	1. less register 
 
- 1. same:
-       1. 对cpu而言，他们都是一样的， to do instruction;
-       2. struct{insrtuctsList, memory }
-
- 2. share  trend;
-  1. share time slice: p->t->g;
-  2. share memory: p.heap ->t,g
-     > 减少切换成本->提高cpu使用效率；
- 
-3. state
-
-
-
- 1. runable: to be excuted
- 2. running: be excuted
- 3. wait:
-       1. gwait->runable
-       2. gsyscall:
-          1. running
-          2. runable
-
-4. G is cheap?
  1. less memroy: dynamic  stack
  2. less switch time:
        1. less registe;
        2. in use space, not need interrupt
-
-#### 2. struct
-
-```go
-type g struct { 
-	// 当前 Goroutine 的栈内存范围 [stack.lo, stack.hi)
-	stack       stack 
-	// 用于调度器抢占式调度  
-	stackguard0 uintptr   
-
-	_panic       *_panic  
-	_defer       *_defer  
-	// 当前 Goroutine 占用的线程
-	m            *m       
-	// 存储 Goroutine 的调度相关的数据
-	sched        gobuf 
-	// Goroutine 的状态
-	atomicstatus uint32 
-	// 抢占信号
-	preempt       bool // preemption signal, duplicates stackguard0 = stackpreempt
-	// 抢占时将状态修改成 `_Gpreempted`
-	preemptStop   bool // transition to _Gpreempted on preemption; otherwise, just deschedule
-	// 在同步安全点收缩栈
-	preemptShrink bool // shrink stack at synchronous safe point
-	...
-}
-
-type gobuf struct {
- // 栈指针
- sp   uintptr
- // 程序计数器
- pc   uintptr
- // gobuf对应的Goroutine
- g    guintptr 
- // 系统调用的返回值
- ret  sys.Uintreg
- ...
-}
-```
 
 #### 4. G0
 
