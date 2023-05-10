@@ -45,6 +45,8 @@ category: ["go","scheduler"]
 
 [Golang三关-典藏版 Golang 调度器 GMP 原理与调度全分析](https://learnku.com/articles/41728)
 
+[How Goroutines Work - https://blog.nindalf.com/posts/how-goroutines-work/](https://blog.nindalf.com/posts/how-goroutines-work/)
+
 ## overview
 
 
@@ -116,7 +118,7 @@ role:
  1. defaul:  numbercpu;
  2. set: runtime.GOMAXPROCS(n)
 
-### 2. machine
+### machine
   
 1. what? 
  1. 执行实体: run a loop
@@ -232,6 +234,7 @@ type g struct {
 	stack       stack 
 	// 用于调度器抢占式调度  
 	stackguard0 uintptr   
+	goid        int64
 
 	_panic       *_panic  
 	_defer       *_defer  
@@ -287,14 +290,14 @@ differ:   more lightweight
 
 
 **cheaper:**
-1. less stack
-2.  less switch cost:
-	1. less register 
+1. memory cost cheaper: 2kb stack 
+2. switch cost cheaper: 协作式调度, 协程主动让出，只需要保存必要的register,
+3. create cheaper: create in user space, 不需要向os申请
 
- 1. less memroy: dynamic  stack
- 2. less switch time:
-       1. less registe;
-       2. in use space, not need interrupt
+not expose go id:
+1. 避免  thread local storage 的滥用，导致代码难以维护
+2. 可以使用context 存储 goroutine 范围内的变量
+
 
 #### 4. G0
 
@@ -318,10 +321,10 @@ differ:   more lightweight
 ## schedule
 
 ![img](https://colobu.com/2017/05/04/go-scheduler/go-sched.png)
-![](https://static.studygolang.com/190526/6c28ca553fa01ea792c4f73a2133c5e0.png)
 ![xoSeop](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210825/xoSeop.jpg)
 
-1. how? do a polling (check status continuously)
+
+machine run  a loop:
  ```
  while(true):
   isGet=getfrom
@@ -334,11 +337,15 @@ differ:   more lightweight
   else
    sleep()
  ```
- 
-2. stop   G?
-   1. wait  another g:
- 
-   2. wait  system resouce
+
+
+highlight:
+1. 使用窃取算法平衡负载
+2. 
+
+
+
+
 
 ### new G
 
@@ -448,10 +455,9 @@ differ:   more lightweight
 
 1. overload: put in global queue;
 
-   ```
  localg.count>256;
 
-   ```
+
 
 2. idle:
    1. steal from other g;
