@@ -47,19 +47,16 @@ category: ["go","scheduler"]
 
 [How Goroutines Work - https://blog.nindalf.com/posts/how-goroutines-work/](https://blog.nindalf.com/posts/how-goroutines-work/)
 
-## overview
 
 
 ![1qtA3o](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210911/1qtA3o.jpg)
-![](https://img.draveness.me/2020-02-05-15808864354595-golang-scheduler.png)
+
 
 ![YYkPj1](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20220418/YYkPj1.png)
 
-what:
-1. 调度系统: go实现的调度系统，
-2. feature:
-      1. run in user space;
-      2. 协作式调度
+
+## gpm
+
 
 role:
 1. g:  用户线程，包含等待被执行的function code 
@@ -67,11 +64,11 @@ role:
 3. machine: 系统线程，执行g
 
 
-4. g: todo task,  a light thread;
-5. proceessor: connector
-6. machine: 运行得实体,对应一个os thread
+the count:
 
-## gmp
+g: 无数个，取决于stack
+machine:
+
 
 ###  processor
 
@@ -324,6 +321,8 @@ not expose go id:
 ![xoSeop](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210825/xoSeop.jpg)
 
 
+
+
 machine run  a loop:
  ```
  while(true):
@@ -341,7 +340,8 @@ machine run  a loop:
 
 highlight:
 1. 使用窃取算法平衡负载, it attempt to steal work from other threds' run queue, this approach  help balances the workload among threads 
-2. cooperative    schedule: 
+2. cooperative    schedule:  更低的开销；    less switch cost, less switch;
+3. m:n model:  m个goroutine,  但是最多n个运行 
 
 
 work steal:
