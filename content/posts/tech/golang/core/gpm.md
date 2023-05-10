@@ -340,9 +340,12 @@ machine run  a loop:
 
 
 highlight:
-1. 使用窃取算法平衡负载
-2. 
+1. 使用窃取算法平衡负载, it attempt to steal work from other threds' run queue, this approach  help balances the workload among threads 
+2. cooperative    schedule: 
 
+
+work steal:
+![hrvAIkD6mK5l](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230510/hrvAIkD6mK5l.jpg)
 
 
 
