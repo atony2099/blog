@@ -6,7 +6,18 @@ categories: ["feynman"]
 ---
 
 
-提出问题
+
+
+1. explain it in simply way
+2.  fill the gap:   go back to  the source material  if you  get stuck 
+4. simplify further
+
+
+how to simplify:
+1. break it down
+2.  in simple words, avoiding jargon 
+3. using  analogy
+4. give example 
 
 
 
