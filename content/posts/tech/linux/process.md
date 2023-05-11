@@ -81,8 +81,33 @@ userView:       process 1           thread 2
 
 
 ### 3. kernel space vs user space;
+![JgnZgKDNeIHO](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230512/JgnZgKDNeIHO.jpg)
 
-process = 指令+存储空间;
+
+不同的内存区域,每个区域包含 memory(stack,heap) + instruction
+
+user space: 
+1. 运行普通指令
+2. user stack, user heap
+
+kernel space:
+1. 允许较高级的指令:  i/o, 进程管理 
+2. kernel stack , kernel heap 
+
+
+```
+task:
+stackpointer
+insertuctionPointer
+
+
+switchToKernel:
+	task.stackpointer 
+	
+```
+
+
+
 
 process可以在用户态和内核两种状态下来回切换;
 

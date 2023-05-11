@@ -323,7 +323,20 @@ not expose go id:
 
 ![q4R0JD](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211219/q4R0JD.jpg)
 
-1. how:
+
+1. 创建machine0
+2. 创建 processor 0,板顶processor0
+3. newproc, 假如processor0
+4. 开始允许machine 0 loop
+
+
+
+
+6. first machine
+7. 创建processor
+
+
+8. how:
    1. 创建 first machine, 加入allm;
    2. 创建 ncpu processor,first processor 绑定machine0;
    3. 创建 main G: func= main，绑定processor0;

@@ -7,7 +7,6 @@ categories: ["feynman"]
 
 
 
-
 1. explain it in simply way
 2.  fill the gap:   go back to  the source material  if you  get stuck 
 4. simplify further
@@ -21,6 +20,13 @@ how to simplify:
 
 
 
+the principle:
+
+1. the process is a active learning process, which have more effective
+2. leading on a deeper understand of knowledges, not relay on memorization
+
+
+why not use jargon: using jargon can lead to shallow understanding  or rely on memorization  
 
 
 
