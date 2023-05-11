@@ -48,9 +48,7 @@ category: ["go","scheduler"]
 [How Goroutines Work - https://blog.nindalf.com/posts/how-goroutines-work/](https://blog.nindalf.com/posts/how-goroutines-work/)
 
 
-
 ![1qtA3o](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210911/1qtA3o.jpg)
-
 
 ![YYkPj1](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20220418/YYkPj1.png)
 
@@ -64,10 +62,24 @@ role:
 3. machine: 系统线程，执行g
 
 
-the count:
+**the count:**
 
-g: 无数个，取决于stack
-machine:
+g:  创建成本主要是stack size 2kb , plus some small  overhead for control block(g struct)  ,   1GB= 5millon g
+
+processor: max =  the number of cpu
+```go
+runtime.GOMAXPROCS(runtime.NumCPU())
+```
+
+machine count: 
+max running machine = processor count;  
+
+
+
+
+
+
+
 
 
 ###  processor
@@ -114,6 +126,8 @@ machine:
 5. the number of processor?
  1. defaul:  numbercpu;
  2. set: runtime.GOMAXPROCS(n)
+
+
 
 ### machine
   
