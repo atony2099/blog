@@ -324,6 +324,8 @@ not expose go id:
 ![q4R0JD](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211219/q4R0JD.jpg)
 
 
+1. 创建m ; 
+
 1. 创建machine0
 2. 创建 processor 0,板顶processor0
 3. newproc, 假如processor0
