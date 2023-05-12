@@ -59,7 +59,7 @@ category: ["go","scheduler"]
 role:
 1. g:  用户线程，包含等待被执行的function code 
 2. processor：连接 machine 和 g
-3. machine: 系统线程，执行g
+3. machine: 执行的实体, 绑定一个系统线程，寻找g并执行
 
 
 **the count:**

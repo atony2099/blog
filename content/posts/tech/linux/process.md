@@ -95,14 +95,40 @@ kernel space:
 2. kernel stack , kernel heap 
 
 
-```
-task:
-stackpointer
-insertuctionPointer
+```c
+// Thread struct definition
+struct Thread {
+    void* userStackPointer;
+    void* userInstructionPointer;
+    ....
+ 
+};
 
 
-switchToKernel:
-	task.stackpointer 
+// Pseudo code for thread switch from user space to kernel space
+void switchToKernelSpace(Thread* currentThread) {
+    // Save the current stack pointer
+    currentThread->stackPointer = getCurrentStackPointer();
+    
+    // Save the current instruction pointer
+    currentThread->instructionPointer = getCurrentInstructionPointer();
+    
+    // Switch to kernel stack
+    switchStackToKernel();
+    
+
+    
+    // Set the stack pointer to the kernel stack pointer
+    setCurrentStackPointer(getKernelStackPointer());
+    
+    // Set the instruction pointer to the kernel mode entry point
+    setCurrentInstructionPointer(getKernelEntryPoint());
+    
+    // Jump to the kernel mode entry point
+    jumpToKernelMode();
+}
+
+
 	
 ```
 
