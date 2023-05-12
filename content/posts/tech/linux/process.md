@@ -353,8 +353,6 @@ linux 根据不同任务类型；采用不同的调度方法；
 #### preemption(unvoluntary)
 线程仍可以继续执行下去，但被迫让出cpu，此时线程处于running状态
 
-
-
 原因:
    1. 时间片用完；
    2. 被高优先级任务抢占
@@ -371,3 +369,9 @@ how:
    2. kernel preemption: 发生在内核态；
       1. interrupt to kernel 
       2. 开启抢占；
+
+
+
+
+## thread model
+

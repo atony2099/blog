@@ -59,7 +59,12 @@ category: ["go","scheduler"]
 role:
 1. g:  用户线程，包含等待被执行的function code 
 2. processor：连接 machine 和 g
-3. machine: 执行的实体, 绑定一个系统线程，寻找g并执行
+3. machine: 执行的实体 
+	1. 找到可以运行的g
+	2. 执行g
+
+
+1. machine: 执行的实体, 绑定一个系统线程，寻找g并执行
 
 
 **the count:**
@@ -324,21 +329,25 @@ not expose go id:
 ![q4R0JD](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211219/q4R0JD.jpg)
 
 
-1. 创建m ; 
-
-1. 创建machine0
-2. 创建 processor 0,板顶processor0
-3. newproc, 假如processor0
-4. 开始允许machine 0 loop
+1. 创建m0
+2. 创建m0 
 
 
+3. 创建m ; 
+
+4. 创建machine0
+5. 创建 processor 0,板顶processor0
+6. newproc, 假如processor0
+7. 开始允许machine 0 loop
 
 
-6. first machine
-7. 创建processor
 
 
-8. how:
+8. first machine
+9. 创建processor
+
+
+10. how:
    1. 创建 first machine, 加入allm;
    2. 创建 ncpu processor,first processor 绑定machine0;
    3. 创建 main G: func= main，绑定processor0;
