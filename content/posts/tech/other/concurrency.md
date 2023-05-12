@@ -13,8 +13,6 @@ categories: ["concurrency"]
 
 ##  thread model 
 
-
-
 ## model list
 
 **share state**:  

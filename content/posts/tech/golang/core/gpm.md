@@ -55,31 +55,49 @@ category: ["go","scheduler"]
 
 ## gpm
 
-
 role:
 1. g:  用户线程，包含等待被执行的function code 
 2. processor：连接 machine 和 g
-3. machine: 执行的实体 
+3. machine: 执行的实体, 关联一个系统线程，通过系统线程执行 
 	1. 找到可以运行的g
 	2. 执行g
 
 
-1. machine: 执行的实体, 绑定一个系统线程，寻找g并执行
+
 
 
 **the count:**
 
 g:  创建成本主要是stack size 2kb , plus some small  overhead for control block(g struct)  ,   1GB= 5millon g
-
 processor: max =  the number of cpu
 ```go
 runtime.GOMAXPROCS(runtime.NumCPU())
 ```
-
 machine count: 
 max running machine = processor count;  
 
 
+
+why  go scheduler is  good   for  concurrecy :
+1.  降级了用户使用线程的成本: 线程很轻量，可以无限制的创建
+2.  原生支持csp:
+	1. 消除并发常见的问题: data-race, dead-lock 
+	2. 
+
+
+
+
+
+
+4. lightweight g
+5. 
+
+
+6. light g
+7. 
+
+8.  轻量级的g
+9.  
 
 
 
@@ -306,9 +324,11 @@ differ:   more lightweight
 
 
 **cheaper:**
-1. memory cost cheaper: 2kb stack 
-2. switch cost cheaper: 协作式调度, 协程主动让出，只需要保存必要的register,
-3. create cheaper: create in user space, 不需要向os申请
+1.  更低的创建成本: 
+	1. 占用内存少: 2kb <=1 mb 
+	2. 更快: 不需要系统调用
+2.  更低的切换成本:  基于 线程复用 和协作式调度，goroutine 切换只需切换少量register
+
 
 not expose go id:
 1. 避免  thread local storage 的滥用，导致代码难以维护
