@@ -64,8 +64,6 @@ role:
 
 
 
-
-
 **the count:**
 
 g:  创建成本主要是stack size 2kb , plus some small  overhead for control block(g struct)  ,   1GB= 5millon g
@@ -79,29 +77,15 @@ max running machine = processor count;
 
 
 why  go scheduler is  good   for  concurrecy :
-1.  降级了用户使用线程的成本: 线程很轻量，可以无限制的创建
-2.  原生支持csp:
+1.  降低线程使用的开始:  线程很轻量，可以无限制的创建
+2.  原生支持csp, 对程序员而言更容易实现复杂的并发
 	1. 消除并发常见的问题: data-race, dead-lock 
-	2. 
+	2.  以模块化的方式实现并发
+		1. 更容易实现复杂并发: 将复杂问题分解成小模块
+		2. 更容易维护:   1. 发现和调式问题 2.修改
 
-
-
-
-
-
-4. lightweight g
-5. 
-
-
-6. light g
-7. 
-
-8.  轻量级的g
-9.  
-
-
-
-
+模块化方式:
+每个g 是一个模块，是一个独立的个体，与其他模块通过channel 连接
 
 
 
@@ -155,7 +139,7 @@ why  go scheduler is  good   for  concurrecy :
 ### machine
   
 1. what? 
- 1. 执行实体: run a loop
+	1. 执行实体: run a loop
  2. 绑定一条 os thread, 通过 os thread 执行
 
 2. structure
@@ -349,25 +333,38 @@ not expose go id:
 ![q4R0JD](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211219/q4R0JD.jpg)
 
 
-1. 创建m0
-2. 创建m0 
+1. 创建m0,g0
+2. 创建processor
+3. 绑定processor0
+4. 执行g.main,
+5. another loop 
+
+6. 创建m0
+7. 创建g0
+8. 创建 g.main
+9. 加入processor0
+10. m0执行  
 
 
-3. 创建m ; 
-
-4. 创建machine0
-5. 创建 processor 0,板顶processor0
-6. newproc, 假如processor0
-7. 开始允许machine 0 loop
+11. 创建m0
+12. 创建m0 
 
 
+13. 创建m ; 
+
+14. 创建machine0
+15. 创建 processor 0,板顶processor0
+16. newproc, 假如processor0
+17. 开始允许machine 0 loop
 
 
-8. first machine
-9. 创建processor
 
 
-10. how:
+18. first machine
+19. 创建processor
+
+
+20. how:
    1. 创建 first machine, 加入allm;
    2. 创建 ncpu processor,first processor 绑定machine0;
    3. 创建 main G: func= main，绑定processor0;
