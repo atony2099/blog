@@ -47,6 +47,10 @@ category: ["go","scheduler"]
 
 [How Goroutines Work - https://blog.nindalf.com/posts/how-goroutines-work/](https://blog.nindalf.com/posts/how-goroutines-work/)
 
+[go runtime - go程序启动过程 ](https://juejin.cn/post/6942509882281033764)
+
+[Go: g0, Special Goroutine](https://medium.com/a-journey-with-go/go-g0-special-goroutine-8c778c6704d8)
+
 
 ![1qtA3o](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210911/1qtA3o.jpg)
 
@@ -240,7 +244,6 @@ why  go scheduler is  good   for  concurrecy :
 ### goroutine
 
 **structure:**
-
 gobuf:  register info,  used for context switch
 stack: 当前 g使用的stack; 
 stauts:  g status
@@ -286,7 +289,6 @@ type gobuf struct {
 
 
 **status**:
-
 1. prepare: idle-> runable
 2. run: running 
 3. block:
@@ -319,58 +321,103 @@ not expose go id:
 2. 可以使用context 存储 goroutine 范围内的变量
 
 
-#### 4. G0
+**g0:** 
 
-1. what's
+what:
+特殊的协程，执行特殊的任务，不执行用户代码
+1. 调度相关: 创建新g; 获取可用g
+2. 其他任务: 
+	1. stack grow; 
+	2. defer function create;
+	3. systemcall
+
+feature:
+fixed and larger size, 2MB, 在执行特殊任务需要更大空间
+
+
+
+
+4. what's
    1. machine first g;
    2. do schdule work
-2. case?
+5. case?
  1. new g: go func()->systemstack(func(){...})
  2. park/ready
 
-## init
-
-![q4R0JD](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211219/q4R0JD.jpg)
-
-
-1. 创建m0,g0
-2. 创建processor
-3. 绑定processor0
-4. 执行g.main,
-5. another loop 
-
-6. 创建m0
-7. 创建g0
-8. 创建 g.main
-9. 加入processor0
-10. m0执行  
-
-
-11. 创建m0
-12. 创建m0 
-
-
-13. 创建m ; 
-
-14. 创建machine0
-15. 创建 processor 0,板顶processor0
-16. newproc, 假如processor0
-17. 开始允许machine 0 loop
-
-
-
-
-18. first machine
-19. 创建processor
-
-
-20. how:
-   1. 创建 first machine, 加入allm;
-   2. 创建 ncpu processor,first processor 绑定machine0;
-   3. 创建 main G: func= main，绑定processor0;
-   4. run first machine
 
 ## schedule
+
+
+###  init
+
+
+![GLbm0SOoFkGI](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230514/GLbm0SOoFkGI.jpg)
+
+
+1. 创建m0,g0, 关联
+2.  init:  
+	1. 初始化工作: stack, heap,gc
+	2. 创建 n processor 
+4. 创建 g.main, 加入processor0
+5. run m0 loop
+
+code:
+
+```c
+TEXT runtime·rt0_go(SB),NOSPLIT,$0
+        // 复制参数数量argc和参数值argv到栈上
+        MOVQ    DI, AX          // argc
+        MOVQ    SI, BX          // argv
+        SUBQ    $(4*8+7), SP            // 2args 2auto
+        ANDQ    $~15, SP
+        MOVQ    AX, 16(SP)
+        MOVQ    BX, 24(SP)
+        
+        // 初始化 g0 执行栈
+        MOVQ    $runtime·g0(SB), DI	    // DI = g0
+        LEAQ    (-64*1024+104)(SP), BX
+        MOVQ    BX, g_stackguard0(DI)	    // g0.stackguard0 = SP + (-64*1024+104)
+        MOVQ    BX, g_stackguard1(DI)       // g0.stackguard1 = SP + (-64*1024+104)
+        MOVQ    BX, (g_stack+stack_lo)(DI)  // g0.stackguard1 = SP + (-64*1024+104)
+        MOVQ    SP, (g_stack+stack_hi)(DI)  // g0.stackguard1 = SP + (-64*1024+104)
+        ...
+        // 该函数在 runtime/runtime1.go/check()，进行各种检查，包括类型的长度Sizeof、结构体字段的偏移量、
+        // CAS操作、指针操作、原子操作、汇编指令、栈大小检查等
+        CALL    runtime·check(SB)
+        ...
+        // 该函数在runtime/runtime1.go/args(c int32, v **byte) 进行命令行参数的初始化
+        CALL    runtime·args(SB)      
+        // 该函数在runtime/os_linux.go/osinit() 读取操作系统的CPU核数
+        CALL    runtime·osinit(SB)    
+        // 该函数在runtime/proc.go/schedinit() 调度器的初始化，涉及内存空间的初始化、命令行参数的初始化、
+        // 垃圾收集器参数的初始化、调度器process的设置等
+        CALL    runtime·schedinit(SB) 
+        // create a new goroutine to start program
+        MOVQ    $runtime·mainPC(SB), AX         // entry
+        PUSHQ   AX
+        PUSHQ   $0                      // arg size
+        // 该函数在runtime/proc.go/newproc(siz int32, fn *funcval) 
+        // 创建一个新的G，并将G放到runtime的队列中，这个G用于执行runtime.main函数
+        CALL    runtime·newproc(SB)  
+        
+        POPQ    AX
+        POPQ    AX
+
+        // start this M
+        // runtime/proc.go/mstart() 开始调度，从队列里面取G进行执行，并执行runtime.main函数
+        // 在runtime.main的执行中，会依次执行runtime中的init函数、启动GC收集器、
+        // 执行用户包的init函数、执行用户的main函数
+        CALL    runtime·mstart(SB)
+
+        MOVL    $0xf1, 0xf1  // crash
+        RET
+
+```
+
+
+### loop
+
+
 
 ![img](https://colobu.com/2017/05/04/go-scheduler/go-sched.png)
 ![xoSeop](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210825/xoSeop.jpg)
