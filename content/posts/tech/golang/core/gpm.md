@@ -127,16 +127,13 @@ why  go scheduler is  good   for  concurrecy :
    }
    ```
 
-3. why need processor?
- 1. cache local g: speed up access g;
- 2. cache mcache: allocate new memory;
+why need processor？ processor 的详细作用
 
-4. 为什么不使用 machine缓存?
- machine will sleep when system call;
+machine and goroutine的中介 
+1. 缓存goroutine: machine 无锁访问
 
-5. the number of processor?
- 1. defaul:  numbercpu;
- 2. set: runtime.GOMAXPROCS(n)
+为什么不使用machine 缓存gorotine：
+machine 可能 系统调用停止运行 
 
 
 
