@@ -134,7 +134,6 @@ void switchToKernelSpace(Thread* currentThread) {
 
 
 
-
 process可以在用户态和内核两种状态下来回切换;
 
 1. 用户空间: 
@@ -374,4 +373,13 @@ how:
 
 
 ## thread model
+
+1:1 model:  
+n:1 model: 
+m: n model
+
+
+
+
+
 
