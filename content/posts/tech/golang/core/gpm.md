@@ -531,7 +531,7 @@ work steal:
       1. machine get old processor, then idle processor:  g.status=running
       2. else: machine sleep, put  g in gloabel queue: g.status = runable;
 
-#### 2.preempt
+####   preempt
 
 1. what?
  运行过长的g会被踢出去
@@ -769,4 +769,37 @@ TEXT runtime·mcall(SB), NOSPLIT, $0-8
  JMP AX
  RET
 
+```
+
+
+```
+import requests
+
+start = input_data["start"]
+end = input_data["end"]
+task = input_data["task"]
+duration = int(input_data["duration"])
+project = input_data["project"]
+parent = input_data["parent"]
+
+task_request = {
+    "start_time": start,
+    "duration": duration,
+    "task": task,
+    "project": project,
+    "end_time": end,
+    "parent":parent,
+}
+
+response = requests.post("https://api.gohi789.top/api/tasks", json=task_request)
+
+# Check the response status code
+if response.status_code == 200:
+    print("Task created successfully!")
+else:
+    print(f"Error creating task: {response.text}")
+    print("Exiting program with error.")
+    sys.exit(f"Error: {response.text}")
+
+return {"result": response.text}
 ```

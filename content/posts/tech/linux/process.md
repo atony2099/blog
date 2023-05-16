@@ -458,7 +458,9 @@ user thread:
 1.  user-level lib 管理的(创建， 允许，销毁)， 程序可以直接创建
 2. 包含: 用户代码， 用户栈
 3. cpu  调度: 无法直接被调度， 通过关联kernel thread 被调度  
-4. 如何表示:   pthread_t == int
+4. 如何表示:
+	1.  in  POSIX,   thread_id，内核线程的标识符(句柄)
+	2. 在 go中， 有专门的 结构表示 
 ```c
 // linux
 #include <pthread.h>
@@ -500,10 +502,16 @@ kernel  thread:
 
 
 
-1:1 model: 1
+1:1 model: 
 n:1 model: 
-m: n model: 多个用户线程复用一个内核线程 
 
+m: n model: 
+what: 多个用户线程复用一个内核线程 
+pros:
+1. 低开销: 
+	1. 创建线程开销: systemcall, kernel stack; 
+	2. 线程切换的开销 
+2. 高拓展性: 可以创建更多的线程来处理任务
 
 
 
