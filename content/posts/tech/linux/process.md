@@ -54,6 +54,78 @@ struct task_struct {
  struct files_struct  *files;
 };
 ```
+
+
+### creat thread
+
+```c
+int pthread_create(pthread_t *thread, const pthread_attr_t *attr,
+                   void *(*start_routine) (void *), void *arg) {
+    struct task_struct *new_thread;
+
+    // Allocate memory for new thread's task_struct
+    new_thread = allocate_task_struct();
+    if (!new_thread) {
+        return -1;
+    }
+
+    // Initialize the task_struct (simplified)
+    new_thread->state = TASK_RUNNING;
+    new_thread->flags = 0;
+    new_thread->prio = DEFAULT_PRIORITY;
+    new_thread->mm = NULL;
+    new_thread->active_mm = current->active_mm;  // Share memory map with current task
+
+    // Allocate and set up the new thread's user stack and kernel stack
+    new_thread->user_stack = allocate_user_stack();
+    new_thread->kernel_stack = allocate_kernel_stack();
+    setup_new_thread_context(new_thread, start_routine, arg);
+
+    // Add new_thread to the runqueue so that the scheduler can start it
+    add_to_runqueue(new_thread);
+
+    // Return the new thread's ID
+    *thread = new_thread->pid;
+
+    return 0;
+}
+
+void setup_new_thread_context(struct task_struct *new_thread, void *(*start_routine) (void *), void *arg) {
+    // Set up the new thread's kernel stack and CPU context
+    // so that it will start execution in start_routine when scheduled.
+    setup_new_thread_kernel_stack_and_context(new_thread->kernel_stack, start_routine, arg);
+
+    // Initialize the new thread's user stack
+    setup_new_thread_user_stack(new_thread->user_stack, arg);
+}
+
+void setup_new_thread_kernel_stack_and_context(void *stack, void *(*start_routine) (void *), void *arg) {
+    // Make room on the stack for the return address and the function argument
+    stack -= sizeof(void *);
+
+    // Put the argument onto the stack
+    *((void **)stack) = arg;
+
+    // Initialize the new thread's context
+    struct cpu_context *context = &new_thread->context;
+
+    // Set up the instruction pointer to point to start_routine
+    context->ip = (unsigned long)start_routine;
+
+    // Set up the stack pointer
+    context->sp = (unsigned long)stack;
+}
+
+void setup_new_thread_user_stack(void *user_stack, void *arg) {
+    // The actual implementation of this function can be quite complex
+    // and is beyond the scope of this pseudocode. In general, this function
+    // would set up the new thread's user stack so that it's ready to start
+    // executing in user mode.
+}
+
+```
+
+
 ### id
 1. pid: process  id; 每个task都会有
 2. tgid: task groud id；线程组id;
@@ -80,7 +152,7 @@ userView:       process 1           thread 2
    process没有共享的；
 
 
-### 3. kernel space vs user space;
+###  kernel space vs user space;
 ![JgnZgKDNeIHO](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230512/JgnZgKDNeIHO.jpg)
 
 
@@ -374,9 +446,9 @@ how:
 
 ## thread model
 
-1:1 model:  
+1:1 model:   
 n:1 model: 
-m: n model
+m: n model: 多个用户线程复用一个内核线程 
 
 
 
