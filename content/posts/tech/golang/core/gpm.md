@@ -668,6 +668,10 @@ func startm(_p_ *p, spinning bool) {
 }
 ```
 
+
+## sysmon
+
+
 ## basic   thought
 
 ### 1. resuse
