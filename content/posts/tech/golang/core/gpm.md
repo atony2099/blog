@@ -286,13 +286,15 @@ type gobuf struct {
 
 
 **status**:
+
 1. prepare: idle-> runable
 2. run: running 
 3. block:
 	1. waiting 
 	2. sysemblocking 
- ![GjS7Qr](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210914/GjS7Qr.jpg)
- ![wkwbum](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20220720/wkwbum.jpg)
+![RqdUVncjVkO2](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230518/RqdUVncjVkO2.jpg)
+
+![Noo9UNlu9LwI](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230518/Noo9UNlu9LwI.jpg)
 
 
 **process vs  thread  vs  goroutine:**
@@ -815,7 +817,19 @@ return {"result": response.text}
 
 ## sysmon
 
-what: 
+what: system monitor, 系统监控线程; 处理 
+
+do what: 
+监控异常情况，并调整
+1. 太久没有poll, GC
+2.   
+
+
+
+```
+func   sysmon
+
+```
 
 
 
