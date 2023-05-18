@@ -822,7 +822,8 @@ what: system monitor, 系统监控线程; 处理
 do what: 
 监控异常情况，并调整
 1. 太久没有poll, GC
-2.   
+2. 应当运行 
+3.  抢占p:   
 
 
 
