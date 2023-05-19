@@ -13,6 +13,77 @@ tags: [""]
 
 equity = (Assets+ income)- (liability+expenses)
 
+-:  Debit 
++: credit 
+
+
+what: 每笔交易要记录到两个不同账户中， 且有借方和贷方
+
+
+why:
+1.  错误检测： 所有账户借方需要等于贷方 
+2.   知道资金流向  
+
+
+example:
+|              | Debit   | Credit  |
+| ------------ | ------- | ------- |
+| Cash         | $10,000 |         |
+| Loan Payable |         | $10,000 |
+
+
+
+
+how:
+![hYZjNusKVI0j](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230519/hYZjNusKVI0j.png)
+
+
+
+## account
+example:
+```
+Assets:US:BofA:Checking
+Liabilities:CA:RBC:CreditCard
+Equity:Retained-Earnings
+Income:US:Acme:Salary
+Expenses:Food:Groceries
+```
+
+
+tree hier:
+```
+`-- Assets
+    |-- Receivables
+    `-- US
+        |-- BofA
+        |   |-- Checking
+        |   `-- Savings
+        `-- Vanguard
+            |-- Cash
+            `-- RGAGX
+```
+
+
+pad && balance 
+```
+2000-05-28 open Assets:CA:BofA:Checking  USD
+
+2000-05-28 pad Assets:CA:BofA:Checking Equity:Opening-Balances
+
+2014-06-28 * "Paid credit card bill"
+  Assets:CA:BofA:Checking                     -700.00 USD
+  Liabilities:US:Amex:Platinum                 700.00 USD
+
+2014-07-01 balance Assets:CA:BofA:Checking    1256.35 USD
+```
+
+
+balance:余额
+验证账户的余额在特定时间是某个值
+
+padding:填充
+自动插入交易，从而让后续断言成功 
+
 
 
 
@@ -65,12 +136,27 @@ basic:
 
 ## 开设账户，初始化 
 
+
+1. open/close;
+
 ```
-1990-01-01 open Assets:Card:1234 CNY, USD ;尾号1234的银行卡，支持CNY和USD
+YYYY-MM-DD open Account [ConstraintCurrency,...]  
+YYYY-MM-DD close account 
+```
+
+
+```
+2014-02-03 open Assets:US:BofA:Checking
 1990-01-01 open Liabilities:CreditCard:5678 CNY, USD ;双币信用卡
 1990-01-01 open Income:Salary CNY ;工资收入
 1990-01-01 open Expenses:Tax CNY ;交税
-1990-01-01 open Expenses:Traffic:Taxi CNY ;打车消费，只支持CNY
+1990-01-01 open Expenses:Traffic:Taxi CNY ;打车消费，只支持
+```
+
+
+
+```
+1990-01-01 open Assets:Card:1234 CNY, USD ;尾号1234的银行卡，支持CNY
 
 
 ;2、账户初始化 2019-08-27 * "" "银行卡，初始余额10000元" Assets:Card:1234 10000.00 CNY Equity:OpenBalance -10000.00 CNY
