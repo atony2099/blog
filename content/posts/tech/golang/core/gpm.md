@@ -824,21 +824,21 @@ feature: 不需要绑定p; 直接运行
 
 do what: 
 1. 检查死锁
-1. 太久没有netpoll, GC
-3.  应当被调度的timer
-4. 抢占: p,g
-
-
+2.  长时间没有运行的: netpoller, GC, timerr
+5. 抢占: p,g
 
 
 how: 
-
 simple code:
 ```go
 for {
 	sleep(20us)
 	checkdeadlock
-	checkrunable t
+	check runable timer
+	check poller
+	check gc  
+	
+	retake
 	
 }
 ```
@@ -909,5 +909,11 @@ if debug.schedtrace <= 0 && (sched.gcwaiting != 0 || atomic.Load(&sched.npidle) 
 ....
 ```
 
+
+### preempt
+
+types:
+1. processor 抢占: 长时间处于systemcall 的processor
+3.  goroutine 抢占: 长时间运行的g
 
 
