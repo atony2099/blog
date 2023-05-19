@@ -11,7 +11,7 @@ tags: [""]
 [使用 Beancount 记账篇零：Beancount 入门使用 | Verne in GitHub - https://einverne.github.io/post/2021/02/beancount-introduction.html](https://einverne.github.io/post/2021/02/beancount-introduction.html)
 
 
-equity = (Assets+ income)- (liability+expense)
+equity = (Assets+ income)- (liability+expenses)
 
 
 
