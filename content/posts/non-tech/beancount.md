@@ -88,14 +88,21 @@ padding:填充
 
 
 
-## record
+## transaciton
 
 record:
 ```fallback
-[yyyy-MM-dd] [*|!] "payee" "备注"
+[yyyy-MM-dd] [*|!] "payee" "narration"
   posting 1
   posting 2
 ```
+
+
+narration: whatever you wat it be 
+
+
+
+
 
 basic:
 ```fallback

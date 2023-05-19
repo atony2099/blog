@@ -817,19 +817,96 @@ return {"result": response.text}
 
 ## sysmon
 
-what: system monitor, 系统监控线程; 处理 
+what:  system monitor 
+监控异常情况，并调整
+
+feature: 不需要绑定p; 直接运行 
 
 do what: 
-监控异常情况，并调整
-1. 太久没有poll, GC
-2. 应当运行 
-3.  抢占p:   
+1. 检查死锁
+1. 太久没有netpoll, GC
+3.  应当被调度的timer
+4. 抢占: p,g
 
 
 
+
+how: 
+
+simple code:
+```go
+for {
+	sleep(20us)
+	checkdeadlock
+	checkrunable t
+	
+}
 ```
-func   sysmon
 
+
+```go
+func sysmon() {
+	lock(&sched.lock)
+	sched.nmsys++
+	checkdead()
+	unlock(&sched.lock)
+
+	// For syscall_runtime_doAllThreadsSyscall, sysmon is
+	// sufficiently up to participate in fixups.
+	atomic.Store(&sched.sysmonStarting, 0)
+
+	lasttrace := int64(0)
+	idle := 0 // how many cycles in succession we had not wokeup somebody
+	delay := uint32(0)
+
+	for {
+		if idle == 0 { // start with 20us sleep...
+			delay = 20
+		} else if idle > 50 { // start doubling the sleep after 1ms...
+			delay *= 2
+		}
+		if delay > 10*1000 { // up to 10ms
+			delay = 10 * 1000
+		}
+		usleep(delay)
+		mDoFixup()
+		now := nanotime()
+if debug.schedtrace <= 0 && (sched.gcwaiting != 0 || atomic.Load(&sched.npidle) == uint32(gomaxprocs)) {
+  lock(&sched.lock)
+  if atomic.Load(&sched.gcwaiting) != 0 || atomic.Load(&sched.npidle) == uint32(gomaxprocs) {
+    syscallWake := false
+    next, _ := timeSleepUntil()
+    if next > now {
+      atomic.Store(&sched.sysmonwait, 1)
+      unlock(&sched.lock)
+      // Make wake-up period small enough
+      // for the sampling to be correct.
+      sleep := forcegcperiod / 2
+      if next-now < sleep {
+        sleep = next - now
+      }
+      shouldRelax := sleep >= osRelaxMinNS
+      if shouldRelax {
+        osRelax(true)
+      }
+      syscallWake = notetsleep(&sched.sysmonnote, sleep)
+      mDoFixup()
+      if shouldRelax {
+        osRelax(false)
+      }
+      lock(&sched.lock)
+      atomic.Store(&sched.sysmonwait, 0)
+      noteclear(&sched.sysmonnote)
+    }
+    if syscallWake {
+      idle = 0
+      delay = 20
+    }
+  }
+  unlock(&sched.lock)
+}
+
+....
 ```
 
 
