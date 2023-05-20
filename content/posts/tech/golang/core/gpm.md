@@ -917,7 +917,6 @@ types:
 2.  goroutine 抢占: 长时间运行的g
 
 
-
 ```go
 func retake(now int64) uint32 {
 	n := 0
