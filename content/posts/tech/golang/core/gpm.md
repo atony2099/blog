@@ -914,12 +914,76 @@ if debug.schedtrace <= 0 && (sched.gcwaiting != 0 || atomic.Load(&sched.npidle) 
 
 types:
 1. processor 抢占: 长时间处于systemcall 的processor
-3.  goroutine 抢占: 长时间运行的g
+2.  goroutine 抢占: 长时间运行的g
 
 
+
+```go
+func retake(now int64) uint32 {
+	n := 0
+	// 遍历所有的 p
+	for i := int32(0); i < gomaxprocs; i++ {
+		_p_ := allp[i]
+		if _p_ == nil {
+			continue
+		}
+		// 用于 sysmon 线程记录被监控 p 的系统调用时间和运行时间
+		pd := &_p_.sysmontick
+		// p 的状态
+		s := _p_.status
+		if s == _Psyscall {
+			// P 处于系统调用之中，需要检查是否需要抢占
+			// Retake P from syscall if it's there for more than 1 sysmon tick (at least 20us).
+			// _p_.syscalltick 用于记录系统调用的次数，在完成系统调用之后加 1
+			t := int64(_p_.syscalltick)
+			if int64(pd.syscalltick) != t {
+				// pd.syscalltick != _p_.syscalltick，说明已经不是上次观察到的系统调用了，
+				// 而是另外一次系统调用，所以需要重新记录 tick 和 when 值
+				pd.syscalltick = uint32(t)
+				pd.syscallwhen = now
+				continue
+			}
+	
+			// 只要满足下面三个条件中的任意一个，则抢占该 p，否则不抢占
+			// 1. p 的运行队列里面有等待运行的 goroutine
+			// 2. 没有无所事事的 p
+			// 3. 从上一次监控线程观察到 p 对应的 m 处于系统调用之中到现在已经超过 10 毫秒
+			if runqempty(_p_) && atomic.Load(&sched.nmspinning)+atomic.Load(&sched.npidle) > 0 && pd.syscallwhen+10*1000*1000 > now {
+				continue
+			}
+			
+			incidlelocked(-1)
+			if atomic.Cas(&_p_.status, s, _Pidle) {
+				// ……………………
+				n++
+				_p_.syscalltick++
+				// 寻找一新的 m 接管 p
+				handoffp(_p_)
+			}
+			incidlelocked(1)
+		} else if s == _Prunning {
+			// P 处于运行状态，检查是否运行得太久了
+			// Preempt G if it's running for too long.
+			// 每发生一次调度，调度器 ++ 该值
+			t := int64(_p_.schedtick)
+			if int64(pd.schedtick) != t {
+				pd.schedtick = uint32(t)
+				pd.schedwhen = now
+				continue
+			}
+			//pd.schedtick == t 说明(pd.schedwhen ～ now)这段时间未发生过调度
+			// 这段时间是同一个goroutine一直在运行，检查是否连续运行超过了 10 毫秒
+			if pd.schedwhen+forcePreemptNS > now {
+				continue
+			}
+			// 连续运行超过 10 毫秒了，发起抢占请求
+			preemptone(_p_)
+		}
+	}
+	return uint32(n)
+}
 ```
 
 
-```
 
 
