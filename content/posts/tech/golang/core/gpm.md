@@ -985,4 +985,8 @@ func retake(now int64) uint32 {
 
 
 
-
+抢占 g:
+```
+if  g running time > 10ms
+发送信号中断
+```
