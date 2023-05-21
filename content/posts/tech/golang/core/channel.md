@@ -14,10 +14,27 @@ categories: ["go","scheduler","concurrency"]
 
 [The Behavior Of Channels Author image](https://www.ardanlabs.com/blog/2017/10/the-behavior-of-channels.html)
 
-## what?
-1. what's a channel?
-	message queue between g; 
-	 g: g<-chan-->g
+
+what:
+
+数据通道；线程之间同步/共享数据的方式
+
+g <--->   channel < ---> g 
+
+
+
+how:
+
+```
+channel.queue.push(g)
+
+
+```
+1. add to waitqueue 
+2. 
+
+
+
 
 
 ## mechanisam

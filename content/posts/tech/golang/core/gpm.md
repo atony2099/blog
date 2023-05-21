@@ -914,7 +914,27 @@ if debug.schedtrace <= 0 && (sched.gcwaiting != 0 || atomic.Load(&sched.npidle) 
 
 types:
 1. processor 抢占: 长时间处于systemcall 的processor
-2.  goroutine 抢占: 长时间运行的g
+2.  goroutine 抢占: 
+	1. 设置标志位
+	2. 抢占
+		1. 协作式抢占:在call funtion 时候抢占
+		2. 发送信号进行抢占
+
+
+retake goroutine  simple code
+```
+if  g.running time > 10ms:
+	set p.preempt = true;
+
+	send signal 
+
+in long run  goroutine:
+	do  signal handler
+
+
+```
+
+
 
 
 ```go
@@ -984,9 +1004,11 @@ func retake(now int64) uint32 {
 ```
 
 
-
 抢占 g:
 ```
+
+
 if  g running time > 10ms
-发送信号中断
+	
+
 ```
