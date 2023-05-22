@@ -24,9 +24,21 @@ g <--->   channel < ---> g
 
 
 how:
+channel.send
 
 ```
-channel.queue.push(g)
+
+if channe.recequeue.lengt==0
+	g = currenG
+	sleep(g);channel.queue.senders.push(g); 
+
+else
+	g = receiveq.first
+	pop channel.queue.
+
+
+
+
 
 
 ```
