@@ -28,19 +28,13 @@ channel.send
 
 ```
 
-if channe.recequeue.lengt==0
-	g = currenG
-	sleep(g);channel.queue.senders.push(g); 
+if channe.receiveQueue.lengt==0 &&; 
+	block:
+		sleep(current);channel.sendqueue.push(g)
 
-else
-	g = receiveq.first
-	pop channel.queue.
-
-
-
-
-
-
+else: wakeup g 
+	g = receiveq.first;
+	wakeup g;
 ```
 1. add to waitqueue 
 2. 
