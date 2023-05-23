@@ -181,11 +181,32 @@ yyyy-MM-dd open 账户类型:命名:命名区别 货币[,货币2
 
 ##  Basic knowledge  
 
-APR: annual  percentage   rate 
-IRR: internal  rate of return  内部收益率
 
-![K4fS9WPR49Rw](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230523/K4fS9WPR49Rw.jpg)
+flat rate:统一费率
+what: 利息的是固定的，不管本金偿还多少 
+目前已经很少使用;  通常是 2倍
+
+![5xb7kmrmayOm](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230523/5xb7kmrmayOm.jpg)
 
 
-why iRR higher than APR:
+decline balance: 递减余额
+
+what：利息随着余额而减少
+type:
+1. 等额本息  Even Total Payments
+2. 等额本金 Even Principal payments
+
+估算:  总利息/贷款总额/2
+900/10000 
+
+1. 先息后本: 9%
+2. 等额...: 18% 实际持有的金额平均只有一半
+
+
+
+
+
+
+
+
 

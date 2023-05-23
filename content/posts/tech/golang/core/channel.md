@@ -25,21 +25,15 @@ g <--->   channel < ---> g
 
 how:
 channel.send
-
 ```
-
-if channe.receiveQueue.lengt==0 &&; 
+if channe.receiveQueue.lengt==0 &&buffer.full ; 
 	block:
 		sleep(current);channel.sendqueue.push(g)
 
-else: wakeup g 
+if channel.reqceveiqueue.length>0;
 	g = receiveq.first;
 	wakeup g;
 ```
-1. add to waitqueue 
-2. 
-
-
 
 
 
@@ -219,7 +213,7 @@ state:
 1. open
 2. close
 
-send data to:
+
 1. closed channe: panic
 2. nil channel: block
 
@@ -228,8 +222,14 @@ read data  from
 1. closed channel: zero value
 2. nil channel: block  
 
-close:
-1. closed channel: panic 
+
+write   data:
+1. closed channel:  panic 
+2. nil channel: block 
+
+
+closed channel:
+1. close: panic 
 2. nil channel: panic 
 
 
