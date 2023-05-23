@@ -177,3 +177,15 @@ yyyy-MM-dd open 账户类型:命名:命名区别 货币[,货币2
 ```
 
 
+
+
+##  Basic knowledge  
+
+APR: annual  percentage   rate 
+IRR: internal  rate of return  内部收益率
+
+![K4fS9WPR49Rw](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230523/K4fS9WPR49Rw.jpg)
+
+
+why iRR higher than APR:
+
