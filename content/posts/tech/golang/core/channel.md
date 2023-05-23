@@ -233,11 +233,13 @@ closed channel:
 2. nil channel: panic 
 
 
-why send and close chanel panic;
-1. 从源码上看，会panic；
-2. 有意的设计, 防止数据丢失
-	1. consumer will exit if channel close
-	2. noone will recieve the channel, the message will lost 
+why send and close chanel panic:
+系统故意设计, 防止引发严重后果:  数据丢失；数据竞争 
+
+why   receive  closed channle won't panic:
+1. 不会导致什么后果
+2. 方便消费者使用
+
 
 how close channel work:
 1. channel.closed = true;
