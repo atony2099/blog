@@ -361,7 +361,10 @@ code
 
 ##  g   leak;
 
-what: g can't exit 
+
+leak:  已经使用完的资源没有释放
+
+what: g 执行完任务没有退出
 
 case:
 1. be blocked by channel
