@@ -519,6 +519,10 @@ pros:
 
 ## concurrency model 
 
+
+分类标准:
+1.   如何通信/同步数据 
+
 **share state**:  
 1. 共享状态
 2. 通过共享状态通信 
