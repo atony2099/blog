@@ -22,7 +22,6 @@ what:
 g <--->   channel < ---> g 
 
 
-
 how:
 channel.send
 ```
