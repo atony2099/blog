@@ -366,15 +366,13 @@ leak:  已经使用完的资源没有释放
 
 what: g 执行完任务没有退出
 
-case:
-1. be blocked by channel
+when: 接受和 发送不平衡;
+
 ```go
 go func(){
-	<-c // wait forever 
+	<-c // 没有接受者
 }()
-	
 ```
-
 
 how:
 principle,  who produce , who close
