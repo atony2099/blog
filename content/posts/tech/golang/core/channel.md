@@ -362,19 +362,25 @@ code
 ##  g   leak;
 
 
-leak:  已经使用完的资源没有释放
+leak:  资源长时间占用不退出
 
-what: g 执行完任务没有退出
+what:  g长时间占用不退出
 
-when: 接受和 发送不平衡;
 
+when:
+1. 接受和 发送不平衡，导致
+2. 请求时间过长
 ```go
 go func(){
 	<-c // 没有接受者
 }()
 ```
 
-how:
+solve:
+1. channel 使用完需要关闭；
+2. 对于耗时任务需要设置超时时间；
+
+
 principle,  who produce , who close
 
 1. producer  wait and close
