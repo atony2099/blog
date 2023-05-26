@@ -24,9 +24,6 @@ type Context interface {
 ![Gg2khI](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211113/Gg2khI.jpg)
 
 
-
-
-
     pass value, cancel signal between  G;
 
     context: func cancelChann), func Value()
