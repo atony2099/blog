@@ -5,11 +5,13 @@ draft: false
 categories: ["Go"]
 ---
 [Go Concurrency Patterns: Context](https://blog.golang.org/context)
+
 [深度解密Go语言之context](https://zhuanlan.zhihu.com/p/68792989)
 
 
-## what is context?
-
+in g: 
+1.  传递值, pass value ;
+2. 传递信号, pass signal;
 
 ```go
 type Context interface {
@@ -22,7 +24,7 @@ type Context interface {
 ![Gg2khI](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211113/Gg2khI.jpg)
 
 
-1. what?    
+
 
 
     pass value, cancel signal between  G;

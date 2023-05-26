@@ -558,7 +558,11 @@ don't communitcate by share memory , share memory  by communicating:
 ## how to do in csp
 
 csp: 
-1. 任务拆分成多个子任务，任务之间通过channel 连接 
+1. 任务拆分多个worker组成；
+2. 数据隔离: 每个g 只读取内部的数据 ；
+3. 通过channnel  进行通信；
+
+
 
 tips:
 1. go routinue 一般 只读写内部数据(包含参数);并通过channel 对外传输数据
