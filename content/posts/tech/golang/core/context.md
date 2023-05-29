@@ -8,9 +8,11 @@ categories: ["Go"]
 
 [深度解密Go语言之context](https://zhuanlan.zhihu.com/p/68792989)
 
-in g: 
+在一定范围(1 或者多个 goroutine):
 1.  传递值, pass value ;
 2. 传递信号, pass signal;
+
+
 
 ```go
 type Context interface {
