@@ -366,11 +366,16 @@ b := a
 
 ### uncomparable 
 
-不能使用==，只能 reflect.DeepEqual 
+不能使用 \==，只能 reflect.DeepEqual 
 
 1. function: both nil;
 2. map: key and value are equal;
 3. slice: index and value are equal;
+
+
+```
+
+```
 
 
 

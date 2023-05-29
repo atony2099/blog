@@ -8,7 +8,7 @@ categories: ["Go"]
 
 [深度解密Go语言之context](https://zhuanlan.zhihu.com/p/68792989)
 
-在一定范围(1 或者多个 goroutine):
+在一定范围(1 或者多个 goroutine): 
 1.  传递值, pass value ;
 2. 传递信号, pass signal;
 相比全局变量：
@@ -38,6 +38,11 @@ value := ctx.Value("123")
 
 
 pass signal
+
+```go
+ctx, cancel := context.WithCanel(ctx)
+ctx, cacel : =context.WithTimeout(ctx)
+```
 
 
 
@@ -88,12 +93,46 @@ how:
 
 
 
-## how it works?
+## how it works
+### value:
+1. 使用组合继承父类属性；
+2. 递归查询 
+3.  immutable context 确保线程安全
+```go
+	type valueCtx struct {
+	Context
+	key, val any
+	}
+    
 
-1. how:
-    1.immutable value: 创建父子关系链；新的context不改变旧ctx的任何值
-        `newContex{parentCtx,newValue, newCloseSignal}`
+   func WithValue(parent Context, key, val any) Context {
+	if parent == nil {
+		panic("cannot create context from nil parent")
+	}
+	if key == nil {
+		panic("nil key")
+	}
+	if !reflectlite.TypeOf(key).Comparable() {
+		panic("key is not comparable")
+	}
+	return &valueCtx{parent, key, val}
+    }
 
+
+    func (c *valueCtx) Value(key interface{}) interface{} {
+
+	    if c.key == key {
+		    return c.val
+	    }
+	    return c.Context.Value(key)
+    }
+
+```
+
+
+### cancel  signal 
+```
+```
 
 
 
@@ -126,7 +165,9 @@ close channel
 	}
     ```
 ### 2. pass value
-    ```go
+
+
+```go
     func WithValue(parent Context, key, val any) Context {
 	if parent == nil {
 		panic("cannot create context from nil parent")
@@ -147,9 +188,8 @@ close channel
 	    }
 	    return c.Context.Value(key)
     }
-
-
     ```
+
 
 ## exit  loop;
 
