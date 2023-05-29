@@ -11,7 +11,9 @@ categories: ["Go"]
 在一定范围(1 或者多个 goroutine):
 1.  传递值, pass value ;
 2. 传递信号, pass signal;
-
+相比全局变量：
+1.  可以传递信号
+2.  线程安全的 
 
 
 ```go
@@ -23,6 +25,20 @@ type Context interface {
 }
 ```
 ![Gg2khI](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211113/Gg2khI.jpg)
+
+
+pass value
+
+```go
+ctx  := context.WithValue("123","123")
+
+value := ctx.Value("123")
+
+```
+
+
+pass signal
+
 
 
     pass value, cancel signal between  G;
