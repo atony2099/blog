@@ -11,6 +11,7 @@ categories: ["Go"]
 在一定范围(1 或者多个 goroutine): 
 1.  传递值, pass value ;
 2. 传递信号, pass signal;
+
 相比全局变量：
 1.  可以传递信号
 2.  线程安全的 
@@ -131,7 +132,39 @@ how:
 
 
 ### cancel  signal 
-```
+```go
+func (c *cancelCtx) cancel(removeFromParent bool, err, cause error){
+	if err == nil {
+		panic("context: internal error: missing cancel error")
+	}
+	if cause == nil {
+		cause = err
+	}
+	c.mu.Lock()
+	if c.err != nil {
+		c.mu.Unlock()
+		return // already canceled
+	}
+	c.err = err
+	c.cause = cause
+	d, _ := c.done.Load().(chan struct{})
+	if d == nil {
+		c.done.Store(closedchan)
+	} else {
+		close(d)
+	}
+	for child := range c.children {
+		// NOTE: acquiring the child's lock while holding parent's lock.
+		child.cancel(false, err, cause)
+	}
+	c.children = nil
+	c.mu.Unlock()
+
+	if removeFromParent {
+		removeChild(c.Context, c)
+	}
+}
+
 ```
 
 
