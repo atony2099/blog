@@ -67,28 +67,45 @@ ctx, cacel : =context.WithTimeout(ctx)
 
 ## use case
 1. 携带request-scoped  value 
+2. 使用自定义类型防止冲突
 
 ```go
 
-context.WithValue(context.Background(),"uid","123")
+type key1 string
 
+
+
+
+func stroe(ctx context){
+	var a key1 = "uid"
+	context.WithValue(context.Background(),a,"123")
+}
+ 
 func handler(ctx){
-	if id, ok := ctx.WithValue("uid").(string);ok {
+	var a key1 = "uid"
+	if id, ok := ctx.WithValue(a).(string);ok {
 			queryDB(id)
 	}
 }
 ```
 
 
-1. 取消一组 goroutine  
+2. 取消一组 goroutine   
 
 ```go
+ctx.WithTimeout()
 go doWork(ctx)
 go doWork(ctx)
+
 
 
 func doWork(ctx){
-	
+	select {
+		<-ctx.done:
+			
+		<- time.After(time.Second):
+
+	}
 }
 
 
@@ -96,39 +113,27 @@ func doWork(ctx){
 
 
 ```
-1.  设置 耗时操作的超时时间
+
+1. 设置超时时间
+```
+
+func longrequest(){
+
+	select{
+		<-ctx.Done()
+		<- longRunTaskChannel
+	
+		
+	}
+}
+
+```
 
 
 
 
 
 
-
-
-### 1. pass value between G:
-1. 在协程之间传递值;
-    ```
-    ctx = newCtc(oldCtx,"requestID","123")
-    doRequest:
-        gid, requestID:= 456, ctx.value(requestID)
-
-
-    ```
-
-### 2. pass cancel signal betwen  G
-
-
-case: 
-   1. producer cancel  signal 
-   2. for a loop
-
-how:
-
-    ```
-    select:
-        <- normal channle
-        <- cancel context;
-    ```
 
 
 
@@ -140,8 +145,8 @@ how:
 3.  immutable context 确保线程安全
 ```go
 	type valueCtx struct {
-	Context
-	key, val any
+		Context
+		key, val any
 	}
     
 
@@ -155,6 +160,8 @@ how:
 	if !reflectlite.TypeOf(key).Comparable() {
 		panic("key is not comparable")
 	}
+	
+	// create a new valueCtx
 	return &valueCtx{parent, key, val}
     }
 
