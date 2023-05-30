@@ -24,6 +24,11 @@ type Context interface {
     Deadline() (deadline time.Time, ok bool)
     Value(key interface{}) interface{}
 }
+
+type canceler interface {
+	cancel(removeFromParent bool, err, cause error)
+	Done() <-chan struct{}
+}
 ```
 ![Gg2khI](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211113/Gg2khI.jpg)
 
@@ -60,10 +65,44 @@ ctx, cacel : =context.WithTimeout(ctx)
    2. cancel mutiple g at one time;
 
 
-## use case;
+## use case
+1. 携带request-scoped  value 
 
-### 1. how to use?
-1.  pass as funtion paramters, pass in functin chain;
+```go
+
+context.WithValue(context.Background(),"uid","123")
+
+func handler(ctx){
+	if id, ok := ctx.WithValue("uid").(string);ok {
+			queryDB(id)
+	}
+}
+```
+
+
+1. 取消一组 goroutine  
+
+```go
+go doWork(ctx)
+go doWork(ctx)
+
+
+func doWork(ctx){
+	
+}
+
+
+
+
+
+```
+1.  设置 耗时操作的超时时间
+
+
+
+
+
+
 
 
 ### 1. pass value between G:
@@ -132,7 +171,17 @@ how:
 
 
 ### cancel  signal 
+使用 close(chan)
 ```go
+type cancelCtx struct {
+	Context
+	mu       sync.Mutex            // protects following fields
+	done     atomic.Value          // of chan struct{}, created lazily, closed by first cancel call
+	children map[canceler]struct{} // set to nil by the first cancel call
+	err      error                 // set to non-nil by the first cancel call
+	cause    error                 // set to non-nil by the first cancel call
+}
+
 func (c *cancelCtx) cancel(removeFromParent bool, err, cause error){
 	if err == nil {
 		panic("context: internal error: missing cancel error")
@@ -169,59 +218,7 @@ func (c *cancelCtx) cancel(removeFromParent bool, err, cause error){
 
 
 
-2. code
-   ```go
-    type valueCtx struct {
-	Context
-	key, val any
-    }
-    
-    type cancelCtx struct {
-	Context
 
-	mu       sync.Mutex            // protects following fields
-	done     atomic.Value          // of chan struct{}, created lazily, closed by first cancel call
-	children map[canceler]struct{} // set to nil by the first cancel call
-	err      error                 // set to non-nil by the first cancel call
-    }
-    ```
-
-
-
-
-### 1. cancel signal
-close channel
-
-    ```go
-    for child := range c.children {
-        close(child.done)
-	}
-    ```
-### 2. pass value
-
-
-```go
-    func WithValue(parent Context, key, val any) Context {
-	if parent == nil {
-		panic("cannot create context from nil parent")
-	}
-	if key == nil {
-		panic("nil key")
-	}
-	if !reflectlite.TypeOf(key).Comparable() {
-		panic("key is not comparable")
-	}
-	return &valueCtx{parent, key, val}
-    }
-
-
-    func (c *valueCtx) Value(key interface{}) interface{} {
-	    if c.key == key {
-		    return c.val
-	    }
-	    return c.Context.Value(key)
-    }
-    ```
 
 
 ## exit  loop;

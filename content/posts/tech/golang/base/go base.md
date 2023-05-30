@@ -371,7 +371,7 @@ b := a
 1. function: both nil;
 2. map: key and value are equal;
 3. slice: index and value are equal;
-
+o
 
 ```
 
