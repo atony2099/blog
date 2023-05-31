@@ -261,7 +261,9 @@ func (c *cancelCtx) cancel(removeFromParent bool, err, cause error){
 ## select 
 
 what: wait a group of g, 
-1. 批量等待g 
+1. 批量等待channel
+2. 同时监听多个channel 
+
 
 
 use case:
@@ -291,6 +293,9 @@ select {
 
 
 how:
+
+1. 随机遍历所有channel, 选择一个可以 读写
+2. 
 
 1.  sleep current g:
 2.  
