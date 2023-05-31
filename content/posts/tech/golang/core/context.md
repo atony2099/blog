@@ -258,9 +258,43 @@ func (c *cancelCtx) cancel(removeFromParent bool, err, cause error){
 
 
 
-## select?
-1. what?
-   一个线程监听多个channel; go版本的多路复用；
+## select 
+
+what: wait a group of g, 
+1. 批量等待g 
+
+
+use case:
+1. 需要提前退出 
+2. 多个 g
+
+```go
+select {
+	<-cancel.Done():
+	return
+	resut := <- request():
+	
+
+}
+
+
+
+// wait mutiple g 
+select {
+
+	<-channe1:
+	<- channel2
+
+}
+
+```
+
+
+how:
+
+1.  sleep current g:
+2.  
+
 
 
 2. how:
@@ -271,9 +305,3 @@ func (c *cancelCtx) cancel(removeFromParent bool, err, cause error){
 
     3. beReadyBy one Channel, pop from all channel;
 
-3. use case:
-    1. 监听cancel signal;
-    2. 监听多个channel  
-        select: 
-            <-errorChannel;
-            <-valueChannel;
