@@ -56,6 +56,25 @@ key pointer:
 2.  hash collision: 使用改进版的链表法，节点嵌套数组，减少内存创建和回收的cost
 
 
+```
+index = hashCode % bucklength
+
+
+if  buckets[index].full == no:
+	
+else:
+	for {
+		bucket = buckets[index].next
+		if bucket.full == no 
+			buckets[index].append(key,value)
+	
+	}
+
+	
+```
+
+
+
 ### base structure
 
 ![3Tiheke075SD](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230418/3Tiheke075SD.jpg)
@@ -389,8 +408,8 @@ return noverflow >= 1<<15
 ## 遍历过程以及无序
 
 ###  traverse
+generate random start bucket index  and offset 
 
-1.   generate random start bucket index  and offset 
 ```go
 r := uintptr(fastrand())
 if h.B > 31-bucketCntBits {
@@ -399,7 +418,7 @@ if h.B > 31-bucketCntBits {
 
 // 从哪个 bucket 开始遍历
 it.startBucket = r & (uintptr(1)<<h.B - 1)
-// 从 bucket 的哪个 cell 开始遍历
+// 从 bucket 的哪个 key 开始遍历
 it.offset = uint8(r >> h.B & (bucketCnt - 1))
 ```
 
