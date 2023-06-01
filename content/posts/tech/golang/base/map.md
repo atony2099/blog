@@ -37,9 +37,9 @@ create：
 
     // 2. make 
     var b = make(map[int]int);
-
-
 ```
+
+
 basic operation:
 ```go
 delete(m,"1")
@@ -54,6 +54,7 @@ v, ok =m["1"]
 key pointer:
 1.  hash func 
 2.  hash collision: 使用改进版的链表法，节点嵌套数组，减少内存创建和回收的cost
+
 
 ### base structure
 
@@ -386,10 +387,6 @@ return noverflow >= 1<<15
    
 
 ## 遍历过程以及无序
-
-
-
-
 
 ###  traverse
 
