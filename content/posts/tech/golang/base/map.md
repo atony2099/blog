@@ -292,7 +292,8 @@ why 6.5:  空间和时间权衡
 
 how: 
 1. bucket * 2 
-2. 逐步迁移key,  one time one bucket 
+2. 重新计算 index;
+3. lazy move: 当发生（删除，修改，插入） ,  一次移动一个bucket
   ![4eqSJQ](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211111/4eqSJQ.jpg)
 
   ![IVWhNW](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211111/IVWhNW.jpg)
@@ -300,7 +301,7 @@ how:
 
 ###  too many overflow 
 
-why: 对load fator > 6.5
+what: 对 load factor 的补充, 
 ```go
 func tooManyOverflowBuckets(noverflow uint16, B uint8) bool {
 	if B < 16 {  // overflow 和bucket一样多
@@ -310,99 +311,42 @@ func tooManyOverflowBuckets(noverflow uint16, B uint8) bool {
 }
 ```
 
-
-how: 
-
-
-
-
-
-### linker too  long/big
-cause:
-1.   element increase:  increase bucket， 增量扩容
-2.   elemnt increase but delte later in map: delte linker , 等量扩容
-
-why:
-search  linker time    increase 
-
-solve:
-1.  increase bucket
-2. decrase linker 
-
-### bucket too long 
-
-cause
-element decrease ;
-
-why:
-take up more space 
-
-solve:
-decrease bucket len, 缩容
+漏网之鱼: 通过删除从而无法达到 6.5
 
 
 
 
 
-2. goal: reassign entries to  reduce the length of linked-list
-增量扩容: bucketCount = currentCount* 2;
-等量缩容: bucketCount = currentCount && reduce overflowsCount;
-
-###  grow, 扩容
-
-what:
-grow bucket
-
-when:
-loadFacor =  elementCount/bucketCount > 6.5;
-
-why:
-linker grow big/long, reduce time of search linker 
 
 
+###  how 
 
-how grow:
-1. grow buckets: double  oldBucket
-2. reput key by new hash code
 
-incremental grow:
-    copy bucket only if bucket is update/add/delete;
+```
+deleteMap:
+	moveOneBucket
+setMap:
+	moveOneBucket
+
+moveIndex = 0
+moveOneBucket:
+	
+	for ;  oldBucket!= nil;oldBucket = oldBuckets[index].overflow;:
+		
+	moveIndex++;
+
+```
+
 
 
 how: 
 ![RAPA3x](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211111/RAPA3x.jpg)
 
-   ![uNRSW3](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211111/uNRSW3.jpg)
+![uNRSW3](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211111/uNRSW3.jpg)
 
 
 
 
-###  shrink 等量扩容 
-
-what:
-delte linker node
-
-
-when: 
-tooMuch overflow ; overflow >= bucket.length
-```go
-// overflow buckets 太多
-func tooManyOverflowBuckets(noverflow uint16, B uint8) bool {
-if B < 16 {
-return noverflow >= uint16(1)<<B
-}
-return noverflow >= 1<<15
-}
-
-```
-
-2. why:
-     too long linker....
-
-3. when happen
-    add much key,then delete;
-
-4. how?
    
 
 ## 遍历过程以及无序
