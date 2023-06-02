@@ -262,8 +262,11 @@ func (h *hmap) growing() bool {
 
 
 ### factor > 6.5
+what:   used   bucket s/ total buckets
 
 why 6.5:  
+
+
 load foactor  太小浪费空间， load factor 太大 overflow太多，6.5 是一个最佳平衡点；
 在空间和时间中平衡
 
