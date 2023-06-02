@@ -188,7 +188,7 @@ for {
 ## rehash
 
 
-what:  为了防止查询效率退化，通过增加bucket size，删除过多的overflow
+what:  为了防止查询效率退化(too many overflow)，通过增加bucket size，删除过多的overflow
 
 
 监控指标， when:
@@ -264,14 +264,10 @@ func (h *hmap) growing() bool {
 ### factor > 6.5
 what:   used   bucket s/ total buckets
 
-why 6.5:  
+why 6.5:  空间和时间权衡
+1. 空间: 65% bucket have used
+2. 时间: 20% overflow
 
-
-load foactor  太小浪费空间， load factor 太大 overflow太多，6.5 是一个最佳平衡点；
-在空间和时间中平衡
-
-
-data: 
 ```bash
 // Picking loadFactor: too large and we have lots of overflow
 // buckets, too small and we waste a lot of space. I wrote
