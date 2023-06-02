@@ -56,15 +56,16 @@ key pointer:
 2.  hash collision: 使用改进版的链表法，节点嵌套数组，减少内存创建和回收的cost
 
 
-```
+```go
 index = hashCode % bucklength
 
 
 if  buckets[index].full == no:
-	
+	buckets[index].append(key,value)
 else:
+	bucket = buckets[index]
 	for {
-		bucket = buckets[index].next
+		bucket = bucket.next
 		if bucket.full == no 
 			buckets[index].append(key,value)
 	
@@ -94,7 +95,7 @@ type hmap struct {
 	B         uint8  // 创建 2 ^ B bucket
 	noverflow uint16 // overflow 的 bucket 近似数
 	hash0     uint32
-	buckets    unsafe.Pointer
+	buckets    unsafe.Pointer // []bmap
 	oldbuckets unsafe.Poiner
 
 	nevacuate  uintptr
@@ -187,7 +188,7 @@ for {
 ## rehash
 
 
-what: 当到达某个临界点时候，通过增加bucket size，删除过多的overflow， 防止查询效率退化
+what:  为了防止查询效率退化，通过增加bucket size，删除过多的overflow
 
 
 监控指标， when:
