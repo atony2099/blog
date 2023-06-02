@@ -321,7 +321,6 @@ func tooManyOverflowBuckets(noverflow uint16, B uint8) bool {
 
 ###  how 
 
-
 ```
 deleteMap:
 	moveOneBucket
