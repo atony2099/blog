@@ -48,6 +48,13 @@ s = append(s1,s2...)
 
 ### empty slice vs nil slice
 
+nil: 未初始化
+empty: 已经初始化，创建了底层数组
+
+
+how nil slice work:
+
+
 same:
  行为相同： 
  1. len, cap == 0, 
@@ -55,6 +62,7 @@ same:
 
 why same：
 append时候都会调用 mallocgc来创建新的underlying array
+
 
 
 different:
@@ -72,6 +80,7 @@ array must have a fixed size when created, more efficent when size is known
 
 ```go
 s := [...]int{1,2,3}
+s1 := [3]int{1,2,3}
 ```
 
 2. pass: value vs reference，new array won't affect origin array 
