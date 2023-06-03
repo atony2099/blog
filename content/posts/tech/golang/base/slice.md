@@ -29,9 +29,9 @@ s = s[0:1]
 
 
 // max slice lenght=cap
-s = s[:cap(s)]
-
-
+s :=  make([]int, 3,4)
+s = s[:] // [0,0,0]
+s = s[:cap(s)] // [0,0,0,0]
 
 
 ```
@@ -51,24 +51,8 @@ s = append(s1,s2...)
 nil: 未初始化
 empty: 已经初始化，创建了底层数组
 
+how nil slice work: alloc  then work 
 
-how nil slice work:
-
-
-same:
- 行为相同： 
- 1. len, cap == 0, 
- 2. can append   directly 
-
-why same：
-append时候都会调用 mallocgc来创建新的underlying array
-
-
-
-different:
-1.  nil slice:  underlying array is nil, 
-2.  empty slice: underlying array is empty
-3.  marshal: nil->{"a":null}, empty->{"a":[]}
 
 
 
@@ -121,8 +105,6 @@ len(s) // 5
 s = s[:10]
 len(s) // 10
 ```
-
-
 
 
 cap 容量不够: 增加cap
