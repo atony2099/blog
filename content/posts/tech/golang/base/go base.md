@@ -61,9 +61,8 @@ reference type:
 
 ## defer
 
-what:  a function  that
-1. delay call 
-2. last call
+what:  a function  that last call
+
 
 use case:
 1. close resource: channle, file, context 
