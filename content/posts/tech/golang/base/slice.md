@@ -145,11 +145,16 @@ func growslice(et *_type, old slice, cap int) slice {
 
 
 
-simple code
+simple code:
+
+```
+copy(slice[originLen: needLen], toBeCopyslice)
+```
 
 ```go
 
 func appendInt(s []int, list ...int) []int {
+
 	originCap, originLength := cap(s), len(s)
 	needCAP := len(s) + len(list)
 
@@ -173,7 +178,6 @@ func appendInt(s []int, list ...int) []int {
 	return s
 
 }
-
 
 ```
 
