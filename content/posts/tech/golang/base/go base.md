@@ -430,17 +430,36 @@ if p == i {
 
 ## pass by value  
 
+
+reference vs pointer:
+reference:  safer pointer, auto address and dereference
+
+
 pass by value: 传递(复制)的变量的值
 pass by reference: 传递变量的地址
 
+```go
 
 
-```
 func add(num int){
-	num += 
+	num += 1
 }
+var a = 100
+add(a)
+fmt.Println(a)
 
-func add(num &int):
 
+
+
+func addRef(num &int){
+	num+=1
+}
+var a = 100
+addRef(a)
+fmt.Printlin(a)//101
+
+// 
+int* num = &a
+*num+=1
 ```
 
