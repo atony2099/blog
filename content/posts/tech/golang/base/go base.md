@@ -4,7 +4,7 @@ date: "2021-02-28T09:17:11+0800"
 categories: ["Go"]
 ---
 
-[Go defer 原理和源码剖析](https://studygolang.com/articles/35316)
+[后端 - Go defer 原理和源码剖析 - 个人文章 - SegmentFault 思否 - https://segmentfault.com/a/1190000040950441](https://segmentfault.com/a/1190000040950441)
 
 [The empty struct](https://dave.cheney.net/2014/03/25/the-empty-struct)
 
@@ -88,6 +88,12 @@ func hello() {
 
 
 ### how
+
+how:
+1. create defer: deferproc 
+2. excute defer: deferreturn
+
+
 ![VLXkvL](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20220906/VLXkvL.jpg)
 
 structure: in goroutinue.deferlinklist 
@@ -136,12 +142,37 @@ func deferproc(siz int32, fn *funcval) { // arguments of fn follow fn
     // been set and must not be clobbered.
 }
 
+func newdefer(siz int32) *_defer {
+    var d *_defer
+    sc := deferclass(uintptr(siz))
+    gp := getg()
+    if sc < uintptr(len(p{}.deferpool)) {
+        // 从 p 结构体的 deferpool 中获取可用的 defer struct
+        // 代码比较简单，省略
+    }
+    if d == nil {
+        // 上面没有成功获取到可用的 defer struct
+        // 因此需要切换到 g0 生成新的 defer struct
+        systemstack(func() {
+            total := roundupsize(totaldefersize(uintptr(siz)))
+            d = (*_defer)(mallocgc(total, deferType, true))
+        })
+    }
+    // defer func 的参数大小
+    d.siz = siz
+    // 链表链接
+    // 后 defer 的在前，类似一个栈结构
+    d.link = gp._defer
+    // 修改当前 g 的 defer 结构体，指向新的 defer struct
+    gp._defer = d
+    return d
+}
+
 ```
 
 excute defer:   
 1. check g in current func.
 2.  excute defer 
-
 
 ```go
 func deferreturn(arg0 uintptr) {
@@ -184,6 +215,19 @@ func deferreturn(arg0 uintptr) {
 
 ### explain why 
 
+case  stack
+```go
+func main() {
+	for i := 0; i < 10; i++ {
+		i := i
+		defer fmt.Println(i)
+	}
+	fmt.Println("done")
+}
+// output: done, 9...1 
+```
+
+
 case 1:
    ```go
    func a(){
@@ -196,6 +240,7 @@ case 1:
 
  c be copy  to defer.struct ,  the copyed value is 0;
 
+// todo
 case 2: 
 ```go
 func a1() (i int) { // return  302  
