@@ -426,3 +426,21 @@ if p == i {
 ```
 
 
+
+
+## pass by value  
+
+pass by value: 传递(复制)的变量的值
+pass by reference: 传递变量的地址
+
+
+
+```
+func add(num int){
+	num += 
+}
+
+func add(num &int):
+
+```
+

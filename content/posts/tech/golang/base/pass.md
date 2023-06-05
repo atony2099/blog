@@ -38,7 +38,7 @@ categories: ["Go"]
 
 
 
-## 2. pass by value;
+##  pass by value;
 
 pass by reference: 实参和形参是同一个变量；
 pass by value: 实参是实参的拷贝；

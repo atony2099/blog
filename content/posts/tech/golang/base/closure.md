@@ -5,6 +5,7 @@ categories: ["Go"]
 lastmod: 2023-04-08T00:26:33+0800
 ---
 
+what: 一个函数 访问(引用)了父函数作用域的 变量
 ```go
 func outer() func() int {
 	var counter = 0
@@ -14,9 +15,9 @@ func outer() func() int {
 	}
 }
 ```
-what: 一个函数 访问(引用)了父函数变量,  在父函数返回后还能继续访问这变量 
+feature:
+1.   在父函数执行完后闭包还能继续访问引用的变量 
 
-why call closure: 将外部变量关闭在本函数 
 
 pros:
 1.  a function can remember some satate between   calls
@@ -48,6 +49,10 @@ func closure() {
 		}()
 	}
 }
+
+// go func 引用外部变量，是一个闭包； 
+// i的值 是闭包执行的时候 
+//
 
 // case2
 func closure2() {
