@@ -215,7 +215,7 @@ func deferreturn(arg0 uintptr) {
 
 ### explain why 
 
-case  stack
+case:  stack
 ```go
 func main() {
 	for i := 0; i < 10; i++ {
@@ -228,7 +228,7 @@ func main() {
 ```
 
 
-case 1:
+case 2: 立即拷贝参数
    ```go
    func a(){
       var c = 0
@@ -238,51 +238,44 @@ case 1:
    // output:0; copy value instantly
    ```
 
- c be copy  to defer.struct ,  the copyed value is 0;
 
-// todo
-case 2: 
+
+
+case3: 
+
+1. 闭包,可以直接修改引用对象的值
+2. f1 修改的的是本地变量， f2直接修改返回值 
+
 ```go
-func a1() (i int) { // return  302  
-	defer func() {
-		i += 300
-	}()
-	return i + 2 
+func f1 () (r int) {
+    t := 1
+    defer func() {
+        t = t + 5
+    }()
+    return t
 }
 
-func a2() int {   // return  3;
-	var i int
-	defer func() {
-		i += 300
-		fmt.Println(i)
-	}()
 
-	return i + 2
+func f3() (r int) {
+    defer func () {
+        r = r + 5
+    } ()
+    return 1
 }
 ```
 
-1. a1  add the return value
-2. a2 add the local value 
 
 ## make&&new
+make: 
+1. 申请内存，初始化:
+2. 返回引用
+3. used for: map, slice, chan
 
-some:
-1. create variable
-2. allocate memory for some type 
+new:
+1. 申请内存，未初始化
+2. 返回指针 
+3. used for all types
 
-
-differ
-
-1. initialize value
-	1. make:   initialize(assgin a value),  **can use directly**
-	2. new:  not initialize value,  the value then be assigned by zero value 
-
-2. return 
-	1. make: return reference
-	2. new: return pointer
-
-
-4. return value
 
 
 make:
@@ -295,9 +288,7 @@ make([]int,5,10)
 
 ```
 
-new  in go vs other
-other:  allocated in heap(allocate dynamic memory) and return address
-new: return address 
+
 
 ## empty struct/array
 
