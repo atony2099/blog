@@ -1,5 +1,5 @@
 ---
-title: how to make  decision
+title: how to make more effective 
 date: 2021-01-31
 description:
 tags: []
