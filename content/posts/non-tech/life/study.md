@@ -21,3 +21,24 @@ ask the  right questions
 - What if I succeed?
 
 give yourself a deadline
+
+
+
+##  effective study
+
+1. create a env 
+	1. remove the distraction
+	2. 
+
+1.  identify  distraction
+
+1. set clean goal
+2. train your focus 
+
+
+1. identify  your distraction 
+	1. phone: do...
+	2. youtube, twitter...
+2.   keep workspace clean, 
+3. 
+4.  
