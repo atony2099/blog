@@ -26,21 +26,21 @@ give yourself a deadline
 
 ##  effective study
 1. motived
+2. eliminate distractions：
 
 
-1. create a env 
-	1. remove the distraction
-	2. 
+### motivation 
 
-1.  identify  distraction
+1. set clear goal:smart
+	1.  Achievable
+	2.   Time-bound 
+2. break down  tasks
+3. give a reward system 
 
-1. set clean goal
-2. train your focus 
 
 
-1. identify  your distraction 
-	1. phone: do...
-	2. youtube, twitter...
-2.   keep workspace clean, 
-3. 
-4.  
+### eliminate distraction
+
+1. identify your distraction and remove it 
+	1.  
+2. create  clean place  
