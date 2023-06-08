@@ -25,6 +25,8 @@ give yourself a deadline
 
 
 ##  effective study
+1. motived
+
 
 1. create a env 
 	1. remove the distraction
