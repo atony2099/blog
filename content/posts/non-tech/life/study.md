@@ -29,6 +29,8 @@ give yourself a deadline
 2. eliminate distractions：
 
 
+
+
 ### motivation 
 
 1. set clear goal:smart
