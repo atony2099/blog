@@ -40,7 +40,6 @@ give yourself a deadline
 3. give a reward system 
 
 
-
 ### eliminate distraction
 
 1. identify your distraction and remove it 
