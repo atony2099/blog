@@ -8,7 +8,7 @@ categories: ["Go"]
 
 [The empty struct](https://dave.cheney.net/2014/03/25/the-empty-struct)
 
-[deferx](https://github.com/cch123/golang-notes/blob/master/defer.md)
+[defer](https://github.com/cch123/golang-notes/blob/master/defer.md)
 
 ## type
 
@@ -62,7 +62,6 @@ reference type:
 ## defer
 
 what:  a function  that last call
-
 
 use case:
 1. close resource: channle, file, context 
