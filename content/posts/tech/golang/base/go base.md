@@ -30,13 +30,11 @@ composite  type:
 6. function 
 
 
-
 from value type or not:
 value type: store the value of data;
 reference type: store the reference(pointer)  of data
 
 value type: 
-
 -   Numeric types:
     -   `int`, `int8`, `int16`, `int32`, `int64`
     -   `uint`, `uint8`, `uint16`, `uint32`, `uint64`, `uintptr`
@@ -53,6 +51,9 @@ reference type:
 -   Map type: `map[K]V`
 -   Channel type: `chan T`
 -   Function type: `func(params) returnType`
+
+### pass by value
+
 
 
 
@@ -328,7 +329,9 @@ func addtoSets(a ...int) map[int]struct{} {
 
 
 
-## nil value; 
+## zero  value
+
+what:  一个特殊的value,  如果没有被初始化，则会被赋予的值
 
 zero value for   following kind:
 1. slice
@@ -380,8 +383,8 @@ func main() {
 ## comparable
 
 what:
-是否可以使用 ==；
-but: 非基本类型都 都可以跟 nil 比较 
+是否可以使用 \==；
+
 
 ### comparable,==
 
@@ -400,18 +403,11 @@ b := a
 
 ### uncomparable 
 
-不能使用 \==，只能 reflect.DeepEqual 
+不能使用 \==(除了 nil)，只能 reflect.DeepEqual 
 
-1. function: both nil;
+1. function: == nil;
 2. map: key and value are equal;
 3. slice: index and value are equal;
-
-
-```
-
-```
-
-
 
 
 ### two  nil alway == ?
