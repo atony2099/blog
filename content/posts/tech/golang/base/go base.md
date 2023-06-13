@@ -33,7 +33,7 @@ composite  type:
 
 from value type or not:
 value type: store the value of data;
-reference type: store the reference  of data
+reference type: store the reference(pointer)  of data
 
 value type: 
 
@@ -46,10 +46,9 @@ value type:
 -   String type: `string`
 -   Array type: `[]T`
 -   Struct type: `struct{}`
--   Interface type: `interface{}`
+-   Pointer  type
 
 reference type: 
--   Pointer type: `*T`
 -   Slice type: `[]T`
 -   Map type: `map[K]V`
 -   Channel type: `chan T`
@@ -382,6 +381,7 @@ func main() {
 
 what:
 是否可以使用 ==；
+but: 非基本类型都 都可以跟 nil 比较 
 
 ### comparable,==
 
@@ -405,7 +405,7 @@ b := a
 1. function: both nil;
 2. map: key and value are equal;
 3. slice: index and value are equal;
-o
+
 
 ```
 
