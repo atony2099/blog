@@ -12,6 +12,7 @@ categories: ["Go"]
 
 ## type
 
+
 form basic  or not:
 basic:
 1. int, int8,int32
@@ -30,18 +31,21 @@ composite  type:
 6. function 
 
 
-from value type or not:
-value type: store the value of data;
-reference type: store the reference(pointer)  of data
+
+### value type and reference type.
+
+value type: 存储和传递实际值
+reference type: 存储和传递值的引用(pointer)
 
 value type: 
--   Numeric types:
-    -   `int`, `int8`, `int16`, `int32`, `int64`
-    -   `uint`, `uint8`, `uint16`, `uint32`, `uint64`, `uintptr`
-    -   `float32`, `float64`
-    -   `complex64`, `complex128`
--   Boolean type: `bool`
--   String type: `string`
+- basic type
+	-   Numeric types:
+	    -   `int`, `int8`, `int16`, `int32`, `int64`
+	    -   `uint`, `uint8`, `uint16`, `uint32`, `uint64`, `uintptr`
+	    -   `float32`, `float64`
+	    -   `complex64`, `complex128`
+	-   Boolean type: `bool`
+	-   String type: `string`
 -   Array type: `[]T`
 -   Struct type: `struct{}`
 -   Pointer  type
@@ -54,6 +58,13 @@ reference type:
 
 ### pass by value
 
+
+pass by value: 传递的是变量的值
+pass by reference:   传递的是变量的引用
+
+
+go  is pass by value:
+对于值类型
 
 
 
