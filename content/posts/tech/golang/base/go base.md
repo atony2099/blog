@@ -56,6 +56,7 @@ reference type:
 -   Channel type: `chan T`
 -   Function type: `func(params) returnType`
 
+
 ### pass by value
 
 
@@ -64,7 +65,9 @@ pass by reference:   传递的是变量的引用
 
 
 go  is pass by value:
-对于值类型
+1. 对于值类型,  传递的是值本身: value  
+2. 对于引用类型， 传递的是引用值， reference value
+
 
 
 
