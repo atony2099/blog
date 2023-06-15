@@ -71,6 +71,7 @@ function getNames() {
     };
 }
 ```
+
 Go则在语言层面直接支持了这一特性
 ```go
 package main
@@ -163,46 +164,6 @@ func main() {
 }
 
 ```
-
-#### 闭包(closure)
-
-闭包，是由一个函数与它引用的外部变量构成,可以理解它是一个持有外部变量的特殊函数,闭包通常出现在高阶函数中
-
-```go
-package main
-
-import "fmt"
-
-func intSeq() func() int {
-	i := 0
-	return func() int { // 返回函数与i构成一个闭包
-		i++
-		return i
-	}
-}
-
-func main() {
-
-	nextInt := intSeq()
-	fmt.Println(nextInt()) // 1
-	fmt.Println(nextInt()) // 2
-	fmt.Println(nextInt()) // 3
-}
-```
-
-intSeq 函数返回一个闭包，该闭包持有i变量，在Go内部实际上是用一个结构体表示
-
-```go
-type Closure Struct {
-	i *int
-	f func()int
-}
-
-```
-
-
-
-
 
 
 

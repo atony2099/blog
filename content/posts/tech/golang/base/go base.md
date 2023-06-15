@@ -305,6 +305,8 @@ make([]int,5,10)
 
 ## empty struct/array
 
+what:  zero field
+
 feature:
 1. zero size
 2. may in some address

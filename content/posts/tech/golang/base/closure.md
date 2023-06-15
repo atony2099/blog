@@ -15,8 +15,7 @@ func outer() func() int {
 	}
 }
 ```
-feature:
-1.   在父函数执行完后闭包还能继续访问引用的变量 
+feature: 外部变量在作用域外还继续存在.
 
 
 pros:
@@ -35,7 +34,6 @@ type Closure struct {
 ```
 why varaible  keep when function return:
 和 closure 一起逃逸到heap 上
-
 
 
 ## explain why
