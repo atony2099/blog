@@ -183,10 +183,16 @@ func split(sum int) (x, y int) {
 ```
 
 ###  shadowed variable 
+变量遮挡
+what: 变量在不同作用域被重复声明 
 
-when
-1. 内部作用域的变量和外部作用域变量有相同的类型和值，
-2. 外部变量在内部变量声明后继续被使用
+
+shaow error:被遮挡后继续使用 
+1. 被内层变量遮挡了
+2.  被遮挡后继续使用
+
+casue:  变量的值没有发生改变  
+
 
 1. A shadowed variable is a variable declared in an inner scope with the same name and type as a variable in an outer scope,
 2. where the outer variable is mentioned after the inner one
@@ -196,7 +202,6 @@ behavior:
 不符合我们的预期
 
 example:
-
 ```go
 func main(){
 	n := 1
@@ -208,7 +213,6 @@ func main(){
 
 }
 ```
-
 
 
 what happen to compile: 报错
