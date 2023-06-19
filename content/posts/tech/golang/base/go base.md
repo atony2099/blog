@@ -30,8 +30,6 @@ composite  type:
 5. interface
 6. function 
 
-
-
 ### value type and reference type.
 
 value type: 存储和传递实际值
