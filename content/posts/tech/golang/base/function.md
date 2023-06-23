@@ -184,8 +184,7 @@ func split(sum int) (x, y int) {
 
 ###  shadowed variable 
 变量遮挡
-what: 变量在不同作用域被重复声明 
-
+what: 变量在不同作用域被重复声明,导致上层作用域的变量无法被赋予新的值
 
 shaow error:被遮挡后继续使用 
 1. 被内层变量遮挡了
