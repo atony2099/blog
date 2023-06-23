@@ -1,6 +1,6 @@
 
 ---
-title: Go function
+title: function && method
 date: "2020-10-11T20:16:30+0800"
 category: ["Go"]
 lastmod: 2021-04-06T22:50:18+0800
@@ -184,21 +184,11 @@ func split(sum int) (x, y int) {
 
 ###  shadowed variable 
 变量遮挡
-what: 变量在不同作用域被重复声明,导致上层作用域的变量无法被赋予新的值
+what: 变量在不同作用域被重复声明, 导致外层变量被遮挡了: 读写不针对外层变量
 
-shaow error:被遮挡后继续使用 
-1. 被内层变量遮挡了
-2.  被遮挡后继续使用
+risky:  可能 导致非预期的行为:  修改实际上没有修改 
 
-casue:  变量的值没有发生改变  
-
-
-1. A shadowed variable is a variable declared in an inner scope with the same name and type as a variable in an outer scope,
-2. where the outer variable is mentioned after the inner one
-
-behavior:
-外部变量被内部变量覆盖(遮挡)-> 在内部作用域没有被进行任何赋值操作(使用); 
-不符合我们的预期
+compile error:   return值被遮挡后,compile 会主动报错
 
 example:
 ```go
@@ -214,7 +204,7 @@ func main(){
 ```
 
 
-what happen to compile: 报错
+compile error: 
 1. 老版本:   shadow err
 2. 新版本:   return parameter errr not used in scope  at return 
 
@@ -228,9 +218,8 @@ func Foo() (n int, err error) {
 }
 ```
 
-solve:
-1. 明确的return 
-2. 不要重名
+solve: 
+1. 不要重复声明(在确认需要改变原来变量的情况下)
 
 
 
@@ -315,7 +304,7 @@ cons:
 
 ##  method
 
-what: a function with  a  receiver
+what: function与某个type(receiver)相关联
 
 example:
 ```go
@@ -342,6 +331,7 @@ func (p *Person)SetName(name string){
 
 
 ```
+
 
 
 

@@ -46,7 +46,7 @@ value type:
 	-   String type: `string`
 -   Array type: `[]T`
 -   Struct type: `struct{}`
--   Pointer  type
+
 
 reference type: 
 -   Slice type: `[]T`
@@ -54,6 +54,7 @@ reference type:
 -   Channel type: `chan T`
 -   Function type: `func(params) returnType`
 
+pointer   type
 
 ### pass by value
 
