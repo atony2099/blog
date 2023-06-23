@@ -360,9 +360,15 @@ p.getName() == getName(p)
 
 ### receiver 
 
-|         | pointer receiver     | value receiver       |
-| ------- | -------------------- | -------------------- |
-| feature | 无法改变recevier的值 | 可以改变receiver的值 |
-|    use case     |             read/write; only read but  big size        |    only  read                |
+pointer type:  接收者为pointer
+
+value type: 接收者为value  type
+
+
+
+|          | pointer receiver                    | value receiver       |
+| -------- | ----------------------------------- | -------------------- |
+| feature  | 无法改变recevier的值                | 可以改变receiver的值 |
+| use case | read/write; only read but  big size | only  read           |
 
 
