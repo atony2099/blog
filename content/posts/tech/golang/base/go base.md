@@ -104,7 +104,7 @@ func hello() {
 how:
 1. create defer: deferproc 
 2. excute defer: deferreturn
-/
+
 
 ![VLXkvL](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20220906/VLXkvL.jpg)
 
