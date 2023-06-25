@@ -5,7 +5,8 @@ categories: ["Go"]
 lastmod: 2023-04-08T00:26:33+0800
 ---
 
-what: 一个函数 访问(引用)了父函数作用域的 变量
+
+what: 函数与外部变量关闭起来，使得外部变量在作用域结束后继续存活。
 ```go
 func outer() func() int {
 	var counter = 0
@@ -15,7 +16,6 @@ func outer() func() int {
 	}
 }
 ```
-feature: 外部变量在作用域外还继续存在.
 
 
 pros:
@@ -25,10 +25,10 @@ vs  anonymous  function:
 1. anonymous func: have no name
 2. closure: 在go, closure 都是以anonymous的形式存在，
 
-how: create  a   closure    
+how: create  a   closure   struct  
  ```go
 type Closure struct {
-	F uintptr
+	F *fun
 	X *int
 }
 ```

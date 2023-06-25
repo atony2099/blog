@@ -231,7 +231,6 @@ case:  stack
 ```go
 func main() {
 	for i := 0; i < 10; i++ {
-		i := i
 		defer fmt.Println(i)
 	}
 	fmt.Println("done")
