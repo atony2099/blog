@@ -81,6 +81,7 @@ use case:
 
 feature:
 1. stack 
+2. 立即传递参数
 ```go
 func hello() {
 	for _, v := range []int{1, 2, 3, 4} {
@@ -94,9 +95,6 @@ func hello() {
 // hello, 4, 3,2,1 
 ```
 
-
-1. change named return value;
-2. params are evaluate, (copy to struct) instantly
 
 
 ### how
@@ -248,7 +246,6 @@ case 2: 立即拷贝参数
    }
    // output:0; copy value instantly
    ```
-
 
 
 
