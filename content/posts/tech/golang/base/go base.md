@@ -104,7 +104,12 @@ how:
 2. excute defer: deferreturn
 
 
-![VLXkvL](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20220906/VLXkvL.jpg)
+```
+// 内存布局 
+[ defer struct   ][arg1，arg2,arg3....  ]
+```
+
+
 
 structure: in goroutinue.deferlinklist 
 ```go
