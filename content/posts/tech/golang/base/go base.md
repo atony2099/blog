@@ -277,12 +277,12 @@ func f3() (r int) {
 
 ## make&&new
 make: 
-1. 申请内存，初始化:
+1. 申请内存，初始化, value = initialized value
 2. 返回引用
 3. used for: map, slice, chan
 
 new:
-1. 申请内存，未初始化
+1. 申请内存，未初始化，value= zero value 
 2. 返回指针 
 3. used for all types
 
