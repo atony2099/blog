@@ -130,12 +130,14 @@ struct inode {
 
 
 ###  hard link and symbolic link
-hard： newFile->node,   node link increate ,          origin file delte,  hard access the data 
-soft:   newfile->originfile, node link not increase,  oriign file delete,   soft can't access the data 
-1. hard link;
-  1. create a new entry pointer to  nodes; increase inode's links
-2. soft link 
-  2. create a new node; the node save the entry of the pointed files
+
+soft linker:  创建一个新的别名
+hard linker: 增加文件的引用数
+
+![ardyTlABONCY](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230701/ardyTlABONCY.jpg)
+
+![pJr6hkcgqwU9](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230701/pJr6hkcgqwU9.jpg)
+
 
 
 
