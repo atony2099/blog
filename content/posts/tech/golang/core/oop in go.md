@@ -43,12 +43,9 @@ lastmod: 2023-04-27T21:03:20+0800
 ## program   paradigm
 
 program:  a set of instructions
-
 program   paradigm:   
-
 1. 一系列理念和方法, a set of concept,practice  and approaches  to  code
 2.  编码的方式 
-
 
 ### types 
 
@@ -132,8 +129,6 @@ good  code: 易维护代码
 
 
 
-
-
 ## oop pinciple 
 
 
@@ -146,13 +141,8 @@ four principle in oop
 3. 继承
 4. 多态
 
-
 why  go not prue  oop:
 go 没有实现  oop 全部特性: 特别是继承
-
-
-
-
 
 
 ### abstract
@@ -177,9 +167,26 @@ use interface
 
 also:   hiding info 
 
-how：
-1. 打包:  将实体相关数据和行为打包在一起: clsss 
-2. 隐藏: 使用private or其他方式 隐藏信息，除特定方法外
+what: 将数据和方法打包到一个对象中，并只开放必要方法访问和操作数据 
+```
+class  person:
+	privated  int age;
+	public  AddAge(int year):
+		age+= year
+```
+
+
+in go:
+```go
+type Person struct{
+	age int
+}
+func (p *Person)AddAge(int year){
+	p.age+=year
+}
+```
+
+
 
 pros: 
 1. 可维护性: 减少内部修改对外部产生的影响
@@ -228,7 +235,6 @@ type Person struct {
 	name  string // private
 }
 
-
 func (p *Person)GetName()string{
 	return p.name
 }
@@ -244,7 +250,8 @@ func (p *Person)SetName(name string)string {
 
 ###  inherit
 
-是什么:   通过  extend 等关键字继承 父类的属性和方法；
+what:  直接获得已有对象的属性和方法 
+
 
 pros: 代码复用，减少冗余 
 cons:  父类与子类强耦合，不易于维护
@@ -267,6 +274,8 @@ type Dog struct{
 
 ```
 
+
+embed: 可以直接调用匿名成员变量的属性和方法 
 
 为什么 embeded不是继承：
 1. 没有建立 继承关系:  a is b 
