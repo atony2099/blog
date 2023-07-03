@@ -62,6 +62,12 @@ program   paradigm:
 		1. sql
 		2. html
 
+
+oop: 
+1. 以对象为核心的编程范式
+
+
+
 ###  oop vs procedural:
 | parame               | procedural      | oop         |
 | -------------------- | --------------- | ----------- |
@@ -121,6 +127,8 @@ good  code: 易维护代码
 1. 隔离变化: 易修改/拓展
 3.   少冗余 
 4.   高 复用
+
+
 
 
 
