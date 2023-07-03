@@ -154,13 +154,9 @@ what:
 how:
 通过abstract class 或者interface实现 
 
-
-
 #### how go 
 
 use interface  
-
-
 
 ###  Encapsulation
 ![Y7chBP](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211002/Y7chBP.jpg)
@@ -176,7 +172,7 @@ class  person:
 ```
 
 
-in go:
+in go: methods + low,uppercase
 ```go
 type Person struct{
 	age int
@@ -252,7 +248,6 @@ func (p *Person)SetName(name string)string {
 
 what:  直接获得已有对象的属性和方法 
 
-
 pros: 代码复用，减少冗余 
 cons:  父类与子类强耦合，不易于维护
 
@@ -274,17 +269,12 @@ type Dog struct{
 
 ```
 
-
 embed: 可以直接调用匿名成员变量的属性和方法 
 
 为什么 embeded不是继承：
-1. 没有建立 继承关系:  a is b 
 
-```
-childInstance instanceof  SuperClass
-```
-
-2. 方法没有动态绑定(无法实现真正的重写): 继承一般是通过动态(运行时)绑定方法，而embed 方法在编译期就绑定好了
+1. 没有多态的特性: B is A; var B A;
+2. 无法重写方法
 
 ```go
 package main
@@ -292,37 +282,36 @@ package main
 import "fmt"
 
 type Person struct {
-	Name string
 }
 
 func (p *Person) Greet() {
-	fmt.Println("Hello, I am a person", p.String())
+	var n = p.Name()
+	fmt.Println("hello:",n)
 }
 
-func (p *Person) String() string {
-	return "i am happy"
+func (p *Person) Name() string {
+	return "default"
 }
 
 type Male struct {
 	*Person
 }
 
-func (m *Male) string() string {
-	return "i am sad"
+func (m *Male) Name() string {
+	return "tony"
 }
 
 func main() {
 
-	var f = &Male{Person: &Person{Name: "tony"}}
+	var f Male
 
-	f.Greet() //  expected "i am sad  "
+	f.Greet() //  expected "hello:tang "
 
 }
 
 ```
 
-
-3. 是组合的语法糖
+是组合的语法糖
 
 ```go
 f.Greet()== f.Person.Greet()
@@ -331,61 +320,24 @@ f.Name == f.Person.Name
 ```
 
 
-
-
 ###  polymorphism
 
-what:  一个东西(方法, 对象 )可以有多种形态
+what:  不同形态(object)响应相同的接口
 
-types: 
-1.  override: 重写 
-2.  overload: 重载
+in java: 继承 and interface  
+```
+class Animal:
+	makesound:
 
-```java
-package com.journaldev.examples;
 
-import java.util.Arrays;
+class Dog extends Animal:
+	makesound:
 
-// overload 
-public class Processor {
 
-	public void process(int i, int j) {
-		System.out.printf("Processing two integers:%d, %d", i, j);
-	}
-
-	public void process(int[] ints) {
-		System.out.println("Adding integer array:" + Arrays.toString(ints));
-	}
-
-	public void process(Object[] objs) {
-		System.out.println("Adding integer array:" + Arrays.toString(objs));
-	}
-}
-
-// override
-class MathProcessor extends Processor {
-
-	@Override
-	public void process(int i, int j) {
-		System.out.println("Sum of integers is " + (i + j));
-	}
-
-	@Override
-	public void process(int[] ints) {
-		int sum = 0;
-		for (int i : ints) {
-			sum += i;
-		}
-		System.out.println("Sum of integer array elements is " + sum);
-	}
-
-}
+class Bird implemnts Aninal:
+	makesound
 
 ```
-
-
-
-
 #### polymorphism in go 
 
 limit: go只能 使用interface实现多态
@@ -394,6 +346,17 @@ highlight:  不需要显式的指定 实现interface
 
 interface example : 
 ```go
+
+type Bird interface {
+	fly()
+}
+
+type Eagle struct {}
+
+func (e *Eagele)fly(){
+	....
+}
+
 func main() {
 	var ma Bird = Mahjong{"mahjong"}
 	var a Bird = Eagle{"Eagle"}
