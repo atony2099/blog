@@ -142,7 +142,12 @@ four principle in oop
 4. 多态
 
 why  go not prue  oop:
-go 没有实现  oop 全部特性: 特别是继承
+1. go缺失了继承 
+2. go 没有其他oop语言里常见元素: class, construtctor
+
+
+
+
 
 
 ### abstract
