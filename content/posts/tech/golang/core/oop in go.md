@@ -60,10 +60,6 @@ program   paradigm:
 		2. html
 
 
-oop: 
-1. 以对象为核心的编程范式
-
-
 
 ###  oop vs procedural:
 | parame               | procedural      | oop         |
@@ -129,8 +125,35 @@ good  code: 易维护代码
 
 
 
-## oop pinciple 
+## oop 
 
+
+### what
+
+oop: 
+1. 模拟真实世界，构建出对象， 通过对象之间的交互完成相关逻辑
+2. 通过封装继承多态构建出好的代码
+
+the pros:
+1. 封装： 模块化 ，隔离变化， 容易维护 
+2. 继承：代码复用，减少冗余 
+3. 多态: 可拓展性
+
+
+
+go isn't prue oop:
+1. go缺失了继承 
+2. go 没有其他oop语言里常见元素: class, construtctor
+3. 封装支持的level只有 public and private
+
+
+highlight:
+1. 抛弃了oop的繁重的inherit and class
+2. 使用简单的方式实现oop
+
+
+
+### principle
 
 what's principle: 
 1. 原则,原理， 指导方针， 实现oop 的基础
@@ -141,29 +164,9 @@ four principle in oop
 3. 继承
 4. 多态
 
-why  go not prue  oop:
-1. go缺失了继承 
-2. go 没有其他oop语言里常见元素: class, construtctor
 
 
-
-
-
-
-### abstract
-
-what:
-抽象出一个事物的最基本特征，忽略其细节:   
-遥控器: changeVolunm; changeChannel 
-
-how:
-通过abstract class 或者interface实现 
-
-#### how go 
-
-use interface  
-
-###  Encapsulation
+####  Encapsulation
 ![Y7chBP](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211002/Y7chBP.jpg)
 
 also:   hiding info 
@@ -187,11 +190,6 @@ func (p *Person)AddAge(int year){
 }
 ```
 
-
-
-pros: 
-1. 可维护性: 减少内部修改对外部产生的影响
-2. 安全: 限制对敏感数据的访问(limit data access)； 数据以正确的方式修改(prevent  unwanted modifications)
 
 
 example:
@@ -225,7 +223,7 @@ public class Person {
 
 ```
 
-#### how go  do it  
+###### how go  do it  
 
 1. 使用type and methods  模仿 class, 
 2. 使用大小写控制访问权限: packge level 
@@ -249,7 +247,7 @@ func (p *Person)SetName(name string)string {
 ```
 
 
-###  inherit
+####  inherit
 
 what:  直接获得已有对象的属性和方法 
 
@@ -257,7 +255,7 @@ pros: 代码复用，减少冗余
 cons:  父类与子类强耦合，不易于维护
 
 
-####  inherit   in go 
+#####  inherit   in go 
 go 没有继承，只有组合:
 1. 普通组合:  成员变量
 2. 内嵌: 匿名成员变量
@@ -325,9 +323,12 @@ f.Name == f.Person.Name
 ```
 
 
-###  polymorphism
+####  polymorphism
 
 what:  不同形态(object)响应相同的接口
+
+pros:
+1. 可拓展性
 
 in java: 继承 and interface  
 ```
@@ -343,7 +344,7 @@ class Bird implemnts Aninal:
 	makesound
 
 ```
-#### polymorphism in go 
+##### polymorphism in go 
 
 limit: go只能 使用interface实现多态
 

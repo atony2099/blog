@@ -42,8 +42,8 @@ create：
 
 basic operation:
 ```go
-delete(m,"1")
 
+delete(m,"1")
 for k,v :=  range m
 
 v, ok =m["1"]
@@ -54,7 +54,6 @@ v, ok =m["1"]
 key pointer:
 1.  hash func 
 2.  hash collision: 使用改进版的链表法，节点嵌套数组，减少内存创建和回收的cost
-
 
 ```go
 index = hashCode % bucklength
@@ -78,8 +77,18 @@ else:
 
 ### base structure
 
+
 ![3Tiheke075SD](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230418/3Tiheke075SD.jpg)
 
+```
+```
+hmap->[]bucket
+
+bueckt
+	
+}
+```
+```
 
 map->a   bucket(key,value array)-> overflow 
 
@@ -87,6 +96,7 @@ array + linker node
 
 
 
+map.
 
 ```go
 type hmap struct {
