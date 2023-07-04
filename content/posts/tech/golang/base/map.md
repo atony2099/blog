@@ -80,23 +80,18 @@ else:
 
 ![3Tiheke075SD](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230418/3Tiheke075SD.jpg)
 
-```
+
+simple
 ```
 hmap->[]bucket
 
-bueckt
-	
-}
+bucket:
+	[]key
+	[]value
+	*overflowBucket
+
 ```
-```
 
-map->a   bucket(key,value array)-> overflow 
-
-array + linker node
-
-
-
-map.
 
 ```go
 type hmap struct {
