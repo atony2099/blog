@@ -63,12 +63,16 @@ if  buckets[index].full == no:
 	buckets[index].append(key,value)
 else:
 	bucket = buckets[index]
-	for {
+	for:
 		bucket = bucket.next
+		if bucket == nil:
+			break; 
+
 		if bucket.full == no 
 			buckets[index].append(key,value)
+			break;
 	
-	}
+	
 
 	
 ```
@@ -116,6 +120,8 @@ type bmap struct {
     overflow uintptr // next bmap 
 }
 ```
+
+
 
 ### hash fun 
 
@@ -192,8 +198,7 @@ for {
 
 ## rehash
 
-
-what:  为了防止查询效率退化(too many overflow)，通过增加bucket size，删除过多的overflow
+what:  为了防止查询效率退化(too many overflow)，通过增加bucket ，删除多余的overflow
 
 
 监控指标， when:
@@ -268,6 +273,8 @@ func (h *hmap) growing() bool {
 
 ### factor > 6.5
 what:   used   bucket s/ total buckets
+
+
 
 why 6.5:  空间和时间权衡
 1. 空间: 65% bucket have used
