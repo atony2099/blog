@@ -272,8 +272,8 @@ func (h *hmap) growing() bool {
 
 
 ### factor > 6.5
-what:   used   bucket s/ total buckets
 
+what:  buckets 使用情况.   used_buckets/total_buckets
 
 
 why 6.5:  空间和时间权衡
