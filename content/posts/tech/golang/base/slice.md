@@ -10,7 +10,6 @@ categories: ["Go"]
 ##  basic operator 
 
 create:
-
 ```go
  s := []int{1,2,3}
  s1 := make([]int, 2, 2)
@@ -18,14 +17,20 @@ create:
 fmt.Println(len(s1),cap(s1))
 ```
 
-basic opereate
+len
 
+
+basic operate:
 ```go 
 // append 
 s = append(s,4)
 
 // cut
 s = s[0:1]
+
+for index,value := range s {
+		....
+}
 
 
 // max slice lenght=cap
@@ -58,6 +63,9 @@ how nil slice work: alloc  then work
 
 
 ### vs array
+
+array: fixed array，value type
+slice: dynamic array, reference type 
 
 1. size: dynamice vs fixed
 array must have a fixed size when created, more efficent when size is known

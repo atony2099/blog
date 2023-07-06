@@ -195,21 +195,29 @@ for {
 
 
 
-
 ## rehash
 
-what:  为了防止查询效率退化(too many overflow)，通过增加bucket ，删除多余的overflow
+what:  为了防止查询效率退化(too many overflow)，
+1. 增加bucket ，
+2. 删除过多的overflow
 
 
 监控指标， when:
 1. load fator >  6.5, 核心指标
-2. overflow bucket too  many: 补充指标,特殊情况
+2. overflow bucket too  many: 补充，预防特殊情况(添加->删除->添加...，触发不了6.5)
+```go
+func tooManyOverflowBuckets(noverflow uint16, B uint8) bool {
+	if B < 16 {  // overflow 和bucket一样多
+		return noverflow >= uint16(1)<<B
+	}
+	return noverflow >= 1<<15
+}
+```
 
 how:
 1.   allocate new bucket
-2.   渐进式迁移，在更新或者删除处罚变迁动作
-	
-	
+2.   渐进式迁移，在更新或者删除触发变迁动作
+
 ```go
 func hashGrow(t *maptype, h *hmap) {
 	// B+1 相当于是原来 2 倍的空间
@@ -247,7 +255,6 @@ func hashGrow(t *maptype, h *hmap) {
 ```go
 func mapdelete(t *maptype, h *hmap, key unsafe.Pointer) {
 	.....
-
   bucket := hash & bucketMask(h.B)
   if h.growing() {
     growWork(t, h, bucket)
@@ -269,6 +276,11 @@ func (h *hmap) growing() bool {
 
 ```
 
+
+too many overflow:
+![RAPA3x](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211111/RAPA3x.jpg)
+
+![uNRSW3](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211111/uNRSW3.jpg)
 
 
 ### factor > 6.5
@@ -313,54 +325,6 @@ how:
   ![IVWhNW](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211111/IVWhNW.jpg)
 
 
-###  too many overflow 
-
-what: 对 load factor 的补充
-overflow == buckets;
-```go
-func tooManyOverflowBuckets(noverflow uint16, B uint8) bool {
-	if B < 16 {  // overflow 和bucket一样多
-		return noverflow >= uint16(1)<<B
-	}
-	return noverflow >= 1<<15
-}
-```
-
-why:  
-在 set, delte 过程中,
-
-防止特殊情况: 增加后删除
-
-
-漏网之鱼: 通过删除从而无法达到 6.5
-
-
-
-###  how 
-
-```
-deleteMap:
-	moveOneBucket
-setMap:
-	moveOneBucket
-
-moveIndex = 0
-moveOneBucket:
-	
-	for ;  oldBucket!= nil;oldBucket = oldBuckets[index].overflow;:
-		
-	moveIndex++;
-
-```
-
-
-
-how: 
-![RAPA3x](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211111/RAPA3x.jpg)
-
-![uNRSW3](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211111/uNRSW3.jpg)
-
-
 
 
    
@@ -368,7 +332,7 @@ how:
 ## 遍历过程以及无序
 
 ###  traverse
-generate random start bucket index  and offset 
+generate random start bucket index  and offset entry index 
 
 ```go
 r := uintptr(fastrand())
@@ -397,8 +361,8 @@ it.offset = uint8(r >> h.B & (bucketCnt - 1))
 ### unorder 
 
 why:
-1. map 是一个不稳定结构， 常常需要扩容， 导致，key的顺序经常发生改变
-2.  go在遍历开始生成随机的遍历起始位置，为避免给新手程序员误解
+1. map不稳定结构，无法保证一致的顺序，rehash后key的顺序就会改变
+2. go在遍历开始生成随机的遍历起始位置，为避免给新手程序员误解
 
 
 

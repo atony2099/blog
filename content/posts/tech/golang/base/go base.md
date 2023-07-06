@@ -32,8 +32,12 @@ composite  type:
 
 ### value type and reference type.
 
-value type: 存储和传递实际值
-reference type: 存储和传递值的引用(pointer)
+value type: 
+1. store and pass: 值本身
+2. 对子字段的修改(元素)修改不会影响原值
+reference type: 
+1. store and pass: 值的引用(pointer)
+2. 对子字段的修改会影响原值
 
 value type: 
 - basic type
