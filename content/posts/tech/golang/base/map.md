@@ -273,13 +273,16 @@ func (h *hmap) growing() bool {
 
 ### factor > 6.5
 
-what:  buckets 使用情况.   used_buckets/total_buckets
+
+factor: len(maps)/cap(maps)=6.5, 大致使用65%的bucket容量 
+
+why 6.5:  空间和时间权衡,
+\> 6.5: 冲突太多
+< 6.5: 浪费空间 
 
 
-why 6.5:  空间和时间权衡
-1. 空间: 65% bucket have used
-2. 时间: 20% overflow
 
+data:  20% overflow, check  4.5 to look up ;
 ```bash
 // Picking loadFactor: too large and we have lots of overflow
 // buckets, too small and we waste a lot of space. I wrote
