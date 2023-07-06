@@ -281,7 +281,6 @@ why 6.5:  空间和时间权衡,
 < 6.5: 浪费空间 
 
 
-
 data:  20% overflow, check  4.5 to look up ;
 ```bash
 // Picking loadFactor: too large and we have lots of overflow
@@ -316,7 +315,8 @@ how:
 
 ###  too many overflow 
 
-what: 对 load factor 的补充, 
+what: 对 load factor 的补充
+overflow == buckets;
 ```go
 func tooManyOverflowBuckets(noverflow uint16, B uint8) bool {
 	if B < 16 {  // overflow 和bucket一样多
@@ -326,11 +326,13 @@ func tooManyOverflowBuckets(noverflow uint16, B uint8) bool {
 }
 ```
 
+why:  
+在 set, delte 过程中,
+
+防止特殊情况: 增加后删除
+
+
 漏网之鱼: 通过删除从而无法达到 6.5
-
-
-
-
 
 
 
