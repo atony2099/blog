@@ -28,15 +28,40 @@ s = append(s,4)
 // cut
 s = s[0:1]
 
+//range
 for index,value := range s {
 		....
 }
+
+copy(slice1, slice2)
 
 
 // max slice lenght=cap
 s :=  make([]int, 3,4)
 s = s[:] // [0,0,0]
 s = s[:cap(s)] // [0,0,0,0]
+
+
+```
+
+inert at some Index:
+```go
+var position = 2;
+var element = 100;
+var a = []int{1,3,4}
+
+// func1
+var inserts []int
+inserts = append(inserts, a[:position])
+inserts = append(inserts,element)
+inserts = append(inserts,a[position:])
+
+
+// func2
+a= append(a,0)
+// move
+copy(a[position+1:],a[position:])
+a[position]=element
 
 
 ```
@@ -50,16 +75,10 @@ s = append(s1,s2...)
 
 ```
 
-
 ### empty slice vs nil slice
 
-nil: 未初始化
+nil: 未初始化， 但是可以直接使，因为go自动初始化了
 empty: 已经初始化，创建了底层数组
-
-how nil slice work: alloc  then work 
-
-
-
 
 
 ### vs array
