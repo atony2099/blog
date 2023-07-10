@@ -111,27 +111,32 @@ fmt.Println(s) // [1,20,3]
 
 ## how
 
+
+
+![oqSAmTMTVY8p](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230711/oqSAmTMTVY8p.jpg)
+
+
+
+
 underlying struct: 
 ```go
 type  arrray  struct{
-    len int
-    cap int
-    pointer *array;
+    len int  // slice长度
+    cap int //  可用容量 
+    pointer *array; // 底层数组
 
 }
 ```
-
+cap:
+1. 是否扩容
+2. 裁切的上限 
 
 ### grow
 
 
-cap容量足够:  简单的改变len就能实现
-```go
-var s = make([]int,5,10)
-len(s) // 5
-s = s[:10]
-len(s) // 10
-```
+how:
+1. 低于容量，直接append
+2. 高于容量，先扩容，后append
 
 
 cap 容量不够: 增加cap
