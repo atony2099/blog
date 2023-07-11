@@ -20,4 +20,4 @@ tags: [""]
 ###  avoid distractions
 
 1.  recording
-2. 
+2. give a list   a check 
