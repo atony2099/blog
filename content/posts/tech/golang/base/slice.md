@@ -120,7 +120,7 @@ fmt.Println(s) // [1,20,3]
 
 underlying struct: 
 ```go
-type  arrray  struct{
+type  arrray  struct{ 
     len int  // slice长度
     cap int //  可用容量 
     pointer *array; // 底层数组

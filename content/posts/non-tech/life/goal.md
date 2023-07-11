@@ -9,8 +9,15 @@ tags: [""]
 
 ## how to 
 
-make your goal clear:
+### clear goal
+
 1. write    down your goal 
 2. set a deadline
 
 
+
+
+###  avoid distractions
+
+1.  recording
+2. 
