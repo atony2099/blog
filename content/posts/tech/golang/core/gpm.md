@@ -57,7 +57,14 @@ category: ["go","scheduler"]
 ![YYkPj1](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20220418/YYkPj1.png)
 
 
-## gpm
+## what  
+
+what: 
+1. go实现的调度
+2. run in user space
+3. 更加高效
+
+
 
 role:
 1. g:  用户线程，包含等待被执行的function code 
@@ -66,6 +73,9 @@ role:
 	1. 找到可以运行的g
 	2. 执行g
 
+
+more effective:
+1.  协作式调度:更少的上下文切换
 
 
 **the count:**
@@ -90,6 +100,9 @@ why  go scheduler is  good   for  concurrecy :
 
 模块化方式:
 每个g 是一个模块，是一个独立的个体，与其他模块通过channel 连接
+
+
+
 
 
 
@@ -345,6 +358,28 @@ fixed and larger size, 2MB, 在执行特殊任务需要更大空间
 
 
 ## schedule
+
+### 协作式调度
+
+what:  
+
+process:
+1. machine 运行 loop 
+2. fetch g then run:
+	1. 从local queue, global queue,   
+	2. steal  from  other queue 
+
+load balance:
+1.   上限：设置单个machine处理上限
+2.   分担：使用steal分担其他machine的压力
+
+
+
+
+
+### 抢占式
+
+
 
 
 ###  init
