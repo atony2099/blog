@@ -183,10 +183,12 @@ func split(sum int) (x, y int) {
 ```
 
 ###  shadowed variable 
-变量遮挡
-what: 变量在不同作用域被重复声明, 导致外层变量被遮挡了: 读写不针对外层变量
 
-risky:  可能 导致非预期的行为:  修改实际上没有修改 
+
+what: 由于重复声明， 内层作用域的变量挡住外层，导致外层变量无法被读写
+
+
+risky:  可能 导致非预期的行为，外层变量没有被修改
 
 compile error:   return值被遮挡后,compile 会主动报错
 
@@ -201,7 +203,23 @@ func main(){
 	fmt.Println(n)  // 1
 
 }
+
+
+func main(){
+	data := 0;
+
+	if {
+		data,err := call()
+	}
+
+	fmt.Println(data) // 0
+	
+}
+
+
+
 ```
+
 
 
 compile error: 
@@ -220,6 +238,27 @@ func Foo() (n int, err error) {
 
 solve: 
 1. 不要重复声明(在确认需要改变原来变量的情况下)
+
+```go
+func per(){
+	data = 0 
+	if true {
+		data,err := call()
+	}
+	fmt.Println(a)
+}
+
+func after(){
+	data = 0 
+	if true {
+		var err error
+		data,err = call()
+	}
+	fmt.Println(a)
+}
+
+```
+
 
 
 
