@@ -76,6 +76,7 @@ role:
 
 more effective:
 1.  协作式调度:更少的上下文切换
+2. 
 
 
 **the count:**
@@ -361,8 +362,8 @@ fixed and larger size, 2MB, 在执行特殊任务需要更大空间
 
 ### 协作式调度
 
-what:   线程主动让出cpu的控制权给调度器，从而进行下一次调度
-vs preemptive:  调度器可以主动中断线程从而获取控制权
+what:  线程主动放弃cpu，调度器才能调度下一个线程
+vs preemptive:  调度器可以主动打断线程 重新获得cpu的控制权 
 
 
 process:
@@ -376,20 +377,30 @@ load balance:
 2.   分担：使用steal分担其他machine的压力
 
 
-yield back control:
-1. system call 
-2.  
+give up control:
 
+1. block:
+	1.  i/o 
+	2. sleep
+	3. channel  
+	4. wait locker
+	5. **`runtime.Gosched`**
 
-
+2. finish excute
 
 
 
 #### more effective 
+1.  
 
 
 
-### 抢占式
+
+### preempt
+
+how:
+
+
 
 
 
