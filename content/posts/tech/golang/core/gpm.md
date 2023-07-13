@@ -362,7 +362,6 @@ fixed and larger size, 2MB, 在执行特殊任务需要更大空间
 ### 协作式调度
 
 what:   线程主动让出cpu的控制权给调度器，从而进行下一次调度
-
 vs preemptive:  调度器可以主动中断线程从而获取控制权
 
 
@@ -377,6 +376,16 @@ load balance:
 2.   分担：使用steal分担其他machine的压力
 
 
+yield back control:
+1. system call 
+2.  
+
+
+
+
+
+
+#### more effective 
 
 
 
