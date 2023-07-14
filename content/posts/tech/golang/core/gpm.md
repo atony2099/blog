@@ -51,6 +51,8 @@ category: ["go","scheduler"]
 
 [Go: g0, Special Goroutine](https://medium.com/a-journey-with-go/go-g0-special-goroutine-8c778c6704d8)
 
+[sysmon 后台监控线程做了什么 - 码农桃花源](https://qcrao91.gitbook.io/go/goroutine-tiao-du-qi/sysmon-hou-tai-jian-kong-xian-cheng-zuo-le-shi-mo)
+
 
 ![1qtA3o](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210911/1qtA3o.jpg)
 
@@ -395,14 +397,18 @@ give up control:
 
 
 
+###  preempt
 
-### preempt
+```
+backgroudthread:
+	if  g.running >= 10ms:
+		
+	   g.preempt = true
+	   sendSignal to machine 
+		
 
-how:
 
-
-
-
+```
 
 
 ###  init
