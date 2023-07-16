@@ -53,6 +53,9 @@ category: ["go","scheduler"]
 
 [sysmon 后台监控线程做了什么 - 码农桃花源](https://qcrao91.gitbook.io/go/goroutine-tiao-du-qi/sysmon-hou-tai-jian-kong-xian-cheng-zuo-le-shi-mo)
 
+[Go中定时器实现原理及源码解析](https://www.luozhiyun.com/archives/458)
+
+
 
 ![1qtA3o](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210911/1qtA3o.jpg)
 
@@ -882,7 +885,7 @@ return {"result": response.text}
 ## sysmon
 
 what:  system monitor 
-监控异常情况，并调整
+监控线程，监控异常情况，并处理
 
 
 feature: 不需要绑定p; 直接运行 
@@ -902,7 +905,6 @@ for {
 	check runable timer
 	check poller
 	check gc  
-	
 	retake
 	
 }
