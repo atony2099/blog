@@ -197,11 +197,6 @@ for {
 
 ## rehash
 
-
-
-what:
-
-
 what:  为了防止查询效率退化(too many overflow)，
 1. 增加bucket ，
 2. 删除过多的overflow
@@ -290,10 +285,12 @@ too many overflow:
 
 ### factor > 6.5
 
+factor:  len(maps)/cap(maps)=6.5;  total keys/ total bucket 
+
 
 factor: len(maps)/cap(maps)=6.5, 大致使用65%的bucket容量 
 
-why 6.5:  空间和时间权衡,
+why 6.5:  空间和时间(查询效率)权衡,
 \> 6.5: 冲突太多
 < 6.5: 浪费空间 
 
