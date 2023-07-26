@@ -197,6 +197,11 @@ for {
 
 ## rehash
 
+
+
+what:
+
+
 what:  为了防止查询效率退化(too many overflow)，
 1. 增加bucket ，
 2. 删除过多的overflow
