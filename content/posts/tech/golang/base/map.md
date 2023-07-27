@@ -26,6 +26,7 @@ lastmod: 2023-04-18T16:47:26+0800
 
 [遍历过程 | Go 程序员面试笔试宝典](https://golang.design/go-questions/map/range/)
 
+
 create：
 1. 字面量 创建:使用常量创建
 2. 函数创建: make 
@@ -207,23 +208,10 @@ factor:
 ```
 totalKeys/totalBuckt>=6.5
 
-overflowBucket>=  
+overflowBucket >=  totalbuckets // increase then  delete
 ```
 
 
-
-
-监控指标， when:
-1. load fator >  6.5, 核心指标
-2. overflow bucket too  many: 补充，预防特殊情况(添加->删除->添加...，触发不了6.5)
-```go
-func tooManyOverflowBuckets(noverflow uint16, B uint8) bool {
-	if B < 16 {  // overflow 和bucket一样多
-		return noverflow >= uint16(1)<<B
-	}
-	return noverflow >= 1<<15
-}
-```
 
 how:
 1.   allocate new bucket
@@ -343,6 +331,7 @@ how:
 
 ## 遍历过程以及无序
 
+
 ###  traverse
 generate random start bucket index  and offset entry index 
 
@@ -373,6 +362,7 @@ it.offset = uint8(r >> h.B & (bucketCnt - 1))
 ### unorder 
 
 why:
+
 1. map不稳定结构，无法保证一致的顺序，rehash后key的顺序就会改变
 2. go在遍历开始生成随机的遍历起始位置，为避免给新手程序员误解
 
