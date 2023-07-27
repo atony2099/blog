@@ -202,6 +202,17 @@ what:  为了防止查询效率退化(too many overflow)，
 2. 删除过多的overflow
 
 
+factor:
+
+```
+totalKeys/totalBuckt>=6.5
+
+overflowBucket>=  
+```
+
+
+
+
 监控指标， when:
 1. load fator >  6.5, 核心指标
 2. overflow bucket too  many: 补充，预防特殊情况(添加->删除->添加...，触发不了6.5)
@@ -286,7 +297,6 @@ too many overflow:
 ### factor > 6.5
 
 factor:  len(maps)/cap(maps)=6.5;  total keys/ total bucket 
-
 
 factor: len(maps)/cap(maps)=6.5, 大致使用65%的bucket容量 
 
