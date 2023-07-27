@@ -17,9 +17,6 @@ create:
 fmt.Println(len(s1),cap(s1))
 ```
 
-len
-
-
 basic operate:
 ```go 
 // append 
@@ -47,7 +44,7 @@ s = s[:cap(s)] // [0,0,0,0]
 inert at some Index:
 ```go
 var position = 2;
-var element = 100;
+var element = 100;  
 var a = []int{1,3,4}
 
 // func1
@@ -86,6 +83,7 @@ empty: 已经初始化，创建了底层数组
 array: fixed array，value type
 slice: dynamic array, reference type 
 
+
 1. size: dynamice vs fixed
 array must have a fixed size when created, more efficent when size is known
 
@@ -111,12 +109,13 @@ fmt.Println(s) // [1,20,3]
 
 ## how
 
-
-
 ![oqSAmTMTVY8p](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230711/oqSAmTMTVY8p.jpg)
 
 
-
+len: slice当前长度； 已使用容量
+cap: 
+1. slice可以使用的容量
+2.  裁切的上限 
 
 underlying struct: 
 ```go
@@ -127,9 +126,6 @@ type  arrray  struct{
 
 }
 ```
-cap:
-1. 是否扩容
-2. 裁切的上限 
 
 ### grow
 
@@ -185,29 +181,16 @@ copy(slice[originLen: needLen], toBeCopyslice)
 
 ```go
 
-func appendInt(s []int, list ...int) []int {
+func append(origin []int, new ...int) []int {
 
-	originCap, originLength := cap(s), len(s)
-	needCAP := len(s) + len(list)
-
-	if needCAP > originCap {
-		doubleCap := originCap * 2
-		var newCap int
-		if doubleCap < needCAP {
-			newCap = needCAP
-		} else {
-			newCap = doubleCap
-		}
-		newSlice := make([]int, newCap)
-		copy(newSlice, s)
-		s = newSlice
+	if len(origin)+len(new) > cap(origin) {
+		newSlice := make([]int, 2*(len(origin)+len(new)))
+		copy(newSlice, origin)
+		origin = newSlice
 	}
-
-	// slice扩容一次
-	s = s[:needCAP]
-
-	copy(s[originLength:], list)
-	return s
+	origin = origin[:len(origin)+len(new)]
+	copy(origin[len(origin)-len(new):], new)
+	return origin
 
 }
 
