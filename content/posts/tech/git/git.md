@@ -257,12 +257,20 @@ merge: put a forked history back again;
 
 ## fetch and pull
 
-fetch: get updated info to local
-pull: fetch + merge
+
+```
+git fetch <remote> <branch>
+git pull <remote> <branch>
+```
+
+
+git fetch: get  the new commited of branchs 
+git pull: git fetch + mreget
 
 ```shell
- git pull
- git fetch origin
+ git pull [origin  develop]
+
+ git fetch origin develop
  git merge origin/develop
 ```
 
