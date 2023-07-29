@@ -12,6 +12,7 @@ draft: false
 
 [git-log](https://git-scm.com/docs/git-log)
 
+[A successful Git branching model » nvie.com - https://nvie.com/posts/a-successful-git-branching-model/](https://nvie.com/posts/a-successful-git-branching-model/)
 
 ## git overview
 
@@ -23,69 +24,56 @@ draft: false
 ![e6VPjC](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210331/e6VPjC.jpg)
 
 
-what: 
-version control , track the change of source code
-
-
 ## working/stage/repo 
 working tree: 本地的草稿纸，可能有很多草稿纸
 staging area: 已经完成的章节的复印件
 local: 已经完成的章节并完成编辑部审核的复印件
 remote:  完成审核后存储在银行保险箱复印件
-
 why need stage area: 允许部分提交草稿
-
-
 working tree is clean:    working stage and repo 完全同步
 
 
 
+## command list
 
+git clean: remove untracked file
 
-
-
-### reset
-
-
-git reset:  reset commit to some one 
-
-how it work:
-1.  init:  wor: n, stage:n   commit: n
-2. soft -1, unchange work and stag:   work n, stage: n,  commit: n-1
-```shell
-git status  
-some file to be commitd
+```
+git clean:
+     -n: remove  
+	 -f: force remove; 
+	-d:  remove untrack dir
+git clean -df
 ```
 
 
-3. mixed -1: reset stage-1,  work n, stage n-1, commit n-1 
+### reset change
+
+git reset \[--mixed head\]:  sync stage/working to last commit
+git checkout -- filename:   discard  change  in working  
+
+
+discard all change 
+```bash
+git reset --hard 
+
 ```
-git status
-change not staged ...
-change not tack ...
+
+discard some file change:
 ```
-
-4. hard -1: stege and work -1: work n-1, stage n-1, commit -1
-	
-
-
-### git clean
-
-remove untracked file
-1. -f: force
-2. -d: recurse  into directory 
-
+git reset --mixed a.txt
+git checkout -- a.txt
+```
 
 
 ## git config
 
 
-config dir
-```
+config dir:
+```shell
 /etc/gitconfig: system
  ~/.gitconfig: global
 .git/config
-
 ```
 
 ```shell
@@ -112,14 +100,11 @@ git config --global  user.name atony2099
 ```
 
 
-
-
 ## git status  and log 
 ```bash
 git status 
 git diff  [head]
 ```
-
 
 
 1. git status : show  status change
@@ -180,7 +165,7 @@ every commit store in git datebase: .git/objects;
 
 
 
-## git reference
+### git reference
 
 a alias of commit;
 
@@ -242,67 +227,16 @@ git branch develop  master # create a branch from master
 
 ```
 
-###
-
-## 5. git  revert: if
-
-git record the log of file change;
-git get history information by  changin the point;
-
-merge: put a forked history back again;4. git  revert
-
-git record the log of file change;
-git get history information by  changin the point;
-
-merge: put a forked history back again;
-
-## fetch and pull
 
 
-```
-git fetch <remote> <branch>
-git pull <remote> <branch>
-```
-
-
-git fetch: get  the new commited of branchs 
-git pull: git fetch + mreget
-
-```shell
- git pull [origin  develop]
-
- git fetch origin develop
- git merge origin/develop
-```
-
-## checkout
-
-switch branch or  restore working directory
-
-1. switch branch
-
-```
-git checkout develop
-```
-
-2. restore working tree files：--
--- seperate file and trees
-
-```
-git checkout -- a.txt # 
-```
 
 ## git ignore
-/aaa:
-ignore file or dir which named aaa   in root level 
-
-
 
 ```bash
-/aaa # match any file or directory in root level
-aaa/ # match any directoires with name aaa
+/aaa #  in root, file or dir
+aaa/ # in anywhere, dir 
 
-test # match any file or any directories with the name test
+aaa # in anywhere, file or dir
 ```
 
 
@@ -315,17 +249,8 @@ git clean -df;
 -d: remove director
 -f: force
 
-## git branch manage
 
-```shell
-git branch newbranch  frombranch
-```
-
-git branch    
-
-
-##  git remote  operation
-
+##  git remote  
 
 git clone:
 ```bash
@@ -336,49 +261,36 @@ git checkout  master
 ```
 
 remote-url:
-1. https: need account 
-2. ssh: 
+1. https: need account and password   
+2. ssh:  config public key  
 
 
 
-create a copy of another  responistory
+git fetch and pull 
+```bash
+git fetch <remote> <branch>
+git pull <remote> <branch>
 
-### 1. what's  remote repository
+git pull origin dev 
 
-As you clone from a another repository, the  repository become you  remote rep;
-
-you also create remote-tracking branch which are references to the state of remote branches;
-
-you can't change the remote-tracking branch;
-
-```
-remotes/orign/develop
-remotes/orign/master
-````
-
-upstream-branch == the tracking branch;
-
-1. create track with remote branch
-
-```shell
-# have create a new branch
-git push -u origin master
-
-# don't create a new branch
-git branch develop origin/develop 
-
-git checkout --track origin/develop
+git fetch origin dev
+git merge  origin/dev
 ```
 
-git remote add <remote shortname> <URL>
-git push <remote> <branch>
-
-git push --set-upstream <remote> <branch>
-
-1. upstream branch
-   remote branch track local branch
 
 
+## git workflow
 
 
+### no-ff
+
+```bash
+git merge --no-ff
+```
+
+1. create a commit : 方便查询和回退
+
+
+
+![XdgK0w7G6IqI](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230729/XdgK0w7G6IqI.png)
 
