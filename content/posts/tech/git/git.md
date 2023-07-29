@@ -5,6 +5,7 @@ categories: ["git"]
 lastmod: 2023-03-20T09:52:44+0800
 draft: false
 ---
+
 [The Most Basic Git Command List](https://www.tutorialdocs.com/article/git-basic-command-list.html)
 
 [Git Internals - Git References](https://git-scm.com/book/en/v2/Git-Internals-Git-References)
@@ -26,30 +27,21 @@ what:
 version control , track the change of source code
 
 
-## wokring 
-working tree: the draft of the book
+## working/stage/repo 
+working tree: 本地的草稿纸，可能有很多草稿纸
 staging area: 已经完成的章节的复印件
 local: 已经完成的章节并完成编辑部审核的复印件
 remote:  完成审核后存储在银行保险箱复印件
 
-why need staing area:
-允许部分提交草稿
+why need stage area: 允许部分提交草稿
+
+
+working tree is clean:    working stage and repo 完全同步
 
 
 
-## git status  
-
-working tree: file chang
-staging(cache):  to change to the repo
-local repo:    save change permanently
 
 
-command: 
-1. git staus: the change in  working and staging are
-2. git diff :
-
-
-clean  working   tree(directory) :  add to staged are, the  working adn stage is syned, and the same, so working  tree is clean 
 
 
 ### reset
@@ -85,18 +77,22 @@ remove untracked file
 
 
 
-## 1. git config
+## git config
 
-#### 1. config list order
 
-$(prefix)/etc/gitconfig: system
+config dir
+```
+/etc/gitconfig: system
+ ~/.gitconfig: global
+.git/config
 
-~/.gitconfig: global
+```
 
- $GIT_DIR/config: local
+```shell
+git config --global  user.name atony2099
+```
 
-#### 2. config content
-
+~/.gitconfig:
 ```shell
 [user]  # git commit user 
   email = atony2099@gmail.com
@@ -115,12 +111,16 @@ $(prefix)/etc/gitconfig: system
     insteadOf = git@gitlab.treesmob.com:
 ```
 
-git config --global.user.name atony2099
-git config --global url."https://github.com/".insteadOf git@github.com:
 
 
 
-## 3. observe your git
+## git status  and log 
+```bash
+git status 
+git diff  [head]
+```
+
+
 
 1. git status : show  status change
 2. git diff:  git diff one  two -- [path]
@@ -130,7 +130,7 @@ git config --global url."https://github.com/".insteadOf git@github.com:
 3. git diff --cached [commit2] [--][path]: compare staged tree vs specify commit
 4. git show：
 
-### 1. git log
+###  log
 
 show the commit  log
 
@@ -168,7 +168,7 @@ show the commit  log
    2. --graph: graphical representaton;
    3. --decorate[=short|full|auto|no]: howt to print the ref  names
 
-## 3. git commit
+## git commit
 
 ### 1. how commit  work
 
@@ -178,17 +178,7 @@ every commit store in git datebase: .git/objects;
 
 ![s2wER2](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210526/s2wER2.png)
 
-## 4. git basic operation: from add to push
 
-1. git init: the directory will be managed by git
-
-2. git add .: add file to index
-
-3. git commit:  a commit represent a recorded status;
-
-   > after your commit, you work,index,and  local repo in the same state;
-
-4. git push:generate a new commit  in another repo
 
 ## git reference
 
@@ -197,7 +187,7 @@ a alias of commit;
 Contain  branch and tag
 
 ### 1. Git branch(refers)
-
+![data-model-4.png](https://git-scm.com/book/en/v2/images/data-model-4.png)
 ![](https://git-scm.com/book/en/v2/images/data-model-4.png)
 
 ```
@@ -213,8 +203,6 @@ HEAD: point currrent  branch;
 ```
 cat .git/HEAD
 ```
-
-detached HEAD:
 
 ### 2. tag
 
@@ -254,9 +242,7 @@ git branch develop  master # create a branch from master
 
 ```
 
-### 3. HEAD
-
-a head
+###
 
 ## 5. git  revert: if
 
@@ -312,7 +298,6 @@ ignore file or dir which named aaa   in root level
 
 
 
-
 ```bash
 /aaa # match any file or directory in root level
 aaa/ # match any directoires with name aaa
@@ -332,13 +317,29 @@ git clean -df;
 
 ## git branch manage
 
-1. git branch new-branch [base-branch]
+```shell
+git branch newbranch  frombranch
+```
 
-## 1. git remote  operation
+git branch    
 
-### 1. git clone
 
-`git clone repo [localDirectory ]`
+##  git remote  operation
+
+
+git clone:
+```bash
+git init
+git remote add origin repository-url 
+git fetch # get all remote branch info 
+git checkout  master
+```
+
+remote-url:
+1. https: need account 
+2. ssh: 
+
+
 
 create a copy of another  responistory
 
@@ -376,7 +377,6 @@ git push --set-upstream <remote> <branch>
 
 1. upstream branch
    remote branch track local branch
-
 
 
 
