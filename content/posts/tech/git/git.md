@@ -14,6 +14,9 @@ draft: false
 
 ## git overview
 
+![OwXxW0Qt3mNC](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230729/OwXxW0Qt3mNC.png)
+
+
 ![KJFkJw](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210331/KJFkJw.jpg)
 ![usyT2X](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210331/usyT2X.jpg)
 ![e6VPjC](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210331/e6VPjC.jpg)
@@ -21,6 +24,17 @@ draft: false
 
 what: 
 version control , track the change of source code
+
+
+## wokring 
+working tree: the draft of the book
+staging area: 已经完成的章节的复印件
+local: 已经完成的章节并完成编辑部审核的复印件
+remote:  完成审核后存储在银行保险箱复印件
+
+why need staing area:
+允许部分提交草稿
+
 
 
 ## git status  
@@ -39,6 +53,7 @@ clean  working   tree(directory) :  add to staged are, the  working adn stage is
 
 
 ### reset
+
 
 git reset:  reset commit to some one 
 
@@ -59,7 +74,7 @@ change not tack ...
 ```
 
 4. hard -1: stege and work -1: work n-1, stage n-1, commit -1
-
+	
 
 
 ### git clean
