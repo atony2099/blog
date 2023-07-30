@@ -72,7 +72,7 @@ what:
 
 
 role:
-1. g:  用户线程，包含等待被执行的function code 
+1. g:  用户线程,轻量线程，包含等待被执行的function code 
 2. processor：连接 machine 和 g
 3. machine: 执行的实体, 关联一个系统线程，通过系统线程执行 
 	1. 找到可以运行的g
@@ -80,8 +80,15 @@ role:
 
 
 more effective:
-1.  协作式调度:更少的上下文切换
-2. 
+1. 协作式调度:更少的上下文切换
+2. 轻量级线程，less create cost  and context switch cost 
+
+
+m:n modal: 多个用户线程复用一个系统线程 
+性能优势:
+1.  较少线程创建的开销，只需要创建固定数量的线程，然后低成本创建大量routine
+2.  减少 context switch:   很多block 和context switch 发生在用户空间 
+
 
 
 **the count:**
