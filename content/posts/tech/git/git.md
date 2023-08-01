@@ -1,4 +1,4 @@
----
+    ---
 title: git
 date: "2021-03-14T15:35:06+0800"
 categories: ["git"]
@@ -289,7 +289,6 @@ git merge --no-ff
 ```
 
 1. create a commit : 方便查询和回退
-
 
 
 ![XdgK0w7G6IqI](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230729/XdgK0w7G6IqI.png)
