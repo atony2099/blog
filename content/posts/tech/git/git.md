@@ -293,3 +293,16 @@ git merge --no-ff
 
 ![XdgK0w7G6IqI](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230729/XdgK0w7G6IqI.png)
 
+
+
+
+## git   rollback 
+
+git reset:
+pros:
+
+
+
+git reverse:
+
+
