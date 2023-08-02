@@ -25,10 +25,20 @@ draft: false
 
 
 ## working/stage/repo 
-working tree: 本地的草稿纸，可能有很多草稿纸
+
+
+%%working tree: 本地的草稿纸，可能有很多草稿纸
 staging area: 已经完成的章节的复印件
 local: 已经完成的章节并完成编辑部审核的复印件
-remote:  完成审核后存储在银行保险箱复印件
+remote:  完成审核后存储在银行保险箱复印件%%
+
+
+working: 工作区, one  history change timeline, a->b->c 
+staging: 暂存区,   one history change timeline, a->b->c
+repo:   repo, multiple  history   change timeline 
+remote:  another repo 
+
+
 why need stage area: 允许部分提交草稿
 working tree is clean:    working stage and repo 完全同步
 
@@ -298,11 +308,13 @@ git merge --no-ff
 
 ## git   rollback 
 
-git reset:
-pros:
+
+git reset:  本地回退   
+git revert: 本地and remote 回退 
 
 
 
-git reverse:
 
+
+##  commit update
 
