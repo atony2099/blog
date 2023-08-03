@@ -44,6 +44,8 @@ working tree is clean:    working stage and repo 完全同步
 
 
 
+
+
 ## command list
 
 git clean: remove untracked file
@@ -113,8 +115,18 @@ git config --global  user.name atony2099
 ## git status  and log 
 ```bash
 git status 
-git diff  [head]
+git diff  [head|commit|branch] -- file # compare working with some commit 
+git diff  [commit|branch|] [second] -- file 
+
+
+
+
 ```
+
+git diff:
+
+
+
 
 
 1. git status : show  status change
@@ -163,9 +175,9 @@ show the commit  log
    2. --graph: graphical representaton;
    3. --decorate[=short|full|auto|no]: howt to print the ref  names
 
-## git commit
+## branch
 
-### 1. how commit  work
+###  how commit  work
 
 ![](https://git-scm.com/book/en/v2/images/data-model-3.png)
 
@@ -306,11 +318,14 @@ git merge --no-ff
 
 
 
-## git   rollback 
+## git revert  &  rollback 
+![XdgK0w7G6IqI](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230729/XdgK0w7G6IqI.png)
+
+git reset:   reset the commit/stage/working  to  some commit  
+git restore:  reset  the working/stage to some commit 
+git revert: reset  
 
 
-git reset:  本地回退   
-git revert: 本地and remote 回退 
 
 
 
