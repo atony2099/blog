@@ -83,9 +83,9 @@ git checkout -- a.txt
 
 config dir:
 ```shell
-/etc/gitconfig: system
- ~/.gitconfig: global
-.git/config
+/etc/gitconfig: --system
+ ~/.gitconfig: --global
+.git/config: --local
 ```
 
 ```shell
@@ -254,12 +254,30 @@ git branch develop  master # create a branch from master
 
 ## git ignore
 
+
+file:
 ```bash
 /aaa #  in root, file or dir
 aaa/ # in anywhere, dir 
-
 aaa # in anywhere, file or dir
+
+
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+
+
+
 ```
+
+global file:  不同语言都要ignore, 
+1. os
+2. editor: vscode, pycharm
+```
+git config --get core.excludesfile
+```
+
 
 
 
@@ -321,15 +339,79 @@ git merge --no-ff
 ## git revert  &  rollback 
 ![XdgK0w7G6IqI](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230729/XdgK0w7G6IqI.png)
 
-git reset:   reset the commit/stage/working  to  some commit  
-git restore:  reset  the working/stage to some commit 
-git revert: reset  
+git reset: 回退 <到>某个commit   working/stage/commit 
+git restore: 回退<到>到某个commit，  working/stage 
+git revert:   撤销某个、某些节点， 并创建 n个commit   
+
+
+
+```bash 
+A -- B -- C -- D -- E (HEAD)
+
+# reset to last third commit 
+git revert head~1..head 
+git  reset  head~2
+
+
+# reset the working to  last third commit
+git restore --source=head~2
+
+
+
+# reset the working and staged to head
+git  restore * 
+git restore --staged *
+
+```
 
 
 
 
 
+## git commit
+
+parameter:
+1. -a:   stage all tracked file
 
 
-##  commit update
+how to  write  commit messae:
+1. short summary
+2. detail 
+3. include reference to issue if necessary 
+
+```bash
+#body
+[add|fix|refactore] something
+# the blank line is necessary  for disguish the title and body 
+#detail
+- detail1
+- detail2
+- detail3
+
+reference
+```
+
+b
+
+
+```md
+Add search functionality to user dashboard
+
+- Implement full-text search for user profiles
+- Include filters for age, location, and interests
+- Optimize search query for performance
+
+Related to issue #456
+
+
+Fix crash in payment processing
+
+- Resolve null pointer exception in payment gateway
+- Add validation checks for payment details
+- Update tests to include edge cases
+
+Closes #789
+
+
+```
 
