@@ -79,9 +79,17 @@ role:
 	2. 执行g
 
 
+
+
+
+
 more effective:
-1. 协作式调度:更少的上下文切换
-2. 轻量级线程，less create cost  and context switch cost 
+1. less block and context switch
+	1. 协作式调度
+	2. M:N  modal,
+2. less swich cost
+3. 协作式调度:更少的上下文切换
+4. 轻量级线程，less create cost  and context switch cost 
 
 
 m:n modal: 多个用户线程复用一个系统线程 
