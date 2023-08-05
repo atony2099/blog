@@ -359,8 +359,13 @@ differ:   more lightweight
 
 
 not expose go id:
+
+
+
+
 1. 避免  thread local storage 的滥用，导致代码难以维护
 2. 可以使用context 存储 goroutine 范围内的变量
+
 
 
 **g0:** 
