@@ -62,7 +62,7 @@ category: ["go","scheduler"]
 ![YYkPj1](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20220418/YYkPj1.png)
 
 
-## what  
+## G-M-P Components  
 
 what: 
 1. go实现的调度
@@ -77,9 +77,6 @@ role:
 3. machine: 执行的实体, 关联一个系统线程，通过系统线程执行 
 	1. 找到可以运行的g
 	2. 执行g
-
-
-
 
 
 
@@ -284,13 +281,14 @@ machine 可能 系统调用停止运行
  1. limit the active machine count
  2. if the i/o increase, the machine count increase
 
-### goroutine
+### go-routine
 
 **structure:**
 gobuf:  register info,  used for context switch
 stack: 当前 g使用的stack; 
 stauts:  g status
 m: 对应的线程 
+
 ```go
 
 type g struct { 
@@ -333,11 +331,11 @@ type gobuf struct {
 
 **status**:
 
-1. prepare: idle-> runable
+1. prepare: idle-> runnable
 2. run: running 
 3. block:
 	1. waiting 
-	2. sysemblocking 
+	2. syscall 
 ![RqdUVncjVkO2](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230518/RqdUVncjVkO2.jpg)
 
 ![Noo9UNlu9LwI](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230518/Noo9UNlu9LwI.jpg)
