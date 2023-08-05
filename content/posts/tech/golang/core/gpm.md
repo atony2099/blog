@@ -84,12 +84,24 @@ role:
 
 
 more effective:
-1. less block and context switch
+
+1. cheaper goroutine
+2. less context switch: 协作式调度 
+3. cheaper context switch
+	1. 非系统调用只需要switch goroutine
+	2. 
+
+3. cheap context 
+	1. 
+4. 
+
+
+5. 
 	1. 协作式调度
 	2. M:N  modal,
-2. less swich cost
-3. 协作式调度:更少的上下文切换
-4. 轻量级线程，less create cost  and context switch cost 
+6. less swich cost
+7. 协作式调度:更少的上下文切换
+8. 轻量级线程，less create cost  and context switch cost 
 
 
 m:n modal: 多个用户线程复用一个系统线程 
@@ -331,22 +343,21 @@ type gobuf struct {
 ![Noo9UNlu9LwI](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230518/Noo9UNlu9LwI.jpg)
 
 
-**process vs  thread  vs  goroutine:**
+**process vs  thread  vs  go-routine:**
 
 same:
-1. 独立的指令执行路径, independent execution paths
-2. 独立的stack and  register 
+1. 实现并发的组件
+2. 独立的可执行代码/路径
 
 differ:   more lightweight
 1. thread: 共享process's memory
-2. goroutine:  共享(多路复用 ) thread 
+2. go-routines:  共享(多路复用 ) thread's time 
 
 
 **cheaper:**
-1.  更低的创建成本: 
-	1. 占用内存少: 2kb <=1 mb 
-	2. 更快: 不需要系统调用
-2.  更低的切换成本:  基于 线程复用 和协作式调度，goroutine 切换只需切换少量register
+1. less memory cost:dynamic stack,2kb
+2. less cpu time: create and switch in user space, not need  kernel involvement 
+
 
 
 not expose go id:
@@ -410,8 +421,6 @@ give up control:
 
 
 
-#### more effective 
-1.  
 
 
 
