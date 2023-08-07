@@ -142,8 +142,7 @@ why  go scheduler is  good   for  concurrecy :
    ![DtWAoL](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20220418/DtWAoL.jpg)
  stop->idle<->running<->systemcall
 
-2. code
-
+2. code.,lk./,%%%%
    ```go
    type p struct {
     id           int32
@@ -359,6 +358,8 @@ differ:   more lightweight
 
 
 not expose go id:
+1. 暴露id 会让开发者基于id(共享变量方式) 实现线程通信， 这不符合go的哲学 
+
 
 
 
@@ -384,12 +385,15 @@ fixed and larger size, 2MB, 在执行特殊任务需要更大空间
 
 
 
-4. what's
+1. what's
    1. machine first g;
    2. do schdule work
-5. case?
+2. case?
  1. new g: go func()->systemstack(func(){...})
  2. park/ready
+
+
+
 
 
 ## schedule
