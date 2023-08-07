@@ -70,41 +70,30 @@ what:
 3. 更加高效
 
 
-
 role:
-1. g:  用户线程,轻量线程，包含等待被执行的function code 
-2. processor：连接 machine 和 g
-3. machine: 执行的实体, 关联一个系统线程，通过系统线程执行 
-	1. 找到可以运行的g
-	2. 执行g
+1. g:  用户线程,   包含等待被执行的function code 
+2. processor: connector,   连接 machine 和 g
+3. machine:  真正执行代码的实体 , 关联一个系统线程，通过系统线程执行 
+
+
+m:n modal: 多个用户线程复用一个系统线程 
+pros:
+1. less create cost:   创建少数的kernel thread进行复用, 创建大量廉价的g; 
+2. less context switch:  most context switch in user space
 
 
 
 more effective:
-
-1. cheaper goroutine
-2. less context switch: 协作式调度 
-3. cheaper context switch
-	1. 非系统调用只需要switch goroutine
-	2. 
-
-3. cheap context 
-	1. 
-4. 
+1. m:n modal, less  create and context switch cost 
+2. cooperation  modal: less context switch time 
+3. light thread memory: 2kb stack 
 
 
-5. 
-	1. 协作式调度
-	2. M:N  modal,
-6. less swich cost
-7. 协作式调度:更少的上下文切换
-8. 轻量级线程，less create cost  and context switch cost 
 
 
-m:n modal: 多个用户线程复用一个系统线程 
-性能优势:
-1.  较少线程创建的开销，只需要创建固定数量的线程，然后低成本创建大量routine
-2.  减少 context switch:   很多block 和context switch 发生在用户空间 
+
+
+
 
 
 
@@ -130,9 +119,6 @@ why  go scheduler is  good   for  concurrecy :
 
 模块化方式:
 每个g 是一个模块，是一个独立的个体，与其他模块通过channel 连接
-
-
-
 
 
 
@@ -280,7 +266,7 @@ machine 可能 系统调用停止运行
  1. limit the active machine count
  2. if the i/o increase, the machine count increase
 
-### go-routine
+### goroutine
 
 **structure:**
 gobuf:  register info,  used for context switch
@@ -362,36 +348,13 @@ not expose go id:
 
 
 
-
-
-1. 避免  thread local storage 的滥用，导致代码难以维护
-2. 可以使用context 存储 goroutine 范围内的变量
-
-
-
-**g0:** 
-
-what:
-特殊的协程，执行特殊的任务，不执行用户代码
-1. 调度相关: 创建新g; 获取可用g
-2. 其他任务: 
-	1. stack grow; 
-	2. defer function create;
-	3. systemcall
-
+**g0:** Do scheduling work 
 feature:
 fixed and larger size, 2MB, 在执行特殊任务需要更大空间
 
 
-
-
-1. what's
-   1. machine first g;
-   2. do schdule work
-2. case?
- 1. new g: go func()->systemstack(func(){...})
- 2. park/ready
-
+max g:
+2kb=2KB \*1000\* 1000 = 1million* 2
 
 
 
