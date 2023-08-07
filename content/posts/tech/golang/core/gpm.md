@@ -86,12 +86,6 @@ pros:
 more effective:
 1. m:n modal, less  create and context switch cost 
 2. cooperation  modal: less context switch time 
-3. light thread memory: 2kb stack 
-
-
-
-
-
 
 
 
@@ -128,7 +122,7 @@ why  go scheduler is  good   for  concurrecy :
    ![DtWAoL](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20220418/DtWAoL.jpg)
  stop->idle<->running<->systemcall
 
-2. code.,lk./,%%%%
+2. code 
    ```go
    type p struct {
     id           int32
@@ -156,6 +150,7 @@ why  go scheduler is  good   for  concurrecy :
    ```
 
 why need processor？ processor 的详细作用
+
 
 machine and goroutine的中介 
 1. 缓存goroutine: machine 无锁访问
