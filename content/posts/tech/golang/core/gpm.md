@@ -144,7 +144,11 @@ why  go scheduler is  good   for  concurrecy :
    }
    ```
 
-why need processor？ processor 的详细作用
+why need processor:
+1. cache localqueue g, reduce global locker contention
+2. decouple machine and   goroutine, then can  help:
+	1. machine 生命周期不影响 local queue 
+	2. 不需要创建更多的os thread 
 
 
 machine and goroutine的中介 
@@ -346,15 +350,14 @@ fixed and larger size, 2MB, 在执行特殊任务需要更大空间
 max g:
 2kb=2KB \*1000\* 1000 = 1million* 2
 
-
-
-
 ## schedule
+
 
 ### 协作式调度
 
 what:  线程主动放弃cpu，调度器才能调度下一个线程
 vs preemptive:  调度器可以主动打断线程 重新获得cpu的控制权 
+
 
 
 process:
