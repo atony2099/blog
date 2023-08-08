@@ -362,10 +362,8 @@ schedule  progress:
 	2. steal  from  other queue 
 
 
-
 cooperative:
-goroutine 主动让出 thread(cpu)执行权(时间片)给下一个goroutine 
-
+goroutine 主动让出 thread(cpu)控制权(时间片)给下一个goroutine 
 
 
 what:  线程主动放弃cpu，调度器才能调度下一个线程
@@ -389,7 +387,7 @@ give up control:
 	4. wait locker
 	5. **`runtime.Gosched`**
 
-2. finish excute
+1. finish excute
 
 
 
