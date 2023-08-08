@@ -355,16 +355,25 @@ max g:
 
 ### 协作式调度
 
+schedule  progress:
+1. machine 运行 loop, continuously looking for  available  g
+2. fetch g then run:
+	1. 从local queue, global queue,   
+	2. steal  from  other queue 
+
+
+
+cooperative:
+goroutine 主动让出 thread(cpu)执行权(时间片)给下一个goroutine 
+
+
+
 what:  线程主动放弃cpu，调度器才能调度下一个线程
 vs preemptive:  调度器可以主动打断线程 重新获得cpu的控制权 
 
 
 
-process:
-1. machine 运行 loop 
-2. fetch g then run:
-	1. 从local queue, global queue,   
-	2. steal  from  other queue 
+
 
 load balance:
 1.   上限：设置单个machine处理上限
@@ -384,10 +393,10 @@ give up control:
 
 
 
-
-
-
 ###  preempt
+
+
+ 
 
 ```
 backgroudthread:
