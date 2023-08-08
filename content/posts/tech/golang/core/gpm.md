@@ -80,16 +80,11 @@ m:n modal: 多个用户线程复用一个系统线程
 pros:
 1. less create cost:   创建少数的kernel thread进行复用, 创建大量廉价的g; 
 2. less context switch:  most context switch in user space
-
-
+8888888888888888888888888
 
 more effective:
 1. m:n modal, less  create and context switch cost 
 2. cooperation  modal: less context switch time 
-
-
-
-
 
 **the count:**
 
