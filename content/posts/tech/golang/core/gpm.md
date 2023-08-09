@@ -23,6 +23,7 @@ category: ["go","scheduler"]
 
 [MPG 模型与并发调度单元](https://golang.design/under-the-hood/zh-cn/part2runtime/ch06sched/mpg)
 
+
 [Illustrated Tales of Go Runtime Scheduler.](https://medium.com/@ankur_anand/illustrated-tales-of-go-runtime-scheduler-74809ef6d19b)
 
 [Go调度器系列（3）图解调度原理](https://segmentfault.com/a/1190000018775901)
@@ -374,21 +375,19 @@ yield control:
 
 1. kernel block:
 	1. file i/o
-	2. other: mmap
+	2. other system call: mmap
 
-1. explict yield:
+1. explicit yield:
 	1. after finish
 	2. `runtime.Gosched()`
 
 
 
-
-
-
-what:  线程主动放弃cpu，调度器才能调度下一个线程
-vs preemptive:  调度器可以主动打断线程 重新获得cpu的控制权 
-
-
+pros and cons for concurrency:
+pros:
+	1. less context switch
+cons:
+	1. cause latency 
 
 
 
@@ -396,17 +395,6 @@ load balance:
 1.   上限：设置单个machine处理上限
 2.   分担：使用steal分担其他machine的压力
 
-
-give up control:
-
-1. block:
-	1.  i/o 
-	2. sleep
-	3. channel  
-	4. wait locker
-	5. **`runtime.Gosched`**
-
-1. finish excute
 
 
 
@@ -751,9 +739,6 @@ func startm(_p_ *p, spinning bool) {
 ```
 
 
-## sysmon
-
-
 ## basic   thought
 
 ### 1. resuse
@@ -898,7 +883,7 @@ return {"result": response.text}
 ## sysmon
 
 what:  system monitor 
-监控线程，监控异常情况，并处理
+监控线程，监控处异常情况 
 
 
 feature: 不需要绑定p; 直接运行 
@@ -914,7 +899,9 @@ simple code:
 ```go
 for {
 	sleep(20us)
-	checkdeadlock
+	checkdeadlock: then throw dead locker error
+	
+
 	check runable timer
 	check poller
 	check gc  
