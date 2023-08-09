@@ -365,6 +365,25 @@ schedule  progress:
 cooperative:
 goroutine 主动让出 thread(cpu)控制权(时间片)给下一个goroutine 
 
+yield control:
+1. user space block:
+	1. channel
+	2. mutext
+	3. sleep
+	4. network i/o
+
+1. kernel block:
+	1. file i/o
+	2. other: mmap
+
+1. explict yield:
+	1. after finish
+	2. `runtime.Gosched()`
+
+
+
+
+
 
 what:  线程主动放弃cpu，调度器才能调度下一个线程
 vs preemptive:  调度器可以主动打断线程 重新获得cpu的控制权 
