@@ -15,12 +15,9 @@ categories: ["go","scheduler","concurrency"]
 [The Behavior Of Channels Author image](https://www.ardanlabs.com/blog/2017/10/the-behavior-of-channels.html)
 
 
-what:
-
-数据通道；线程之间同步/共享数据的方式
-
+what:  
+管道；goroutine 之间 传输数据 ;
 g <--->   channel < ---> g 
-
 
 how:
 channel.send
@@ -405,8 +402,10 @@ go func:
 
 ## buffer channel 
 
-buffer:  
-1. 非阻塞， 非同步
+
+buffer: send/receive  are    non-blocking unless full  or 
+un-buffer: send/receive are blocking 
+
 
 
 pros:
