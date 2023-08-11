@@ -399,12 +399,25 @@ go func:
 
 
 
-
 ## buffer channel 
 
-
-buffer: send/receive  are    non-blocking unless full  or 
+buffer: send/receive  are    non-blocking unless full  or   empty                  
 un-buffer: send/receive are blocking 
+
+
+
+
+feature:
+buffer:  sync, sender 按照
+un-buffer: sync  
+
+
+use case:
+buffer:
+1.   goroutine
+2.  
+
+
 
 
 
@@ -434,10 +447,12 @@ unbuffer use case:
 1. synchronize, ensure that data is processed immediately
 
 
-3. not block and not sync 
-4. block only if 
+1. not block and not sync 
+2. block only if 
 	1. producer: buffer is full
 	2. consumer: bufer is empty 
+
+
 
 vs unbuffer channle:
 1. not block,  block only channle is full(block producer) or empty(block consumer )
@@ -446,6 +461,7 @@ vs unbuffer channle:
 
 use case:
 *use feature:  block only full or empty *
+
 
 1.  avoid leak: producer, block only channel full
 ```c
