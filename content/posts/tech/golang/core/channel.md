@@ -41,7 +41,7 @@ if channel.reqceveiqueue.length>0;
 ```go
 type hchan struct {
     qcount   uint           // total data in the queue
-    dataqsiz uint           // size of the circular queue
+    dataqsiz uint           // size of the circular queue`111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111118
     buf      unsafe.Pointer // points to an array of dataqsiz elements
     elemsize uint16
     closed   uint32
@@ -406,15 +406,17 @@ un-buffer: send/receive are blocking
 
 
 
-feature:
-un-buffer:  sync, 一直等待对方 接收到或者发送 
+
+un-buffer:  sync, 一直等待对方 接收到或者发送 才进行下一步 
 use case:
 1. 保持两个goroutine相同处理速度
 2.  传递一系列重要信息，确保每个信息对方都收到
 
-buffer: aync: 不管对方是否已经接收
+buffer: aync 不管对方是否已经接收
 1.  大部分情况下都可以使用buffer,提高生产端or 消费端的速度
-2. rate limit
+2. 限速  
+
+
 
 
 
