@@ -34,14 +34,15 @@ if channel.reqceveiqueue.length>0;
 
 
 ## mechanisam
-### 1.structure
+
+### structure
 
 ![ufo484](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210916/ufo484.jpg)
 
 ```go
 type hchan struct {
     qcount   uint           // total data in the queue
-    dataqsiz uint           // size of the circular queue`111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111118
+    dataqsiz uint           // size of the circular queue
     buf      unsafe.Pointer // points to an array of dataqsiz elements
     elemsize uint16
     closed   uint32
@@ -66,11 +67,8 @@ type sudog struct{
 
 
 
-1. channel structure
-	channle{Gqueuue, Databuffer};
 
-
-###  how?
+###  how
 
 1. overview
    1. block: gopark(g);
@@ -352,7 +350,7 @@ code
 
 
 
-##  g   leak;
+##  g   leak
 
 
 leak:  资源长时间占用不退出
@@ -405,8 +403,6 @@ buffer: send/receive  are    non-blocking unless full  or   empty
 un-buffer: send/receive are blocking 
 
 
-
-
 un-buffer:  sync, 一直等待对方 接收到或者发送 才进行下一步 
 use case:
 1. 保持两个goroutine相同处理速度
@@ -418,22 +414,6 @@ buffer: aync 不管对方是否已经接收
 
 
 
-
-
-use case:
-buffer:
-1.   goroutine
-2.  
-
-
-
-
-
-pros:
-
-cons:
-
-unbuffer: 阻塞， 同步  
 
 unbuffer use case:
 1. 限流: 控制最大并发数
@@ -579,12 +559,6 @@ func longJob: ctx,cha // producer
 		innerChan<-dat
 	
 ```
-
-
-
-
-
-
 
 
 ## pool
