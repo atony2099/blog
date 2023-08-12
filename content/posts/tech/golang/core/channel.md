@@ -33,7 +33,32 @@ if channel.reqceveiqueue.length>0;
 
 
 
-## mechanisam
+##  how
+
+
+```go
+ channel struct{
+	 recevieQueue
+	 sendQueue
+	 buffer
+ }
+
+
+sendtoChannel:
+	if buffer.isFull:
+		channel.pushtoSendqueue(currentG);
+		reScheule()
+
+	else:
+		if channel.receiveQ notEmpty:
+			g = receiveQ.pop()
+			put in procesoor local queue 
+	
+
+```
+
+
+
 
 ### structure
 
