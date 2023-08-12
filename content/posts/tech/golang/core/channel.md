@@ -406,10 +406,16 @@ un-buffer: send/receive are blocking
 
 
 
-
 feature:
-buffer:  sync, sender 按照
-un-buffer: sync  
+un-buffer:  sync, 一直等待对方 接收到或者发送 
+use case:
+1. 保持两个goroutine相同处理速度
+2.  传递一系列重要信息，确保每个信息对方都收到
+
+buffer: aync: 不管对方是否已经接收
+1.  大部分情况下都可以使用buffer,提高生产端or 消费端的速度
+2. rate limit
+
 
 
 use case:
