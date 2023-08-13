@@ -1186,3 +1186,9 @@ mysqldump -u root -p source_db source_table > dump_file.sql
 ```
 mysql -u root -p < dump_file.sql
 ```
+
+
+
+
+
+## DSN
