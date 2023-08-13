@@ -1192,3 +1192,12 @@ mysql -u root -p < dump_file.sql
 
 
 ## DSN
+
+loc:  determine   the time.Time's string  when insert into  database; 
+
+when set to  loc = beijing;
+
+insert: convert time to beijing locaiton time string, then insert  it 
+select:  Interpret the time string from the database as being in Beijing's time zone.
+
+
