@@ -231,12 +231,14 @@ func park_m(gp *g) {
 
 state: 
 1. nil 
-2. open
+	1.  read  block;
+	2.  write  block
+	3.  close: panic
+2. open:
 3. close
-
-read/write closed channel:
-read:  default value
-write: panic
+	1. read: deafult value
+	2. write: panic
+	3. close: panic
 
 why: 
 1. write panic:
@@ -251,7 +253,6 @@ why:
 5. read not panic: 
 	1. 不会导致业务层面严重bug
 	2.   方便开发者 判断 channel是否关闭
-
 
 
 1. closed channe: panic
