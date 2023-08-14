@@ -239,11 +239,18 @@ read:  default value
 write: panic
 
 why: 
-1. write panic:  语言层面的故意设计， 如果 不panic，可能导致业务层面严重bug， 如丢失数据
-2. read not panic: 
+1. write panic:
+	1.  造成数据损坏， 由于receiver 预期不会从closed channle获取数据，sender 发送数据会导致数据丢失
+
+1. read not panic:
+	1. 不会造成数据损坏 
+	2. 方便开发者 
+		1. 判断channel 是否关闭 
+		2. for loop 结束循环
+
+5. read not panic: 
 	1. 不会导致业务层面严重bug
 	2.   方便开发者 判断 channel是否关闭
-
 
 
 
@@ -536,8 +543,9 @@ g2: // c2.empty, bloock
 
 ##  wait-closed  and cancel
 
-
 ### wait-closed
+
+
 
 
 core:
@@ -546,6 +554,7 @@ core:
 
 
 channel:  
+
 ```c 
 
 go func1():
