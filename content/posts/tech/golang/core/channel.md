@@ -44,21 +44,23 @@ if channel.reqceveiqueue.length>0;
  }
 
 
-sendtoChannel:
+sendtoChannel(data):
 	if buffer.isFull:
+	    g.status = waiting
 		channel.pushtoSendqueue(currentG);
 		reScheule()
 
-	else:
+	if buffer.isFull == NO:
 		if channel.receiveQ notEmpty:
 			g = receiveQ.pop()
+			g.status = runable;
+			g.receive(data) 
 			put in procesoor local queue 
-	
-
+	   else:
+			 buffer.add(data)
+				   
+			
 ```
-
-
-
 
 ### structure
 
@@ -160,7 +162,7 @@ type sudog struct{
    }
    ```
 
-### 4.gopark 
+### gopark 
 
 1. pseudo code
 	```
@@ -227,10 +229,22 @@ func park_m(gp *g) {
 
 ##  channel  state 
 
-state:
+state: 
 1. nil 
-1. open
-2. close
+2. open
+3. close
+
+read/write closed channel:
+read:  default value
+write: panic
+
+why: 
+1. write panic:  语言层面的故意设计， 如果 不panic，可能导致业务层面严重bug， 如丢失数据
+2. read not panic: 
+	1. 不会导致业务层面严重bug
+	2.   方便开发者 判断 channel是否关闭
+
+
 
 
 1. closed channe: panic
