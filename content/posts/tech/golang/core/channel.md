@@ -250,28 +250,9 @@ why:
 		1. 判断channel 是否关闭 
 		2. for loop 结束循环
 
-5. read not panic: 
-	1. 不会导致业务层面严重bug
-	2.   方便开发者 判断 channel是否关闭
 
-
-1. closed channe: panic
-2. nil channel: block
-
-
-read data  from
-1. closed channel: zero value
-2. nil channel: block  
-
-
-write   data:
-1. closed channel:  panic 
-2. nil channel: block 
-
-
-closed channel:
-1. close: panic 
-2. nil channel: panic 
+1. close won't panic:  多次关闭会导致数据竞争， 通过明确panic 提醒开发者小心管理好channel的共享
+	
 
 
 why send and close chanel panic:
@@ -455,9 +436,9 @@ use case:
 1. 保持两个goroutine相同处理速度
 2.  传递一系列重要信息，确保每个信息对方都收到
 
-buffer: aync 不管对方是否已经接收
-1.  大部分情况下都可以使用buffer,提高生产端or 消费端的速度
-2. 限速  
+buffer: aync 不管对方是否已经接收； 大部分情况下都可以使用buffer；
+1. 解放生产者；生产者不会被阻塞
+2. 避免可能内存泄露， unbuffer，生产者数据未被接受，则会一直被阻塞
 
 
 
