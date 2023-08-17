@@ -8,6 +8,10 @@ categories: ["Go"]
 
 [深度解密Go语言之context](https://zhuanlan.zhihu.com/p/68792989)
 
+
+
+what: go 提供的线程安全的共享信号和变量 
+
 在一定范围(1 或者多个 goroutine): 
 1.  传递值, pass value ;
 2. 传递信号, pass signal;
