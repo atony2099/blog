@@ -14,8 +14,11 @@ what: go 提供的线程安全的共享信号和变量
 
 
 相比全局变量：
-1.  可以传递信号
-2.  线程安全的 
+1.  block a group of goroutine 
+2.  thread safe
+
+
+
 
 
 ```go
