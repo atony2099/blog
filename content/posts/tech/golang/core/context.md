@@ -12,9 +12,6 @@ categories: ["Go"]
 
 what: go 提供的线程安全的共享信号和变量 
 
-在一定范围(1 或者多个 goroutine): 
-1.  传递值, pass value ;
-2. 传递信号, pass signal;
 
 相比全局变量：
 1.  可以传递信号
