@@ -70,8 +70,33 @@ ctx, cacel : =context.WithTimeout(ctx)
 
 
 ## use case
-1. 携带request-scoped  value 
-2. 使用自定义类型防止冲突
+
+多个goroutine共同完成一个任务；
+
+1. web server, pass request info: userid
+2. 并发任务，设置超时 or 提前取消
+
+```
+go func(){
+
+
+}
+
+go func(){
+	select{
+		<-ctx.done:	
+			return   
+		<-long jobChnanne
+	}
+
+}
+```
+
+1. web-server处理请求
+
+
+
+1. 使用自定义类型防止冲突
 
 ```go
 
