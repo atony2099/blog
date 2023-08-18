@@ -73,94 +73,32 @@ ctx, cacel : =context.WithTimeout(ctx)
 
 多个goroutine共同完成一个任务；
 
+
 1. web server, pass request info: userid
-2. 并发任务，设置超时 or 提前取消
-
 ```
-go func(){
+context.withValue("userID", 123 )
 
+func haneleRequest(ctx){
 
 }
 
+```
+
+2. cancel   a set of goroutine
+
+```
+
+var ctx,cacel  = contxt.withTimou(3);
+defer cancel()
 go func(){
 	select{
 		<-ctx.done:	
-			return   
+			return   incr
 		<-long jobChnanne
 	}
-
-}
-```
-
-1. web-server处理请求
-
-
-
-1. 使用自定义类型防止冲突
-
-```go
-
-type key1 string
-
-
-
-
-func stroe(ctx context){
-	var a key1 = "uid"
-	context.WithValue(context.Background(),a,"123")
-}
- 
-func handler(ctx){
-	var a key1 = "uid"
-	if id, ok := ctx.WithValue(a).(string);ok {
-			queryDB(id)
-	}
-}
-```
-
-
-2. 取消一组 goroutine   
-
-```go
-ctx.WithTimeout()
-go doWork(ctx)
-go doWork(ctx)
-
-
-
-func doWork(ctx){
-	select {
-		<-ctx.done:
-			
-		<- time.After(time.Second):
-
-	}
-}
-
-
-
-
-
-```
-
-1. 设置超时时间
-```
-
-func longrequest(){
-
-	select{
-		<-ctx.Done()
-		<- longRunTaskChannel
-	
-		
-	}
 }
 
 ```
-
-
-
-
 
 
 
@@ -168,43 +106,38 @@ func longrequest(){
 
 
 ## how it works
-### value:
-1. 使用组合继承父类属性；
-2. 递归查询 
-3.  immutable context 确保线程安全
+
+contxt value: 
+使用不可变值确保线程安全 
 ```go
-	type valueCtx struct {
-		Context
-		key, val any
+type struct{
+	parent Contxt
+	key, value any
+} 
+WithValue(ctx, key,value) Context:
+	newCtx = struct{parent:ctx, key:key,value:value }
+	return newCtx 
+	 
+
+func (c *valueCtx) Value(key interface{}) interface{} {
+
+	if c.key == key {
+		return c.val
 	}
-    
-
-   func WithValue(parent Context, key, val any) Context {
-	if parent == nil {
-		panic("cannot create context from nil parent")
-	}
-	if key == nil {
-		panic("nil key")
-	}
-	if !reflectlite.TypeOf(key).Comparable() {
-		panic("key is not comparable")
-	}
-	
-	// create a new valueCtx
-	return &valueCtx{parent, key, val}
-    }
-
-
-    func (c *valueCtx) Value(key interface{}) interface{} {
-
-	    if c.key == key {
-		    return c.val
-	    }
-	    return c.Context.Value(key)
-    }
-
+	return c.Context.Value(key)
+}
 ```
 
+
+cancel  ctx:
+
+```
+ctx:
+	do
+
+ctx.Done():
+	return  ctx.done  
+```
 
 ### cancel  signal 
 使用 close(chan)
