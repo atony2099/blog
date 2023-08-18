@@ -133,7 +133,8 @@ cancel  ctx:
 
 ```
 ctx:
-	do
+	chan done;
+	
 
 ctx.Done():
 	return  ctx.done  
@@ -141,6 +142,10 @@ ctx.Done():
 
 ### cancel  signal 
 使用 close(chan)
+
+
+
+
 ```go
 type cancelCtx struct {
 	Context
