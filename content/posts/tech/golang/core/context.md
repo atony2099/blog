@@ -129,11 +129,19 @@ func (c *valueCtx) Value(key interface{}) interface{} {
 ```
 
 
-cancel  ctx:
-
+cancel  ctx
 ```
+
 ctx:
-	chan done;
+	cancelChannel
+
+
+Done:
+	return ctx.cancelChanel
+
+cancel:
+	close(ctx.channel)
+	 
 	
 
 ctx.Done():
@@ -141,8 +149,6 @@ ctx.Done():
 ```
 
 ### cancel  signal 
-使用 close(chan)
-
 
 
 

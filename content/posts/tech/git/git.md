@@ -362,9 +362,21 @@ git restore --staged *
 
 ```
 
+head~n or head^^^^...: move back to nth commit in current branch 
+head^n: move to nth parent of current merge, use for merge commit
+
+```shell
+    A - B - C feature
+   /          \
+D - E - F - G - M main (HEAD)
 
 
+head: m
+head^: first paret of current merge:  G
+head^2: 2th parent of current merge:   c 
 
+head~2: F 
+```
 
 ## git commit
 

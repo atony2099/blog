@@ -77,9 +77,10 @@ go  is pass by value:
 
 ### type convert
 
-type  assertion:  获取 type 的真实类型
+type  assertion:  获取 infefac 的真实类型
 ```
-
+var a interface{} = 100
+value,ok := a.(int)
 ```
 
 
