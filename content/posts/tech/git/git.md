@@ -127,8 +127,6 @@ git diff:
 
 
 
-
-
 1. git status : show  status change
 2. git diff:  git diff one  two -- [path]
 
