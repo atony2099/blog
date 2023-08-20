@@ -427,6 +427,7 @@ go func:
 
 ## buffer channel 
 
+
 buffer: send/receive  are    non-blocking unless full  or   empty                  
 un-buffer: send/receive are blocking 
 
@@ -437,8 +438,32 @@ use case:
 2.  传递一系列重要信息，确保每个信息对方都收到
 
 buffer: aync 不管对方是否已经接收； 大部分情况下都可以使用buffer；
-1. 解放生产者；生产者不会被阻塞
-2. 避免可能内存泄露， unbuffer，生产者数据未被接受，则会一直被阻塞
+1. 生产者不阻塞 
+	1. 解放生产者，让生产者继续做其他事情 
+	2. 避免潜在的消息丢失， 一些生产者为了减少阻塞，从而更快响应更重要的事件，会放弃消息
+
+```go
+func sendLog(logC chan string, w *sync.WaitGroup) {
+	defer w.Done()
+	select {
+	case logC <- "hello":
+		fmt.Println("log file is empty")
+	case <-time.After(time.Millisecond * 100):
+		fmt.Println("abort log data")
+	}
+}
+func mockWriteToDisk(logC <-chan string) {
+	for v := range logC {
+		// mock write to disk operation
+		time.Sleep(time.Second)
+		fmt.Println("write to disk: ", v)
+	}
+}
+
+```
+
+
+1. 避免可能内存泄露， unbuffer，生产者数据未被接受，则会一直被阻塞
 
 
 

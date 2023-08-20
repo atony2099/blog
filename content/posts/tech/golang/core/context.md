@@ -129,11 +129,11 @@ func (c *valueCtx) Value(key interface{}) interface{} {
 ```
 
 
-cancel  ctx
-```
-
+cancel ctx: by close empty channel 
+```bash
 ctx:
 	cancelChannel
+	[]childCtx
 
 
 Done:
@@ -141,11 +141,10 @@ Done:
 
 cancel:
 	close(ctx.channel)
+	for child range  childCtx:
+		close(child.cancelChanel)
 	 
 	
-
-ctx.Done():
-	return  ctx.done  
 ```
 
 ### cancel  signal 

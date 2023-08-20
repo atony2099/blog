@@ -9,6 +9,10 @@ draft: false
 ## basic
 
 
+[Open Go 100 Days Code](file:///Users/tony/code/go100days/buffer/20230820.go)
+
+
+
 1. backslash 1
    for shell command, \(newline) represent a same line
 
