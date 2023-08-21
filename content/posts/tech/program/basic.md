@@ -24,12 +24,18 @@ result:
 
 ##  backpressure 
 
-what: 
+what: 数据收到阻力不能正常流通; 
+reason: 消费端无法及时消费
 
-危害
+危害:
+1. 拖累生产端速度:  被阻塞在发送，不能及时响应其他请求
+2. 
 
 如何解决:
-
+1. 控制生产端的速度
+2. 增加buffer
+3. in producer, drop data:
+	1. 
 
 
 
