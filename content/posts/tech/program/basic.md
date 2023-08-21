@@ -22,6 +22,20 @@ result:
 2.   data corruption
 
 
-## date
+##  backpressure 
+
+what: 
+
+危害
+
+如何解决:
+
+
+
+
+
+
+
+
 
 
