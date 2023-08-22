@@ -135,15 +135,18 @@ ctx:
 	cancelChannel
 	[]childCtx
 
-
 Done:
 	return ctx.cancelChanel
 
 cancel:
 	close(ctx.channel)
 	for child range  childCtx:
-		close(child.cancelChanel)
-	 
+		child.cancel
+
+withCancel:
+	return func(){
+		cancel()
+	}
 	
 ```
 
