@@ -10,6 +10,14 @@ categories: ["Go"]
 
 
 
+
+
+context:  cancel a batch of g; pass value to  specify-scoped of g;
+channel： share data between g
+select： receive/send data from/to mutiple channel;
+>  cancel or pass data;
+
+
 what: go 提供的线程安全的共享信号和变量 
 
 
@@ -68,8 +76,6 @@ ctx, cacel : =context.WithTimeout(ctx)
 
 ## use case
 
-多个goroutine共同完成一个任务；
-
 
 1. web server, pass request info: userid
 ```
@@ -81,19 +87,19 @@ func haneleRequest(ctx){
 
 ```
 
-2. cancel   a set of goroutine
-
+2. cancel   a set of goroutine,  a long request g usually have a context to exit in early
 ```
-
-var ctx,cacel  = contxt.withTimou(3);
-defer cancel()
-go func(){
+// request 
+func httpRequest(ctx,url):
+	go dolong(chan,url)
 	select{
-		<-ctx.done:	
-			return   incr
-		<-long jobChnanne
+		resp := <-chan:
+				return resp	
+		<-ctx.done
+			return err
 	}
-}
+
+
 
 ```
 
@@ -146,9 +152,6 @@ withCancel:
 	}
 	
 ```
-
-### cancel  signal 
-
 
 
 ```go
@@ -247,8 +250,6 @@ select {
 	<-cancel.Done():
 	return
 	resut := <- request():
-	
-
 }
 
 
@@ -262,6 +263,8 @@ select {
 }
 
 ```
+
+
 
 
 how:
