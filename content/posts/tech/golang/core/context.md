@@ -18,9 +18,6 @@ what: go 提供的线程安全的共享信号和变量
 2.  thread safe
 
 
-
-
-
 ```go
 type Context interface {
     Done() <-chan struct{} // return a will be be closed channel;
