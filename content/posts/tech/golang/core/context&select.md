@@ -234,16 +234,15 @@ func (c *cancelCtx) cancel(removeFromParent bool, err, cause error){
 
 
 ## select 
-
-what: wait a group of g, 
-1. 批量等待channel
-2. 同时监听多个channel 
-
-
-
 use case:
-1. 需要提前退出 
-2. 多个 g
+1. cancel long job 
+```
+select{
+	<-ctx.Done()
+	<- 
+}
+```
+1. 多个 g
 
 ```go
 select {
