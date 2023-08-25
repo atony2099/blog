@@ -11,7 +11,40 @@ categories: ["linux"]
 
 secure shell: 加密网络协议
 
+algorithm types:
+1. RSA:
+	1. -b: length 1024 to 8192 bits 
+2. ED25519:  
+	1. -a:  生成密钥函数的论数，论数越高，加密性越好
 
+
+
+```shell
+ssh-keygen -t [types] -C comment
+
+ssh-keygen -t rsa -b 4096
+
+ssh-keygen -t ed25519 -a 100
+
+```
+
+
+
+the structure
+
+```shell
+ssh-ed25519  # types 
+
+AAAAC3NzaC1lZDI1NTE5AAAAIGZz3nOSfZv3bNtM1x+K5KfBdHJwaYGR0gR7x4HhF6Th user@hostname #pubic key
+
+user@host  #public key, can change at will 
+```
+
+comment example:
+```
+alice@workstation
+alice@workstation-alice.smith@email.com
+```
 ## how it work
 
 1. Negotiating: get the session key 
@@ -24,3 +57,6 @@ secure shell: 加密网络协议
         1. client: public key encrypt, server  decrypt
    2. ssh key paris:
       1. server encrypt data with public key,client decrypt the data with its private key;
+
+
+
