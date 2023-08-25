@@ -283,7 +283,10 @@ fmt.Println("now is cloese")
 ```
 
 
-## concurrency  types
+## concurrency  program 
+
+
+
 
  1. parallel workers(share data):   do task at  one  thread 
  
