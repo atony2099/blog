@@ -239,48 +239,42 @@ use case:
 ```
 select{
 	<-ctx.Done()
-	<- 
+	<- longJob
 }
 ```
-1. 多个 g
+1. 并发执行不同类型的任务
 
-```go
-select {
-	<-cancel.Done():
-	return
-	resut := <- request():
-}
-
-
-
-// wait mutiple g 
-select {
-
-	<-channe1:
-	<- channel2
-
-}
+```
+for i =0; i <= 2; i++:
+	select{
+		 <- querySql
+		 <- requestApi
+	}
 
 ```
 
+1. 同一个类型任务 错误、正确
+```
+for i =0; i <= 2; i++:
+	select{
+		 <- querySqlChan
+		 <- querySqlErrorChan
+	}
+
+```
 
 
 
-how:
 
-1. 随机遍历所有channel, 选择一个可以 读写
-2. 
+### how
 
-1.  sleep current g:
-2.  
+```bash
 
+select:
+    if any channle read/write able == true 
+	  random select a  channle to read/write
+    add current g to all channle's read/write queue, gopark until be ready:
+	    select
 
-
-2. how:
-    
-    1.  check channel is readable/writeable == YES: 
-        select random one, read data;
-    2. addCurrentG to all channel queue, gopak currentG;
-
-    3. beReadyBy one Channel, pop from all channel;
+```
 
