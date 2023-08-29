@@ -209,43 +209,56 @@ HEAD: point currrent  branch;
 cat .git/HEAD
 ```
 
-### 2. tag
+###  tag/commit/branch
 
-also is a alias of commit
+commit: 提交的节点；
 
-1. tag basic operation?
+tag: 某个commit的alias;
 
-   ```
-   git branch
-   ```
+branch:  包含一组提交，branch pointer  指向这组提交的头部；
+```
+A -  B ---D------F   branch main
+      \         /
+       C---- E  branch(A)
 
-2. tag vs  branch?
+branch main:  a,b,d,f
+branch A: a, b c e;
+```
 
-1. both alias of a commit, point to a commit;
+commit 与他的 first  parent commits 构成 branch his
+1. branch start: 创建branch 的起始commit
+2. branch header: 当前最新的commit, 自动更新
 
-2. diff:
+### fast-forward 
 
-      branch will change as  a new commit is commited;  tag always point to a commit;
+![XdgK0w7G6IqI](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230729/XdgK0w7G6IqI.png)
 
-   > in practice, tag is as software version
 
-### 1. what's  branch acutally is？
+fast-forward merge:
+在原分支没有 新的commit时候，
+1. 原分支将branch head 指向被合并分支的最新的commit, 
+2. 被合并的分支的commit 成为原分支历史 commit的一部分
 
-a branch is a pointer to specify commit; git merege just move the point the the specify commit;
+plain merge  :
+在原分支没有 新的commit时候，
+1. 原分支创建一个新的commit, 该commit 包含被合并分支的所有改动
+2. 被合并的分支的commit 不成为原分支历史commit的一部分
 
-1. fast-forward
-![](https://wac-cdn.atlassian.com/dam/jcr:b87df050-2a3a-4f17-bb80-43c5217b4947/07%20(1).svg?cdnVersion=1607)
-
-2. 3-way merge: generate a new commit
-
-![](https://wac-cdn.atlassian.com/dam/jcr:91b1bdf5-fda3-4d20-b108-0bb9eea402b2/08.svg?cdnVersion=1607)
-
-### 2. branch operation
-
-```shell
-git branch develop  master # create a branch from master
 
 ```
+A - B - C        (master)
+         \
+          D - E  (feature)
+
+
+A - B - C - D - E
+
+A - B - C -------F 
+		 \      /
+		  D - E 
+
+```
+
 
 
 
@@ -329,7 +342,7 @@ git merge --no-ff
 1. create a commit : 方便查询和回退
 
 
-![XdgK0w7G6IqI](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230729/XdgK0w7G6IqI.png)
+
 
 
 
