@@ -9,7 +9,35 @@ tags: [""]
 
 types:
 1.  share,  并行的；
-2.  no share,   线性的
+1.  no share,   线性的
+
+线性:
+1. csp modal
+
+csp modal: 
+1. 使用channel 共享数据
+
+how to  use csp program:
+
+1.  mutiple producer and one consumer 
+```
+chan 
+go func:
+	...
+	chan<-data
+	
+go func:
+	chan<-data
 
 
-线性:  csp
+
+consumer func:
+	for range  chan:
+		 data += <-chan
+
+
+
+
+```
+
+
