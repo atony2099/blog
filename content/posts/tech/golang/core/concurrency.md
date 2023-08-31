@@ -17,7 +17,27 @@ types:
 csp modal: 
 1. 使用channel 共享数据
 
+
+the key pointer in  csp program:  
+1. avoid consumer  leak
+1. close producer
+2. consumer 手动计数 
+
+1. close channel
+```
+go func:
+go func:
+
+```
+
+1. avoid  channel leak   
+```
+
+
+```
+
 how to  use csp program:
+
 
 1.  mutiple producer and one consumer 
 ```
