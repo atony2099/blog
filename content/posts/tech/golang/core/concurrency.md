@@ -6,40 +6,57 @@ categories: ["core"]
 tags: [""]
 ---
 
+concurrency types:
+1.  share:  并行处理数据， 使用locker 共享数据
+1.  no share:  线性的处理数据，使用channel  共享数据 
 
-types:
-1.  share,  并行的；
-1.  no share,   线性的
-
-线性:
-1. csp modal
-
-csp modal: 
-1. 使用channel 共享数据
 
 
 the key pointer in  csp program:  
 1. avoid consumer  leak
-1. close producer
-2. consumer 手动计数 
+	1. close producer
+	2. consumer 手动计数 
+```go
 
-1. close channel
-```
+// close channel.
+channel
+wait+=2
 go func:
+ defer wait.done
+ channel<-1
+	
 go func:
+  defer wait.done
+  channel<-1
+go func()
+	wait.wait
+	close(channel )
+
+for range channe:
+	
+
+
+// 手动计数
+for  i<=2:
+	<-channel
+
+
+```
+1. avoid producer leak: set channel buffer
+```go
+channel = make(chan int,  producerCount)
+for i<=producerCount:
+	go func:  channel<-data
 
 ```
 
-1. avoid  channel leak   
-```
+
+how to   use csp  in concurrency program:
+1. 数据线性流通，从producer 流向consumr
+2. producer 可以并发获取数据，consumer处理数据，一般一个goroutine，不并发
 
 
-```
-
-how to  use csp program:
-
-
-1.  mutiple producer and one consumer 
+1.  mutiple producer and one consumer
 ```
 chan 
 go func:
@@ -48,7 +65,6 @@ go func:
 	
 go func:
 	chan<-data
-
 
 
 consumer func:
@@ -60,4 +76,7 @@ consumer func:
 
 ```
 
+1.  one producer->mutiple consumer->
+```
 
+```
