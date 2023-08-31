@@ -286,8 +286,6 @@ fmt.Println("now is cloese")
 ## concurrency  program 
 
 
-
-
  1. parallel workers(share data):   do task at  one  thread 
  
 ![W1S4xz](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20220208/W1S4xz.jpg)
