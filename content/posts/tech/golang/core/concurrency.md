@@ -46,7 +46,7 @@ for  i<=2:
 ```go
 channel = make(chan int,  producerCount)
 for i<=producerCount:
-	go func:  channel<-data
+	go func:  channel<-datxa
 
 ```
 
