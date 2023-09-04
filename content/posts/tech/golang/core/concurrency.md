@@ -10,8 +10,6 @@ concurrency types:
 1.  share:  并行处理数据， 使用locker 共享数据
 1.  no share:  线性的处理数据，使用channel  共享数据 
 
-
-
 the key pointer in  csp program:  
 1. avoid consumer  leak
 	1. close producer
