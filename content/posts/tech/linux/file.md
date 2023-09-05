@@ -138,10 +138,6 @@ hard link:  增加了文件的innode引用数，新文件的内容就是innode, 
 
 
 
-
-
-
-
 ### disk vs sockets
 
 

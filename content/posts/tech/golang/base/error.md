@@ -8,6 +8,65 @@ tags: ["error"]
 draft: false
 ---
 
+
+how go handle error:
+```go
+f, err := os.OpenFile("test1.txt", os.O_RDONLY, 0666)
+
+if err != nil {
+
+fmt.Println("open file error")
+
+}
+
+
+defer f.Close()
+
+
+type errorString struct {
+	s string
+}
+func (e *errorString) Error() string {
+	return e.s
+}
+```
+
+erorr in go:  
+1. 只包含简单的错误信息, 
+2. 捕获: 通过 if 判断, 一个一个处理
+
+error in another language:
+1. 包含堆栈信息，错误信息
+2. 捕获: 通过try...catch，批量处理
+
+why go different with other language:
+1. try..catch批量处理可能产生bug
+```
+try {
+	inertA()
+	insertB()
+	insertC()
+} catch {
+	print(insert error)
+}
+
+1. insertA() erorr,print 
+2. insertB() error, rollback InsertA,then print 
+```
+
+
+the error  problem in go:
+1. 在某些场景下需要统一处理(如 print)会显得过于冗余
+2. 无法h
+
+
+
+
+
+
+
+
+
 error type:
 
 1. exception
