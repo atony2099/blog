@@ -131,12 +131,13 @@ struct inode {
 
 ###  hard link and symbolic link
 
-soft linker:  创建一个新的别名
-hard linker: 增加文件的引用数
+![5yZgGRJTAh6H](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230905/5yZgGRJTAh6H.png)
 
-![ardyTlABONCY](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230701/ardyTlABONCY.jpg)
+soft link:  类似windows快捷方式，新文件的内容是指向原文件,原文件删除，新文件不可用
+hard link:  增加了文件的innode引用数，新文件的内容就是innode, 原文件删除，新文件继续可用
 
-![pJr6hkcgqwU9](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230701/pJr6hkcgqwU9.jpg)
+
+
 
 
 
