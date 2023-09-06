@@ -438,3 +438,14 @@ Closes #789
 
 ```
 
+
+
+## git basic operation
+
+untrack  some file:
+
+```
+git rm --cached  a.txt  // remvoe from  stage, then it become untrack
+
+.gitignore a.txt // ignore it  
+```

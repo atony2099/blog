@@ -8,6 +8,11 @@ tags: ["error"]
 draft: false
 ---
 
+[Effective Error Handling in Golang - Earthly Blog - https://earthly.dev/blog/golang-errors/](https://earthly.dev/blog/golang-errors/)
+[Golang Error Handling — Best Practice in 2020 | by Che Dan | ITNEXT - https://itnext.io/golang-error-handling-best-practice-a36f47b0b94c](https://itnext.io/golang-error-handling-best-practice-a36f47b0b94c)
+
+
+## error handle
 
 how go handle error:
 ```go
@@ -54,11 +59,21 @@ try {
 2. insertB() error, rollback InsertA,then print 
 ```
 
+1. go 鼓励开发者面对每个error，解决每个错误，越简单越明确越不容易产生bug
+
+
+什么是好的 错误信息机制 :
+1. 及时明确: 发现错误，立即处理
+2. 错误信息越丰富越好
+3. 能识别不同错误类型，做不同的处理
 
 the error  problem in go:
-1. 在某些场景下需要统一处理(如 print)会显得过于冗余
 
-1. 无法获得调用链路
+1. 无法获得完整调用链路: 使用 `fmt.Errorf("some thing error %v",errr)`
+	1. 每一层都加信息，至少添加function名， 完整链路
+2.  层级较深的调用， 在上层需要根据底层错误做不同响应: 使用  
+1. 过多重复的处理，如每次error 都 print.  解决: 重复 的log 就在顶层做统一处理
+
 
 
 
@@ -88,7 +103,7 @@ func Is(err,err2) {
 }
 
 
-// convert the err to 
+//  check err is  type of something 
 var p *Error
 func As(err,&p){
 	value, ok := err.(p.Tye);
@@ -103,103 +118,3 @@ func As(err,&p){
 
 
 
-## go error 
-best practice
-1. check the error at first
-2. 
-
-
-
-
-
-
-
-
-
-error type:
-
-1. exception
-2. return param
- 1. code: -1 ,
- 2. result:   null
- 3. error type
-
-exception:
-prons:
-
-1. 可以打印出堆栈
-2. 可以统一处
-
-cons:
-错误被统一处理，可能导致潜在bug
-
-go:  error type
-
-```
-
-
-type error interface{
- Error() string
-}
-
-
-result, err = doSth(...)
-if err != nil: 
-```
-
-return parameter:
-prons:
-
-1. 一对一处理错误，避免bug
-cons:
-1. 繁琐， 每个方法都要check一下，  无法统一处理
-
-example:  
-creatIndex 失败, 但没有回退之前操作
-
-  ```js
-     try{
-       let db = CreateDB("db") 
-       let table = db.CreateTable("user") 
-       let index = table.CreateIndex("user_index")
-      }catch(err){
-        console.log("unexpected error:",err)
-    
-      }
- 
-  ```
-
-强制开发一对一处理错误
-
- ```c
-       mysqlDB *db = CreateDB("db") 
-       if (db== null){
-          print("create db fail")
-          return 
-       }
-       mysqlIndex *table = db.CreateTable("user") 
-       if (table== null){
-            print("create table fail")
-            deleteDB(db) 
-       }
-       mysqlIndex *index = table.CreateIndex("user_index")
-
-       if (index== null){
-           print("create index fail")
-       }  
- ```
-
-## wrap
-
-what:
-add extra into to a error
-
-```go
-var notFound = errors.New("not found")
-err := fmt.Errorf("%w, so bad ", not)
-
-
-if errors.Is(err,not found){
- .....
-}
-```
