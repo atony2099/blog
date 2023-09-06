@@ -57,7 +57,7 @@ try {
 
 the error  problem in go:
 1. 在某些场景下需要统一处理(如 print)会显得过于冗余
-2. 无法h
+2. 无法获得堆栈信息
 
 
 
