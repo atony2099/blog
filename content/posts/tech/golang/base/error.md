@@ -57,7 +57,49 @@ try {
 
 the error  problem in go:
 1. 在某些场景下需要统一处理(如 print)会显得过于冗余
-2. 无法获得堆栈信息
+2. 无法获得调用链路
+
+
+
+
+
+
+## wrap
+
+wrap: 在丰富错误信息的可以保留原始的error, 从而获取完整调用链路
+```
+type wrapError struct {
+	msg string
+	err error
+}
+
+func wrap(msg string,  err error) error {
+	return   wrapError{
+		msg:  msg + err.Error,
+		err : err
+	}
+}
+
+func (w *wrapErrro)Unwrap() error{
+		return w.err
+}
+
+
+func Is(err,err2) {
+	
+}
+
+
+func As(error )
+
+
+
+
+```
+
+
+
+
 
 
 
