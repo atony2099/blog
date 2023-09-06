@@ -57,17 +57,15 @@ try {
 
 the error  problem in go:
 1. 在某些场景下需要统一处理(如 print)会显得过于冗余
-2. 无法获得调用链路
 
-
-
+1. 无法获得调用链路
 
 
 
 ## wrap
 
 wrap: 在丰富错误信息的可以保留原始的error, 从而获取完整调用链路
-```
+```go
 type wrapError struct {
 	msg string
 	err error
@@ -90,16 +88,25 @@ func Is(err,err2) {
 }
 
 
-func As(error )
-
-
-
+// convert the err to 
+var p *Error
+func As(err,&p){
+	value, ok := err.(p.Tye);
+	if ok:
+		return value
+	else
+		return As(err.err, &p)
+}
 
 ```
 
 
 
 
+## go error 
+best practice
+1. check the error at first
+2. 
 
 
 
