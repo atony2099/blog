@@ -8,4 +8,12 @@ tags: [""]
 
 ## sql migrate
 
+scheaml migrate version control: 记录schema 的状态变化
 
+```
+up: create table A
+down: drop table 
+
+```
+
+也可能包含数据的变化：
