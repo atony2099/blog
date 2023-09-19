@@ -6,6 +6,7 @@ categories: ["nat"]
 ---
 
 
+[专有网络VPC的视频简介和组成_专有网络 VPC-阿里云帮助中心 - https://help.aliyun.com/zh/vpc/product-overview/what-is-a-vpc](https://help.aliyun.com/zh/vpc/product-overview/what-is-a-vpc)
 ## switch vs  router
 
 1. switch
@@ -35,3 +36,14 @@ dnat: translate destination ip ;
 
 
 
+
+
+## 可用区
+可用区：同一地区的不同的地方
+
+同一地域的不同可用区内网互联
+![xMv0ewUcE9Ol](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230919/xMv0ewUcE9Ol.png)
+
+
+
+![o0mG38yqYNLw](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230919/o0mG38yqYNLw.png)
