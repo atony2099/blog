@@ -133,3 +133,13 @@ handle(){
 }
 
 ```
+
+
+## nacos config
+
+
+1. configure auth：
+2. 
+
+
+1. NACOS_AUTH_ENABLE
