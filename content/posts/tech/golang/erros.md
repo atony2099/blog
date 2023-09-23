@@ -9,14 +9,22 @@ tags: ["error"]
 
 - [x] 是什么？
 	- [x] what
-	- [ ] vs other
-- [ ] 如何处理
-- [ ] 最贱实践
-	- [ ] 获取
+	- [x] vs other
+	- [ ] sential error 
+- [ ] 什么是好的错误处理，以及如何  
+	- [ ] 
 
 
 
-- [ ] 业务开发中的错误处理
+- [x] 基础概念
+	- [x] 是什么？
+	- [ ] vs other? feature 
+
+- [ ]  最佳实践
+	- [ ] 要求 
+	- [ ] 如何做
+
+
 
 
 
@@ -35,48 +43,61 @@ func (e *errorString)Error()string {
 }
 
 
+type  error interfeace {
+	Error() string 
+}
+
 ```
+a string, 返回最基本的信息； 
 
 
-what: 只是一个简单的string；信息太简单 
+
+error type:
+
+1.  作为返回值
+2.  作为 try....catch 一部分, 编译器参与 
+
+
 
 vs  try...catch:
+pros:
 1. 无法批量处理：打断业务流程
 2. 原始错误只有一种类型， 不好分类处理
 3.  无法打印出堆栈 
+4. 开发者，繁琐 
 
-## 业务开发的问题 如何解决 
+cons:
+1. 迫使开发者处理每一个错误，避免统一处理产生的bug
+## best practice
 
-
-1. 清晰获取完整的错误链路
-2. 获取根本原因: root errror
-
-
-错误处理的基本原则；
-1. a error should be hanle onece
-
-
-
-1.  获取完整的调用链路；
-2.  
+什么是好的错误处理 
+1. 获取完整调用链路，
+2.  获得原始的错误类型  
+3. 减少开发记录成本 
 
 
-
-1. 打印太多 error, 难以查看
-2. 获取详细的调用链路
-3. 无法获取根本的原因
-    
-
+如何做:
+1. 使用 fmt.Errorf("xxx%w",err)，向上抛出错误,并注入本function 的信息  
+2. 只在最顶层做打印  
+3. 使用 error.is error as获取 原始的信息 
 
 
-
-
-1. 得到完整的调用链路: 使用逻辑 
-```
-fmt.Errorf("handle error:")
 ```
 
+func queryDB()error{
+	return errors.New("db error")
+}
 
-2. 处理不同类型错误 
 
+func query() eror{
+  err := queryDB(); err != nil{
+	 return fmt.Errof("query error; cause:%"w)
+  }
+}
 
+func main(){
+	errr:= query();
+	fmt.Println(error)
+}
+
+```
