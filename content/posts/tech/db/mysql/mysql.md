@@ -1201,3 +1201,21 @@ insert: convert time to beijing locaiton time string, then insert  it
 select:  Interpret the time string from the database as being in Beijing's time zone.
 
 
+
+
+
+## null in sql  
+
+the cons   of use null
+性能开销
+1. 增加存储空间,需要使用 额外一个bit 记录是否为null，但是使用非null默认值如0, "",占用空间反而更大
+2. 索引失效: 并不会使得索引失效
+
+使用开销: 开发者需要额外使用 is null, not null 判断有null 的column
+
+the pros :
+在表示一些 确实没有 的数据， 如邮箱， 号码， 直接使用null 会比使用默认值更容易理解；
+
+
+结论:
+如果业务中确实存在一些
