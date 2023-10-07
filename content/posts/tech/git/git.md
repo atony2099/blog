@@ -170,7 +170,7 @@ show the commit  log
    2. --graph: graphical representaton;
    3. --decorate[=short|full|auto|no]: howt to print the ref  names
 
-## branch
+## branch/commit/ tag
 
 ###  how commit  work
 
@@ -182,13 +182,8 @@ every commit store in git datebase: .git/objects;
 
 
 
-### git reference
 
-a alias of commit;
-
-Contain  branch and tag
-
-### 1. Git branch(refers)
+###  Git branch(refers)
 ![data-model-4.png](https://git-scm.com/book/en/v2/images/data-model-4.png)
 ![](https://git-scm.com/book/en/v2/images/data-model-4.png)
 
@@ -210,7 +205,7 @@ cat .git/HEAD
 
 commit: 提交的节点；
 
-tag: 某个commit的alias;
+tag: 某个commit的alias
 
 branch:  包含一组提交，branch pointer  指向这组提交的头部；
 ```
@@ -222,9 +217,29 @@ branch main:  a,b,d,f
 branch A: a, b c e;
 ```
 
-commit 与他的 first  parent commits 构成 branch his
+commit 与他的 first  parent commits 构成 branch
 1. branch start: 创建branch 的起始commit
 2. branch header: 当前最新的commit, 自动更新
+
+
+### tag
+
+what: commit的别称, 通常指向的是某个具有意义的commit，如准备上线的commit
+pros: 更方便进行管理， 可以基于容易识别的tag进行查询，回滚等操作
+
+
+```bash
+git tag v1.0.0
+git tag # list all tag 
+
+#tag需要独立push
+git push origin v1.0.0
+git push origin --tags 
+```
+
+
+
+
 
 ### fast-forward 
 
@@ -327,19 +342,6 @@ git merge  origin/dev
 
 
 
-## git workflow
-
-
-### no-ff
-
-```bash
-git merge --no-ff
-```
-
-1. create a commit : 方便查询和回退
-
-
-
 
 
 
@@ -388,7 +390,7 @@ head^2: 2th parent of current merge:   c
 head~2: F 
 ```
 
-## git commit
+## commit msg
 
 parameter:
 1. -a:   stage all tracked file
@@ -437,17 +439,4 @@ Closes #789
 
 
 
-## git basic operation
-
-untrack  some file:
-
-```
-git rm --cached  a.txt  // remvoe from  stage, then it become untrack
-
-.gitignore a.txt // ignore it  
-```
-
-
-
-## git tag
 
