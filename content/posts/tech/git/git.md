@@ -45,7 +45,6 @@ working tree is clean:    working stage and repo 完全同步
 
 
 
-
 ## command list
 
 git clean: remove untracked file
@@ -117,8 +116,6 @@ git config --global  user.name atony2099
 git status 
 git diff  [head|commit|branch] -- file # compare working with some commit 
 git diff  [commit|branch|] [second] -- file 
-
-
 
 
 ```
@@ -449,3 +446,8 @@ git rm --cached  a.txt  // remvoe from  stage, then it become untrack
 
 .gitignore a.txt // ignore it  
 ```
+
+
+
+## git tag
+
