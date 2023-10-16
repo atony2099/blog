@@ -312,3 +312,24 @@ CREATE TABLE  XXX(
 )
 
 ```
+
+
+
+
+## preload
+
+what: 
+1. 加载与我们要查询的表以及有关联表的所有数据
+2. 不适用join,而是使用多次查询
+
+```
+user:
+	order
+
+
+select uids from user
+select order where order.uid in uids
+
+
+```
+
