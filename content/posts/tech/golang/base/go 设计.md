@@ -1,5 +1,5 @@
 ---
-title: go directory
+title: go architecture
 date: 2023-10-28T10:51:02+08:00
 lastmod: 2023-10-28T10:51:02+08:00
 categories:
@@ -14,14 +14,15 @@ tags:
 [How to Keep Your Code Clean With Object Encapsulation](https://www.makeuseof.com/how-to-keep-your-code-clean-with-object-encapsulation/)
 
 
-
 ## opp solid 
 是一系列最佳实践总结的规则， 遵守这些规则能写出
 容易维护，容易测试，容易阅读的代码 
 
-### single reason 
+### single responsibility 
 
 1. 一个class/对象只负责某方面的事情， 只有一个原因会导致代码变化
+why: 
+1. 
 
 ```bash
 userRepoClass:
@@ -33,20 +34,45 @@ userRepoClass:
 
 
 ### Dependency Inversion
-依赖导致
-1. 对象之前
+依赖反转： 
+1. 上层和下层都不要直接依赖，而是依赖一个中间层
+2. 不要依赖具体对象，而是依赖于接口；
+why： 减少其他组件改变对现有组件的影响 
+
+
+```
+type Bussiness  struct {
+	repo reponInterface
+}
+
+var buss Bussiness{};
+
+buss.repo.dosth;
+
+```
+
+
+###  open-close
+
+what: 添加新功能不需要修改原有的代码；鼓励使用接口连接各个部件；
+
+
+###  The Liskov Substitution Principle
+
+what: 子类能够替换任意替换父类，强调子类不能改变父类的行为；  
 
 
 
-1. Dependency Inversion: 依赖接口/抽象类，不依赖具体对象；
-    1. normal:  up => Low;
-    2. inversion: up-> interfaca <- low
-2. The Interface Segregation Principle: 不同接口类型分开；
-3. open-close;
-4. The Liskov Substitution Principle
 
 
-inheritance vs composition: 
+
+
+
+
+
+
+
+## inheritance vs composition: 
 1. inherit: a is b;  a is bird
 2. composition: a has {b1,b2..| b is interface or  someType }; a have bird feature(fly,shout) 
    ```java 
@@ -104,13 +130,6 @@ why inherit is bad:  get all from parent, 与父类过度耦合
 2. 继承过多:  父类方法属性对子类不需要；   我们对于需求无法预知；
 
 composition: 按需获取，需要什么属性方法就再加入；
-
-
-
-
-
-
-
 
 
 
