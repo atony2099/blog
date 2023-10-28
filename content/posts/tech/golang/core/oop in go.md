@@ -9,7 +9,7 @@ lastmod: 2023-04-27T21:03:20+0800
 
 [Differences between Procedural and Object Oriented Programming - GeeksforGeeks ](https://www.geeksforgeeks.org/differences-between-procedural-and-object-oriented-programming/)
 
-[How to Keep Your Code Clean With Object Encapsulation](https://www.makeuseof.com/how-to-keep-your-code-clean-with-object-encapsulation/)
+
 
 [Differences between Procedural and Object Oriented Programming ](https://www.tutorialspoint.com/differences-between-procedural-and-object-oriented-programming)
 
@@ -446,46 +446,6 @@ why inherit is bad:  get all from parent, 与父类过度耦合
 2. 继承过多:  父类方法属性对子类不需要；   我们对于需求无法预知；
 
 composition: 按需获取，需要什么属性方法就再加入；
-
-
-## clean    architecture
-
-![S6j8NF](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211004/S6j8NF.jpg)
-
-![[Pasted image 20230104221801.png]]
-
-
-principle:  seperate of concern, 分离关注， 每一层只关注自己职责
-
-benefit: 
-1. 隔离变化
-2. 易复用 
-
-
-
-how: 
-1. 划分层次
-2. 依赖倒置 
-
-
-layer:
-1.  interface  adaptor:  controller, view, presenters ....
-	1. get input,  convert  to some format for   use case  
-	2. output in a specific format  
-1.  use case:   bussiness logic   
-2.   entities:  common methods for app，[ and   call repository] ?
-4.  repository,  i/o  
-	1.  call db by  sql
-	2.  call rpc 
-	3. call http 
-
-
-争议:
-entities  and repository  如何划分
-1. 只保留repository:    repository do io,  common  func 由 util 负责
-2. 只保留 entity, entity  do   i/o  and  do common func 
-3. 保留 repository  and entity,   entity调用   repository  
-
 
 
 
