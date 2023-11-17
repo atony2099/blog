@@ -228,3 +228,11 @@ entities  and repository  如何划分
 
 
 
+
+
+## high quality  code
+
+1. 易维护；
+2.  可能性强
+3. 容易测试
+
