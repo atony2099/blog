@@ -1,8 +1,10 @@
 ---
 title: prometheus
-date: "2021-07-24T12:29:45+0800"
+date: 2021-07-24T12:29:45+0800
 draft: false
-categories: ["monitor"]
+categories:
+  - monitor
+  - micro
 ---
 
 ![NZTIxB](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210725/NZTIxB.jpg)

@@ -89,7 +89,6 @@ how to implement:
 	2. decentral: consensus algorithm
 		1. raft
 
-
 ## sharing
 
 algorithm types:

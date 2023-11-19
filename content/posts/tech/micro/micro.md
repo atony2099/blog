@@ -1,8 +1,10 @@
 ---
-title: "微服务"
+title: 微服务1
 date: 2021-05-11T22:53:57+08:00
-draft: true
-tags: ["micro"]
+draft: false
+tags:
+  - micro
+categories:
 ---
 
 [7天用Go从零实现RPC框架GeeRPC](https://geektutu.com/post/geerpc.html)
@@ -10,6 +12,19 @@ tags: ["micro"]
 [一文吃透何为微服务、网关、服务发现/注册？](https://www.wangan.com/p/7fy78y5e5f98b339)
 
 [Microservices vs SOA: What’s the Difference?](https://www.talend.com/resources/microservices-vs-soa/)
+
+
+
+什么是微服务？
+
+
+
+
+
+
+
+
+
 
 
 
@@ -178,7 +193,6 @@ partition tolerance:
 
 ![](https://static.bookstack.cn/projects/micro-en/670b8a436eedffc384141814ec2504f6.png)
 provide a single public entry for you services
-1.
 
 ## implement a micro
 

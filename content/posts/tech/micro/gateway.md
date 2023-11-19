@@ -1,8 +1,10 @@
 ---
 title: 网关
-date: "2020-12-08T16:38:31+0800"
+date: 2020-12-08T16:38:31+0800
 draft: false
-tags: ["微服务","ingress "]
+tags:
+  - ingress
+  - micro
 ---
 
 [百亿流量微服务网关的设计与实现](https://www.infoq.cn/article/eee1xzeic4udpbmr*03t)
