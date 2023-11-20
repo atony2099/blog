@@ -186,6 +186,31 @@ composition: 按需获取，需要什么属性方法就再加入；
  
 
 
+
+##  layer
+controller(Presentation)层: 
+1. 参数校验 
+2. 生成相应
+
+service:
+1.  核心的业务逻辑
+
+
+db: 数据库的操作；
+
+
+
+### the basic question
+
+- [ ] 一个文件一个表？
+
+
+
+
+### 如何解决dao层臃肿
+
+
+
 ## clean    architecture
 
 ![S6j8NF](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211004/S6j8NF.jpg)
