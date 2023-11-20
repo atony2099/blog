@@ -70,8 +70,6 @@ what: 子类能够替换任意替换父类，强调子类不能改变父类的�
 
 
 
-
-
 ## inheritance vs composition: 
 1. inherit: a is b;  a is bird
 2. composition: a has {b1,b2..| b is interface or  someType }; a have bird feature(fly,shout) 
@@ -195,6 +193,13 @@ composition: 按需获取，需要什么属性方法就再加入；
 ![[Pasted image 20230104221801.png]]
 
 
+
+
+
+
+
+
+
 principle:  seperate of concern, 分离关注， 每一层只关注自己职责
 
 benefit: 
@@ -235,4 +240,8 @@ entities  and repository  如何划分
 1. 易维护；
 2.  可能性强
 3. 容易测试
+
+
+
+
 
