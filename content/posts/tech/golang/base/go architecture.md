@@ -220,11 +220,6 @@ db: 数据库的操作；
 
 
 
-
-
-
-
-
 principle:  seperate of concern, 分离关注， 每一层只关注自己职责
 
 benefit: 
