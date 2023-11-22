@@ -222,6 +222,7 @@ message HelloReq {
 }
 
 
+
 message  HelloRes  {
 	string  age int32 = 1;
 }
@@ -394,3 +395,22 @@ for {
 
    1. 处理大量报表数据:报表数据；
 
+
+
+
+## grpc serverr
+
+
+server:
+```
+grpc Server = grpc server
+
+grpcSev.listen(tcp);
+rpcHandler.register(grpcSev)
+
+```
+
+client: 
+```
+
+```
