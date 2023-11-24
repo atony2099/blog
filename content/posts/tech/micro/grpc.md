@@ -400,6 +400,9 @@ for {
 
 ## grpc serverr
 
+1. use   protoc to generate the necesssary file
+2.  generate  the   server and client;
+
 
 server:
 ```
@@ -415,3 +418,6 @@ client:
 
 
 ```
+
+
+
