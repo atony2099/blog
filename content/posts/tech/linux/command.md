@@ -294,6 +294,8 @@ cat < a.txt
 
 ### chown
 
+what: change owner 
+
 ### umask
 
 director:777 files:6666
