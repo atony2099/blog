@@ -108,3 +108,41 @@ yum list installed | less
 2. apt update vs yum update:
    apt update: only refresh local index files,not actual  update a package;
 
+
+## yum vs apt 
+
+package metadata
+1. name
+2. description
+3. download url 
+4. newVersion list
+
+
+
+the  package metedata:
+1. apt: manually , excute apt update
+2. yum: auto load 
+```
+everfy n seconds:
+	yum load info to local data
+		1. repository's version list
+		2. other info 
+```
+
+
+yum  clean cache
+```
+yum clean all
+yum makecache
+```
+
+yum install:
+1. load metadat from local 
+2. if not install, install; else, upgrader it 
+
+
+yum commad
+```
+yum installed list // list all installed 
+yum repolist 
+```
