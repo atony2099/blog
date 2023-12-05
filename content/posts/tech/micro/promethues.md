@@ -7,11 +7,18 @@ categories:
   - micro
 ---
 
+
 ![NZTIxB](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210725/NZTIxB.jpg)
+
+
+
+
+
 
 ## 1. what is ？
 
 ingest  data from exporter
+
 
 ### storage
 
