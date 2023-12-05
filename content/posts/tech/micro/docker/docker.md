@@ -53,7 +53,8 @@ differ:
 
 docker package your application and all its dependencyies((including os)) together in  a form of container so as to ensure that your application work seamlessly in any envirorment;
 
-### architecture
+###  architecture
+
 ![9eOKB6](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210713/9eOKB6.jpg)
 
 ![2QQD6g](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20211204/2QQD6g.jpg)
@@ -98,10 +99,25 @@ CMD [ "/docker-gs-ping" ]
 ```
 
 
-## docker volume
+
+
+
+
+##  docker compose 
+
+what:  
+1. 将docker run  的参数写入配置文件
+2. 同时执行 多个 
+
+
+##  docker volume
+
+what: 数据持久化 
+
+types:
+1.  docker volume: 命名 and 
 
 1. what? persiste data;
-
 2. how 
    ```c
    docker run -d \
@@ -109,6 +125,13 @@ CMD [ "/docker-gs-ping" ]
    -v nginx-vol:/usr/share/nginx/html \
    nginx:latest
   ```
+
+
+ 
+
+
+
+
 
 
 
@@ -139,8 +162,10 @@ for: aliyun.jenkins/centos:verson1.0;
     set the working directory fro any RUN,CMD,COPY and ADD instruction
 
 
-
 ## docker-compose
+
+
+
 
 
 

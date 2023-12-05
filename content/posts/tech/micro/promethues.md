@@ -11,13 +11,20 @@ categories:
 ![NZTIxB](https://cdn.jsdelivr.net/gh/atony2099/imgs@master/20210725/NZTIxB.jpg)
 
 
+- [ ] know the basic knowledage of promethueus
+- [ ] create a basic server to  monitor  redis  
+
+
+
 
 
 
 
 ## 1. what is ？
-
-ingest  data from exporter
+prometheus:
+1. prom: 主要是存储采集的数据
+2.  exporter: 采集数据
+3. grafana: 从prom 检索数据，进行展示  
 
 
 ### storage
