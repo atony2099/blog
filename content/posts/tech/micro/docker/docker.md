@@ -114,11 +114,21 @@ what:
 
 what: 数据持久化 
 
-types:
-1.  docker volume: 命名 and 
 
-1. what? persiste data;
-2. how 
+types:
+1.  docker volume: 命名 and  匿名；
+	1. docker 创建和管理， docker 有完全的权限
+	2. 可以通过 docker 命令管理   
+	3. 适合非配置的数据 
+
+
+1.  bind  mount：
+	1. 一般是用户创建的文件， docker 不一定有完全的权限 
+	2. 不可以通过docker命令管理
+	3. 适合配置类型的数据 
+
+2. what? persiste data;
+3. how 
    ```c
    docker run -d \
    --name=nginxtest \
