@@ -109,7 +109,6 @@ what:
 1. 将docker run  的参数写入配置文件
 2. 同时执行 多个 
 
-
 ##  docker volume
 
 what: 数据持久化 
@@ -138,10 +137,6 @@ types:
 
 
  
-
-
-
-
 
 
 
