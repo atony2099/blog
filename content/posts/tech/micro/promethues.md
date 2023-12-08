@@ -15,16 +15,50 @@ categories:
 - [ ] create a basic server to  monitor  redis  
 
 
-
-
-
-
-
 ## 1. what is ？
 prometheus:
 1. prom: 主要是存储采集的数据
 2.  exporter: 采集数据
-3. grafana: 从prom 检索数据，进行展示  
+3. grafana: 前端，展示数据 
+
+
+exporter:是什么
+
+1. 采集目标的数据，使用目标现有的api采集
+2. 暂存起来
+3. 转换成pomo识别的
+
+
+
+
+
+##  Time Series Data
+
+
+what: 
+1. 相比mysql,  只有 2-3 列， key, value, timestamp
+2. 数据是基于timestamp 产生的
+3. 适用于监控
+
+
+Prometheus time series  data:
+1. meteria, label: 相当于 value
+2. value 
+3. timestamp
+
+```
+- `http_requests_total{method="GET", status="200"} 1023 @ 1670000000`
+- `http_requests_total{method="POST", status="200"} 978 @ 1670000000`
+```
+
+
+
+
+
+
+
+
+
 
 
 ### storage
