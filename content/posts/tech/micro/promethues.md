@@ -22,11 +22,9 @@ prometheus:
 3. grafana: 前端，展示数据 
 
 
-exporter:是什么
-
-1. 采集目标的数据，使用目标现有的api采集
-2. 暂存起来
-3. 转换成pomo识别的
+exporter:
+1. 采集和转换数据
+2. 不存储数据，只有 metrics 调用时候才采集 和转换
 
 
 
@@ -42,7 +40,7 @@ what:
 
 
 Prometheus time series  data:
-1. meteria, label: 相当于 value
+1. meteria, label: 相当于 key 
 2. value 
 3. timestamp
 
