@@ -1230,5 +1230,12 @@ what's decimal;
 how:
 
 
-##  
 
+## design   db 
+
+
+1. 确定需要哪些实体
+	1. 实体属性
+	2. 主键
+2.  确定实体关系
+	1.  1v1，1vs多，manyt
