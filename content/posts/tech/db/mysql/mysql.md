@@ -1017,21 +1017,6 @@ excution plan:
 3. !=  is [not] null, in(x,x,x), between 不会导致索引失效；
    mysql会预估
 
-### null
-
-1. pros:
-   1. null值不占用空间
-
-2. cons:
-   1. 基于 null的运算失效
-      1. compare: is null, is not null
-      2. operation: null +/-/x/%// number = null
-      3. aggregation: count;
-      4. 不包含在剩余子集里: c !=1;--> c != 1 or c is null;
-
-3. other:
-   1. 会使用索引
-   2.
 
 ## 读写分离
 
