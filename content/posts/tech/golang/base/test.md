@@ -141,3 +141,36 @@ benchmark:
 2.  Benchmark
     run methods N times,
 
+
+
+
+## test
+
+unit test: 单元测试，
+1. 通常只测试一小块代码
+2. 使用 mock 减少依赖
+
+
+test in go:
+1. 放在 _test文件中
+
+
+
+test 形式:
+
+1. single test 
+```
+
+var input, expect
+
+result := runFun
+
+if result != xx {
+  t.Error("unexpect")
+}
+```
+
+1. table test：  a series of tes 
+
+
+2. run test: parller
