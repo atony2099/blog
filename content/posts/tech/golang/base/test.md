@@ -144,9 +144,46 @@ benchmark:
 
 
 
-## test
+## test in program
 
-unit test: 单元测试，
+
+what's test in program:
+通过执行一定的动作并与预期做比较从而得出结论
+
+test types:
+1.  unit test 
+	1. 测试某个func 或者模块
+	2. 当有内部模块依赖或者 外部依赖（数据库，网络），通常mock
+	3. 白盒: 需要知道内部代码
+
+1.   integration  test：
+	1. 关注多个模块
+	2. 使用真实的依赖
+	3.  白盒：需要内部代码
+2.  system test:  
+	1. 整个 系统 
+	2. 黑盒: 不需要代码， 直接使用使用 系统，  通过api调用 ，浏览器登方式  
+
+
+
+
+
+what's unit test:
+通过主动调目标函数 并观察结果来进行的test
+```
+result  = callFunct()
+if result != expected:
+	print(error )
+```
+
+
+
+test typess
+
+1. unit test:最小单位
+
+
+unit test vs 其他: 单元测试，
 1. 通常只测试一小块代码
 2. 使用 mock 减少依赖
 
@@ -172,4 +209,4 @@ if result != xx {
 
 1. table test：  a series of tes 
 
-2. run test: parller
+2. run test parallel:  t.run
