@@ -152,12 +152,12 @@ what's test in program:
 
 test types:
 1.  unit test 
-	1. 测试某个func 或者模块
-	2. 当有内部模块依赖或者 外部依赖（数据库，网络），通常mock
-	3. 白盒: 需要知道内部代码
+	1. 对象： 某个func 或者模块；
+	3. mock:  需要mock:  当有内部模块依赖或者 外部依赖（数据库，网络）, 使用mock
+	4. 白盒: 需要知道内部代码
 
 1.   integration  test：
-	1. 关注多个模块
+	1. 对象:   
 	2. 使用真实的依赖
 	3.  白盒：需要内部代码
 2.  system test:  
