@@ -53,13 +53,29 @@ Prometheus time series  data:
 
 
 
-## promql.
+## promql 
+
+语法:
+```
+function(metric{lable})[time range ]
+```
+
+basic:
+1.  request_total: 瞬时值； 当前最新的值；
+2.  request_total\[5m\]: 区间值， 5m 所有上报的值
+
+
+聚合操作
+1. sum
+2. min
+3. count
 
 
 
 
 
-### storage
+
+##   storage
 
 can store in a remote storag;
 
@@ -175,6 +191,29 @@ api_request_count:  100;   2023-12-05 11:00:00
 
 在客户端，可以分成几个metrics type
 
-1. counter:  只会增加；
-1. gauge: 可以增加和减少; 
-2. history: 实际有多个lable
+1. counter:  
+	1. 只会增加；
+	2. 使用场景:  请求数
+```
+request_count  1 2023-12-05 11:00:00
+request_count 1 2023-12-05 12:00:00
+```
+1. gauge: 
+	1. 可以增加和减少;
+	2.  可能会少采集数据，需要设置合理间隔；
+	3.  使用场景: 日常的指标 
+```
+temperuate  20 2023-12-05 11:00:00
+temperature 15 2023-12-05 12:00:00
+```
+1. Histogram, Summary:  
+	1. 通过lable 区分不同的bucket，将要采集的数据落入到相应的bucket 中； 
+	2. 使用场景:观察数据 分布 
+```
+
+request_duration_seconds_bucket{le="0.5"} 2 2023-12-05 11:00:00 request_duration_seconds_bucket{le="1.0"} 5 2023-12-05 11:00:00
+
+```
+
+
+##  使用 
