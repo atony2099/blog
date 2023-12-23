@@ -194,6 +194,8 @@ api_request_count:  100;   2023-12-05 11:00:00
 1. counter:  
 	1. 只会增加；
 	2. 使用场景:  请求数
+	3. 服务重启后会归零
+![VxjGyctNaWZ1](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20231223/VxjGyctNaWZ1.png)
 ```
 request_count  1 2023-12-05 11:00:00
 request_count 1 2023-12-05 12:00:00
@@ -206,9 +208,27 @@ request_count 1 2023-12-05 12:00:00
 temperuate  20 2023-12-05 11:00:00
 temperature 15 2023-12-05 12:00:00
 ```
-1. Histogram, Summary:  
-	1. 通过lable 区分不同的bucket，将要采集的数据落入到相应的bucket 中； 
-	2. 使用场景:观察数据 分布 
+### Histogram, Summary:
+
+使用三个metric 来暴露一组 historygram, summay
+
+```
+prometheus_tsdb_compaction_chunk_range_bucket{le="25600"} 100
+
+prometheus_tsdb_compaction_chunk_range_bucket{le="102400"} 200
+
+prometheus_tsdb_compaction_chunk_range_bucket{le="409600"} 300
+```
+
+![R6NfQRlUqHu6](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20231223/R6NfQRlUqHu6.png)
+
+![okVkcWHQqouT](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20231223/okVkcWHQqouT.png)
+
+
+
+
+
+
 ```
 
 request_duration_seconds_bucket{le="0.5"} 2 2023-12-05 11:00:00 request_duration_seconds_bucket{le="1.0"} 5 2023-12-05 11:00:00
@@ -217,3 +237,7 @@ request_duration_seconds_bucket{le="0.5"} 2 2023-12-05 11:00:00 request_duration
 
 
 ##  使用 
+
+1.  increse the counter 
+2.  alert if the error 
+
