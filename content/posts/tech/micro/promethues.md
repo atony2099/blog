@@ -59,8 +59,6 @@ Prometheus time series  data:
 
 
 
-
-
 ### storage
 
 can store in a remote storag;
@@ -162,3 +160,21 @@ get  127.0.0.1:9115/probe?params=xxxx;
     - targets.json
 
 1. targets: the  
+
+
+
+
+## pomethus 
+
+指标类型
+
+在 pomethus 数据库里存储的是 metrics  and value  and timestamp; 
+
+api_request_count:  100;   2023-12-05 11:00:00
+
+
+在客户端，可以分成几个metrics type
+
+1. counter:  只会增加；
+1. gauge: 可以增加和减少; 
+2. history: 实际有多个lable
