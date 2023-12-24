@@ -157,15 +157,15 @@ test types:
 	4. 白盒: 需要知道内部代码
 
 1.   integration  test：
-	1. 对象:   
+	1. 对象:   几个func 或者模块
 	2. 使用真实的依赖
 	3.  白盒：需要内部代码
 2.  system test:  
 	1. 整个 系统 
-	2. 黑盒: 不需要代码， 直接使用使用 系统，  通过api调用 ，浏览器登方式  
+	2. 黑盒
+		1. 可以 不需要代码， 直接使用使用 系统，  通过api调用 ，浏览器登方式  
 
-
-
+单元测试和集成测试界限很模糊，调用了db 也可以叫单元测试
 
 
 what's unit test:
@@ -181,7 +181,6 @@ if result != expected:
 test typess
 
 1. unit test:最小单位
-
 
 unit test vs 其他: 单元测试，
 1. 通常只测试一小块代码
@@ -209,4 +208,11 @@ if result != xx {
 
 1. table test：  a series of tes 
 
-2. run test parallel:  t.run
+1. run test parallel:  t.run
+
+
+
+
+
+## test in go
+
