@@ -226,9 +226,6 @@ prometheus_tsdb_compaction_chunk_range_bucket{le="409600"} 300
 
 
 
-
-
-
 ```
 
 request_duration_seconds_bucket{le="0.5"} 2 2023-12-05 11:00:00 request_duration_seconds_bucket{le="1.0"} 5 2023-12-05 11:00:00
@@ -240,4 +237,8 @@ request_duration_seconds_bucket{le="0.5"} 2 2023-12-05 11:00:00 request_duration
 
 1.  increse the counter 
 2.  alert if the error 
+
+
+
+## pomethus function
 
