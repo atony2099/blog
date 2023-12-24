@@ -13,26 +13,64 @@ tags:
 
 [How to Keep Your Code Clean With Object Encapsulation](https://www.makeuseof.com/how-to-keep-your-code-clean-with-object-encapsulation/)
 
-
-
-
+[Golang 依赖注入最佳指南 - TeHub - https://tehub.com/a/c0W0jZ5qR8](https://tehub.com/a/c0W0jZ5qR8)
 
 
 ## Solid
 
+核心目标：
+
+1. 最小化修改：
+	1. 当需要修改的时候，只修改最小的一部分：单一职责
+2. 容易拓展：当需要拓展时候，不改变原有代码，只需要增添新增的部分：  依赖倒置
+1.  易阅读，易测试：单一，依赖导致；
+
+
+在具体实现上：
+1. 面相接口编程：将需要的功能尽可能的抽象成接口，并依赖这些接口
+2. 接口要分离: 如果实现类并不不需要接口的全部功能，则将接口分离；
+3. 划分好类的职责
+### single responsibility
 单一职责
 1.  只负责一类事情
 2.  只有当这类 事情发生变化的时候才需要修改代码
+
+在业务开发层面， 一类事情可以依照数据库表，如 user class 
+
+example: 负责 user 相关信息的增删改查
+```
+userclase{
+
+	queryuser
+	adduser
+	insertuser
+	updateUser
+	
+}
+
+```
+
+### Dependency Inversion
 
 依赖反转:   
 1. 反转高层对底层的依赖， 高层和底层都依赖于一个抽象类
 2. 不依赖具体类， 只依赖抽象类; 
 
-依赖注入: 依赖反转 的实现方式；将 
+依赖注入: 依赖反转 的实现方式；
+1. 使用接口间接依赖服务
+1. 将依赖传入使用者内部,而不是使用者内部new 出依赖的实例
+
+```
+NewUserService(user userDBInterface ){
+
+}
+```
 
 
 
-open-close:    可以拓展，并且拓展后不需要修改原来的代码
+open-close:    
+1. 对拓展开放，很容易拓展
+2. 保持内部的稳定，对于已有的内部代码尽量不动 
 
 里氏替换： 
 1. 子类可以完全替代父类
