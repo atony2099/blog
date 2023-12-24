@@ -216,3 +216,4 @@ if result != xx {
 
 ## test in go
 
+1. mock io 

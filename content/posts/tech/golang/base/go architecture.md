@@ -14,6 +14,23 @@ tags:
 [How to Keep Your Code Clean With Object Encapsulation](https://www.makeuseof.com/how-to-keep-your-code-clean-with-object-encapsulation/)
 
 
+
+
+
+
+## Solid
+
+
+单一职责
+1.  只负责一类事情
+2.  只有当这类 事情发生变化的时候才需要修改代码
+
+
+依赖反转: 不依赖具体类，而是 依赖接口 
+open-close:  可以拓展，并且拓展后不需要修改原来的代码
+ 
+
+
 ## opp solid 
 是一系列最佳实践总结的规则， 遵守这些规则能写出
 容易维护，容易测试，容易阅读的代码 
@@ -33,10 +50,10 @@ userRepoClass:
 ```
 
 
+
 ### Dependency Inversion
-依赖反转： 
-1. 上层和下层都不要直接依赖，而是依赖一个中间层
-2. 不要依赖具体对象，而是依赖于接口；
+依赖反转： 不依赖具体的类，依赖接口
+
 why： 减少其他组件改变对现有组件的影响 
 
 
@@ -50,7 +67,6 @@ var buss Bussiness{};
 buss.repo.dosth;
 
 ```
-
 
 ###  open-close
 
