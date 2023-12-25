@@ -177,9 +177,6 @@ get  127.0.0.1:9115/probe?params=xxxx;
 
 1. targets: the  
 
-
-
-
 ## pomethus 
 
 指标类型
@@ -241,4 +238,12 @@ request_duration_seconds_bucket{le="0.5"} 2 2023-12-05 11:00:00 request_duration
 
 
 ## pomethus function
+
+
+
+
+
+
+##  alert manager
+
 
