@@ -246,4 +246,41 @@ request_duration_seconds_bucket{le="0.5"} 2 2023-12-05 11:00:00 request_duration
 
 ##  alert manager
 
+group_wait: 30s group_interval: 5m repeat_interval: 1h
+
+1. group_wait: 1ms: 等待同一组的其他通知1m，看是否有新的通知，有的话一起发出
+
+2. group_interval: 5m： 两个同组的通知至少间隔  5m
+
+1. repeat_interval: 1h:  如果持续触发通知， 则至少一小时后才再发一次
+
+
+
+increaese(request_count) > 10\[1m\];
+
+
+10:00, 触发，  10:01 等待没有新的同组通知：发出通知
+持续到 10:02结束；
+10:04:00 新的触发，由于 < 5m，如果持续激活 >=5:  10:07 发出通知
+一直持续到 11:04：在发出通知
+
+
+
+
+
+
+group
+
+
+
+
+
+
+
+
+
+
+
+
+
 
