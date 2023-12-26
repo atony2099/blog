@@ -243,7 +243,6 @@ request_duration_seconds_bucket{le="0.5"} 2 2023-12-05 11:00:00 request_duration
 
 
 
-
 ##  alert manager
 
 group_wait: 30s group_interval: 5m repeat_interval: 1h
@@ -267,9 +266,15 @@ increaese(request_count) > 10\[1m\];
 
 
 
+### alert manager config
 
 
-group
+
+
+
+
+
+
 
 
 
