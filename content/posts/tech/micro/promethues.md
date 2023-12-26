@@ -263,7 +263,7 @@ increaese(request_count) > 10\[1m\];
 10:04:00 新的触发，由于 < 5m，如果持续激活 >=5:  10:07 发出通知
 一直持续到 11:04：在发出通知
 
-
+  
 
 
 ### alert manager config
