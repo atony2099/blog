@@ -268,19 +268,34 @@ increaese(request_count) > 10\[1m\];
 ### alert manager config
 
 
+```yaml
+groups:
+- name: example_alerts
+  rules:
+  - alert: HighRequestLatency
+    expr: job:request_latency_seconds:mean5m{job="myjob"} > 0.5
+    for: 10m
+    labels:
+      severity: page
+    annotations:
+      summary: High request latency of job myjob
+      description: This alert fires when the mean request latency of myjob is above 0.5s for 10 minutes.
+      dashboard: http://example.com/dashboard/myjob
+
+```
+label:  the metadata for a alert, used to identify 
+annotation:  added data for notify
+
+
+
+alert status:
+1. pending: wait for time
+2. firing：after pending, not actualy firing, may be wait for  in group 
+3. resolved:   a metric    
 
 
 
 
-
-
-
-
-
-## todos
-
-- [ ] how to write  the  rules
-	- [ ] basic
 
 
 
