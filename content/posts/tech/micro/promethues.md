@@ -283,17 +283,17 @@ groups:
       dashboard: http://example.com/dashboard/myjob
 
 ```
-label:  the metadata for a alert, used to identify 
-annotation:  added data for notify
+label:  the metadata for a alert,
+1. routing
+2. grouping
+annotation:  added data for notify, used in notificaiton
 
 
 
 alert status:
 1. pending: wait for time
 2. firing：after pending, not actualy firing, may be wait for  in group 
-3. resolved:   a metric    
-
-
+3. resolved:  the metric that cause the alert not exist
 
 
 
