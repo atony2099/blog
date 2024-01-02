@@ -237,21 +237,47 @@ request_duration_seconds_bucket{le="0.5"} 2 2023-12-05 11:00:00 request_duration
 
 
 
-## pomethus function
+## pomethus 
 
-
-
-
-##   alert rules
-;
-
-
-##  alert manager
 
 the total process:
 
 alert --> router --> receiver.
 
+
+
+##   alert rules
+
+groups: 
+1. 帮助组织rules, 使得更可读
+2. 不影响routing 
+
+```
+groups:
+	- name:
+	. rules:
+		- alert: ApiErrorCountIncreased
+		  expr: increase(api_error_count[1m]) >= 10
+		  for:
+		  lables:	
+			  servitiry:
+		  annotation:
+
+    - name:
+	  rules:
+
+```
+
+lable:   分组和  
+ 
+annotation: 
+
+
+
+
+
+
+##  alert manager
 
 
 ```yaml
@@ -263,10 +289,9 @@ route:
 	routes:
 	 - mathch:
 		 severity:"eeror"
-	   receiver:xx
-     - match
+	  receiver:xx
+     - match:
 	
-
 
 receivers:
 - name: 
