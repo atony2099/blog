@@ -446,37 +446,67 @@ Closes #789
 
 
 ##  git workflow 
+workflow: 一系列建议使用好git 
 
 long-live:
-main branch: deploy
-develop: neweset branch for deploy
+main branch: 当前发布的最新版本
+develop:  
+1. 包含最新的，已完成的功能;(最新代码在feature)
+2. 可能还有bug;
 
 
 short live:
 feataure/abc
-release/1.2;
+release-1.2: 发布前小的修改 
+hotfix: 为什么需要： 
+develop代码还不稳定，直接checkout -b develop 可能会发布不想发布的代码
 
 
 ```
 
 git checkout -b feature/a develop;
 
-// in branhch
+// in branhch feature:  finish develp and test
 feataure/a
 
 commit;
 commmit;
 
-//finish and prepare to test
+
+// merge feature, if find small bug, fix in develop, if haev big bug or change, create a new feautere banch to develo
 git checkout develop;
 git merget feature/a;
+git branch -d feature/a 
+commit -am 'small bug fix '
 
 
-// bugfix in develop;
+
+// prepeare to  relase
+git checkout -b   relase-1.2 develop 
+// small fix
+commit -m 'small bug fix'
 
 
+
+// merge to maseter
+
+main: git merge relase-1.2
+develop: git merge releae-1.2
+
+
+// hotfix
+git checkout -b hotfix-1.2.1 main
+commit -m 'fix bug'
+
+main: git merge  hhotfix-1.2.1
+develop: git merge   hhotfix-1.2.1
 
 
 ```
 
 
+when finish feature:
+1.  finish development and testing 
+find bug after mergre feature:
+1.  samll bug,  in develop 
+2. big bug: new branch
