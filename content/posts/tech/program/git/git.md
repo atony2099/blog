@@ -1,9 +1,12 @@
-    ---
+---
 title: git
-date: "2021-03-14T15:35:06+0800"
-categories: ["git"]
+date: 2021-03-14T15:35:06+0800
+categories:
+  - git
 lastmod: 2023-03-20T09:52:44+0800
 draft: false
+tags:
+  - git
 ---
 
 [The Most Basic Git Command List](https://www.tutorialdocs.com/article/git-basic-command-list.html)
@@ -438,5 +441,42 @@ Closes #789
 ```
 
 
+
+
+
+
+##  git workflow 
+
+long-live:
+main branch: deploy
+develop: neweset branch for deploy
+
+
+short live:
+feataure/abc
+release/1.2;
+
+
+```
+
+git checkout -b feature/a develop;
+
+// in branhch
+feataure/a
+
+commit;
+commmit;
+
+//finish and prepare to test
+git checkout develop;
+git merget feature/a;
+
+
+// bugfix in develop;
+
+
+
+
+```
 
 
