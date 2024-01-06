@@ -518,6 +518,15 @@ ssize_t sendfile(int out_fd, int in_fd, off_t *offset, size_t count);
 
 
 
+## 文件层次
+
+1. disk ； 通常代表一个真正的物理磁盘
+2. 分区； 对磁盘进行逻辑分区
+3. 文件： 每个分区使用一种文件系统管理 ；
+
+
+
+
 
 
 
