@@ -1,8 +1,11 @@
 ---
 title: rpc
-date: "2021-06-02T17:31:49+0800"
-draft: false 
-tags: ["rpc","grpc"]
+date: 2021-06-02T17:31:49+0800
+draft: false
+tags:
+  - rpc
+  - grpc
+lastmod: 2024-01-13
 ---
 [Compare gRPC services with HTTP APIs](https://docs.microsoft.com/en-us/aspnet/core/grpc/comparison?view=aspnetcore-3.0)
 
