@@ -514,16 +514,19 @@ find bug after mergre feature:
 
 ## git stash
 what：
-temp to save the change in a plac 
+temp to save the change in a place, 
+
+use case：
+when current work not finish, but need  work with have commit code; 
 
 how:
 ```bash
-git stash push -m -u 'user change' 
+git stash push -u -m  'user change' 
 // -u:  include the untracked file 
 // -a: -u + include igntore file
 
 git stash drop stash@{0}: remove the stash 
-git stash apply stash
+git stash apply stash@{0}： use the stash 
 
 
 git stash pop:  git stash apply lates and git stash dorp latest
