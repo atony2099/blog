@@ -191,6 +191,47 @@ the used of  tag number： identify the key
 can grpc number duplicate:
 no, key  is represent in a unique key number during encoding and decoding 
 
+
+
+## protobuf
+
+
+```protobuf
+syntax = "proto3";
+
+package hello_123;
+
+  
+
+option go_package ="xgit.molica.com.cn/backend/hello;hello";
+
+  
+
+service HelloWorldService {
+
+rpc SayHello(HelloWorldRequest) returns (HelloWorldResponse) {}
+
+}
+
+  
+
+message HelloWorldRequest {}
+
+  
+
+message HelloWorldResponse {
+
+string message = 1;
+
+}
+
+
+
+```
+
+
+package: use in internal space, 
+
 ##  how to use it
 
 
@@ -220,6 +261,11 @@ convention:
 3.  PascalCase for  service name and  method 
 
 ```protoc
+
+
+
+
+
 message HelloReq {
 	string song_name = 1;
 }
