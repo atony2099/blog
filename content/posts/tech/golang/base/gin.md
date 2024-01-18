@@ -39,3 +39,11 @@ class GinContext {
 
 
 ```
+
+
+
+request cancel:
+
+what:  user cancel the   request;
+when:
+1. user actively cancel
