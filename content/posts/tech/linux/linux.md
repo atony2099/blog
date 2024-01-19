@@ -324,3 +324,22 @@ in the early years, it's tty;
 
 ## i/o mutiple
 
+
+
+## linux directory
+
+/srv:  data files for a specific service  如 /srv/www/ftpfile,   /srv/indexhtml
+
+/opt: 三方软件不是遵循linux的方式安装的，自己编译的； 
+
+
+/srv 和 /opt都可以部署自己的服务；
+
+如 goApp,  
+ /srv/goApp: 此时goAPP二进制文件可以看做服务特别的数据
+
+
+
+
+/var: 程序允许过程中产生的，如日志，cache； 
+
