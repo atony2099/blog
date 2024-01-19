@@ -100,15 +100,40 @@ class GinContext {
     // Represents the HTTP response writer.
     Response HTTPResponseWriter
 	int Index
+	valeus map[]
 
 }
 
+func httpRequest(w http.writer, r http.reader): 
+	ginContext := new GinContext;
+
+	handles(ginContext)
+	
+
 ```
+
+pass value in  gin.Context or  gin.Context.request.Context;
+
+
+gin.Context: 
+1. store in a maps
+2. 
+
+gin.Context.request.Context:
+1. store in context
+2. also have cancel siganl 
+
+recommd:
+pass  value in request.context  when it also have  api and db operation, 
+becaut it can responed the rquest sigal
+
+
+
 
 
 middleware: 
 1. how it work ;
-2. how abort work ？
+
 ```
 handles = [handles1, handle2]
 
@@ -144,12 +169,11 @@ func 1
 
 ```
 
-abort , just stop remianing handles , but current handler is excute
-
+abort , just stop remianing handles , but current and previous  handler is excute
 ```
 
 abort:
-	gin.index=-1
+	gin.index = maxIndex
 
 
 func 1:
@@ -157,7 +181,9 @@ func 1:
 	abort()
 	next:
 		  func2: // not be excuted
+			  do sth2
 
-    do sth 2
+    do sth 3
 
+// do sth1 ; do sth3;
 ```
