@@ -87,6 +87,7 @@ for x in object
 
 
 ####  list obsic
+
 1. join two list
 2. copy list
 3. list ocmper
