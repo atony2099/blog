@@ -10,6 +10,15 @@ categories: ["Go"]
 
 
 
+## context
+
+what: 局部变量；
+
+1. 存取变量是 线程安全； 
+2. 可以
+
+  
+
 
 
 context:  cancel a batch of g; pass value to  specify-scoped of g;
