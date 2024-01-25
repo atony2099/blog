@@ -175,3 +175,22 @@ for: aliyun.jenkins/centos:verson1.0;
 
 
 
+
+## docker  Registry
+
+what: 一个存储 docker 镜像的地方； 
+
+docker pull  registry_url:imagename
+docker pull registr_urrl: imagename
+
+如果registry_url是空，则默认从官方https://hub.docker.com/
+
+
+
+
+docker image name:
+```
+[registry-hostname[:port]/]namespace/repository[:tag]
+```
+
+docker will push to corresponding repositry based on the name
