@@ -4,7 +4,7 @@ date: 2021-03-14T15:35:06+0800
 categories:
   - git
 lastmod: 2023-03-20T09:52:44+0800
-draft: false
+draft: true
 tags:
   - git
 ---
@@ -239,7 +239,6 @@ git tag # list all tag
 git push origin v1.0.0
 git push origin --tags 
 ```
-
 
 
 
@@ -533,3 +532,17 @@ git stash pop:  git stash apply lates and git stash dorp latest
 
 
 ```
+
+
+## git  basic command
+git push:
+git push   [  origin  ]  local_branch
+
+
+set upstream to:  配置分支的上游分支；上游分支也是一个分支;
+git push -u  orgin main: 
+
+
+git  pull:
+
+git merge
