@@ -535,6 +535,10 @@ git stash pop:  git stash apply lates and git stash dorp latest
 
 
 ## git  basic command
+
+git fetch: download the newest  copy of   some/all branch from a remote repo;
+
+
 git push:
 git push   [  origin  ]  local_branch
 
@@ -543,6 +547,31 @@ set upstream to:  配置分支的上游分支；上游分支也是一个分支;
 git push -u  orgin main: 
 
 
-git  pull:
+ git pull orgin main ：
+1. git fetch orgin main:  the /remote/origin/main get update info, but  not merge
+2. git merge  remote/orgin/main
 
-git merge
+
+
+git push orign main  :
+1. the remote repo fetch(update) get the main update, but not merge
+2. the remote  repo local branch to it's corrsepend branch
+
+
+
+### git  rebase; git merge
+
+branch： 一系列commit的集合；commit 队列；
+
+git merge: 
+1. craet a new commit;
+2. 不改变该分支的 历史 commit;
+
+
+git rebase: 
+1.  不引入新的提交；
+2.  将新提交的的父commit 指向  别的分支的commit，实现合并变化 ；
+
+![Qs8YPAxsuKqn](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20240130/Qs8YPAxsuKqn.jpg)
+
+
