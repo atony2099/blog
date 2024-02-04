@@ -570,7 +570,8 @@ git merge:
 
 git rebase: 
 1.  不引入新的提交；
-2.  将新提交的的父commit 指向  别的分支的commit，实现合并变化 ；
+
+3.  将新提交的的父commit 指向  别的分支的commit，实现合并变化 ；
 
 ![Qs8YPAxsuKqn](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20240130/Qs8YPAxsuKqn.jpg)
 
