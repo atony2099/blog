@@ -39,7 +39,7 @@ dnat: translate destination ip ;
 
 
 ## 可用区
-可用区：同一地区的不同的地方
+可用区：同一地区的不同的地方；电力和网络相互隔；
 
 同一地域的不同可用区内网互联
 ![xMv0ewUcE9Ol](https://cdn.jsdelivr.net/gh/toms2077/imgs@master/20230919/xMv0ewUcE9Ol.png)

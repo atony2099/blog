@@ -343,3 +343,17 @@ in the early years, it's tty;
 
 /var: 程序允许过程中产生的，如日志，cache； 
 
+
+## 发行版本
+RHEL: 
+1. red hat 维护的或者与其相关的
+2. 使用yum 安装包
+3. 代表： rhel, fleodra, cento s
+
+debian
+1. 开源的
+2. 使用apt安装
+3. 代表： debian , ubuntu， 
+
+Fedora-> centos stream -> rhel->centos
+fedora 和stream 都是测试版本, centos 和 rhel都是稳定版本
