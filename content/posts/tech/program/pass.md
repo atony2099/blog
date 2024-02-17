@@ -7,7 +7,6 @@ tags: [""]
 ---
 
 
-
 pass by value:  pass the copy value of  the arguments 
 feture: any change made to the parameter won't affect the origin value
 
